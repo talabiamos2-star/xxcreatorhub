@@ -2,7 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <meta name="theme-color" content="#08090c">
 
     <title>XX CreatorHub</title>
 
@@ -11,221 +17,692 @@
 
 <body>
 
-    <div class="app">
+<div class="app">
 
-        <!-- HEADER -->
-        <header class="header">
+    <!-- ================= HEADER ================= -->
 
-            <div class="brand">
-                <div class="brand-logo">X</div>
+    <header class="header">
 
-                <div>
-                    <div class="brand-name">
-                        XX CreatorHub
-                    </div>
+        <div class="brand">
 
-                    <div class="brand-subtitle">
-                        Discover creators
-                    </div>
+            <div class="brand-logo">
+                X
+            </div>
+
+            <div>
+                <div class="brand-name">
+                    XX CreatorHub
+                </div>
+
+                <div class="brand-subtitle">
+                    Discover creators
                 </div>
             </div>
 
-            <button class="profile-button">
-                U
-            </button>
+        </div>
 
-        </header>
+        <button
+            class="profile-button"
+            data-page="profile"
+            aria-label="Profile"
+        >
+            U
+        </button>
+
+    </header>
 
 
-        <!-- MAIN CONTENT -->
-        <main>
+    <!-- ================= HOME ================= -->
 
-            <!-- FEATURED CREATOR -->
-            <section class="hero">
+    <main
+        id="home-page"
+        class="page active-page"
+    >
+
+        <section class="hero">
+
+            <div class="featured-label">
+                ✨ FEATURED
+            </div>
+
+            <h1>
+                Discover your<br>
+                next favorite creator.
+            </h1>
+
+            <p>
+                Explore creators, photos and exclusive content.
+            </p>
+
+        </section>
+
+
+        <!-- FEATURED CREATOR -->
+
+        <section class="creator-card">
+
+            <div class="creator-image">
+
+                <div class="image-placeholder">
+                    CREATOR PHOTO
+                </div>
+
+                <div class="image-overlay"></div>
+
+                <div class="verified">
+                    ✓ Verified
+                </div>
+
+                <div class="creator-info">
+
+                    <h2>
+                        Mia
+                    </h2>
+
+                    <p>
+                        @mia.creator
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="creator-content">
+
+                <div class="stats">
+
+                    <div>
+                        <strong>12.8K</strong>
+                        <span>Views</span>
+                    </div>
+
+                    <div>
+                        <strong>4.9</strong>
+                        <span>Rating</span>
+                    </div>
+
+                    <div>
+                        <strong>28</strong>
+                        <span>Posts</span>
+                    </div>
+
+                </div>
+
+
+                <div class="divider"></div>
+
+
+                <p class="unlock-text">
+                    🔒 Exclusive content available
+                </p>
+
+
+                <button
+                    class="watch-button"
+                    data-action="exclusive"
+                >
+                    🔒 See Exclusive Content
+                </button>
+
+
+                <p class="reward-text">
+                    Watch a short ad to unlock
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- QUICK DISCOVER -->
+
+        <section class="discover-preview">
+
+            <div class="section-title">
+
+                <h2>
+                    Discover
+                </h2>
+
+                <button
+                    class="see-all"
+                    data-page="discover"
+                >
+                    See all
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= DISCOVER ================= -->
+
+    <main
+        id="discover-page"
+        class="page"
+    >
+
+        <div class="discover-header">
+
+            <div>
 
                 <div class="featured-label">
-                    ✨ FEATURED
+                    EXPLORE
                 </div>
 
                 <h1>
-                    Discover your<br>
-                    next favorite creator.
+                    Discover
                 </h1>
 
-                <p>
-                    Explore photos, creators and exclusive content.
+            </div>
+
+            <button class="search-button">
+                🔍
+            </button>
+
+        </div>
+
+
+        <!-- FILTERS -->
+
+        <div class="feed-filters">
+
+            <button class="filter active">
+                For You
+            </button>
+
+            <button class="filter">
+                Trending
+            </button>
+
+            <button class="filter">
+                New
+            </button>
+
+        </div>
+
+
+        <!-- ================= POST 1 ================= -->
+
+        <article class="post">
+
+            <div class="post-header">
+
+                <div class="avatar">
+                    S
+                </div>
+
+                <div class="creator-details">
+
+                    <strong>
+                        Sofia ✓
+                    </strong>
+
+                    <small>
+                        @sofia.creator
+                    </small>
+
+                </div>
+
+                <button class="more-button">
+                    •••
+                </button>
+
+            </div>
+
+
+            <div class="post-image">
+                CREATOR PHOTO
+            </div>
+
+
+            <div class="post-actions">
+
+                <button
+                    class="like-button"
+                    aria-label="Like"
+                >
+                    ♡
+                </button>
+
+                <button
+                    class="comment-button"
+                    aria-label="Comments"
+                >
+                    ♡
+                </button>
+
+                <button
+                    class="share-button"
+                    aria-label="Share"
+                >
+                    ↗
+                </button>
+
+                <button
+                    class="save-button"
+                    aria-label="Save"
+                >
+                    ♧
+                </button>
+
+            </div>
+
+
+            <div class="post-content">
+
+                <strong class="likes-count">
+                    1,284 likes
+                </strong>
+
+                <p class="caption">
+                    Sofia's latest post ✨
                 </p>
 
-            </section>
+                <small class="post-time">
+                    2 hours ago
+                </small>
 
 
-            <!-- FEATURED CARD -->
-            <section class="creator-card">
+                <button
+                    class="exclusive-button"
+                    data-action="exclusive"
+                >
+                    🔒 See Exclusive Content
+                </button>
 
-                <div class="creator-image">
+            </div>
 
-                    <div class="image-placeholder">
-                        CREATOR PHOTO
-                    </div>
+        </article>
 
-                    <div class="image-overlay"></div>
 
-                    <div class="verified">
-                        ✓ Verified
-                    </div>
+        <!-- ================= POST 2 ================= -->
 
-                    <div class="creator-info">
+        <article class="post">
 
-                        <h2>Mia</h2>
+            <div class="post-header">
 
-                        <p>
-                            @mia.creator
-                        </p>
+                <div class="avatar avatar-two">
+                    E
+                </div>
 
-                    </div>
+                <div class="creator-details">
+
+                    <strong>
+                        Emma ✓
+                    </strong>
+
+                    <small>
+                        @emma.creator
+                    </small>
 
                 </div>
 
+                <button class="more-button">
+                    •••
+                </button>
 
-                <div class="creator-content">
-
-                    <div class="stats">
-
-                        <div>
-                            <strong>12.8K</strong>
-                            <span>Views</span>
-                        </div>
-
-                        <div>
-                            <strong>4.9</strong>
-                            <span>Rating</span>
-                        </div>
-
-                        <div>
-                            <strong>28</strong>
-                            <span>Posts</span>
-                        </div>
-
-                    </div>
+            </div>
 
 
-                    <div class="divider"></div>
+            <div class="post-image">
+                CREATOR PHOTO
+            </div>
 
 
-                    <p class="unlock-text">
-                        🔒 Unlock today's featured content
-                    </p>
+            <div class="post-actions">
+
+                <button
+                    class="like-button"
+                    aria-label="Like"
+                >
+                    ♡
+                </button>
+
+                <button
+                    class="comment-button"
+                    aria-label="Comments"
+                >
+                    ♡
+                </button>
+
+                <button
+                    class="share-button"
+                    aria-label="Share"
+                >
+                    ↗
+                </button>
+
+                <button
+                    class="save-button"
+                    aria-label="Save"
+                >
+                    ♧
+                </button>
+
+            </div>
 
 
-                    <button class="watch-button">
-                        ▶ Watch Featured Content
-                    </button>
+            <div class="post-content">
+
+                <strong class="likes-count">
+                    936 likes
+                </strong>
+
+                <p class="caption">
+                    New photos from Emma 💫
+                </p>
+
+                <small class="post-time">
+                    5 hours ago
+                </small>
 
 
-                    <p class="reward-text">
-                        🎁 Watch a short ad to unlock
-                    </p>
+                <button
+                    class="exclusive-button"
+                    data-action="exclusive"
+                >
+                    🔒 See Exclusive Content
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- ================= POST 3 ================= -->
+
+        <article class="post">
+
+            <div class="post-header">
+
+                <div class="avatar avatar-three">
+                    L
+                </div>
+
+                <div class="creator-details">
+
+                    <strong>
+                        Luna ✓
+                    </strong>
+
+                    <small>
+                        @luna.creator
+                    </small>
 
                 </div>
 
-            </section>
+                <button class="more-button">
+                    •••
+                </button>
+
+            </div>
 
 
-            <!-- DISCOVER -->
-            <section class="discover">
+            <div class="post-image">
+                CREATOR PHOTO
+            </div>
 
-                <div class="section-title">
 
-                    <h2>
-                        Discover
-                    </h2>
+            <div class="post-actions">
 
-                    <span>
-                        See all
-                    </span>
+                <button
+                    class="like-button"
+                    aria-label="Like"
+                >
+                    ♡
+                </button>
 
+                <button
+                    class="comment-button"
+                    aria-label="Comments"
+                >
+                    ♡
+                </button>
+
+                <button
+                    class="share-button"
+                    aria-label="Share"
+                >
+                    ↗
+                </button>
+
+                <button
+                    class="save-button"
+                    aria-label="Save"
+                >
+                    ♧
+                </button>
+
+            </div>
+
+
+            <div class="post-content">
+
+                <strong class="likes-count">
+                    2,103 likes
+                </strong>
+
+                <p class="caption">
+                    New creator drop 🔥
+                </p>
+
+                <small class="post-time">
+                    Yesterday
+                </small>
+
+
+                <button
+                    class="exclusive-button"
+                    data-action="exclusive"
+                >
+                    🔒 See Exclusive Content
+                </button>
+
+            </div>
+
+        </article>
+
+    </main>
+
+
+    <!-- ================= SAVED ================= -->
+
+    <main
+        id="saved-page"
+        class="page"
+    >
+
+        <div class="empty-page">
+
+            <div class="empty-icon">
+                ♡
+            </div>
+
+            <h2>
+                Saved posts
+            </h2>
+
+            <p>
+                Posts you save will appear here.
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= PROFILE ================= -->
+
+    <main
+        id="profile-page"
+        class="page"
+    >
+
+        <div class="profile-card">
+
+            <div class="profile-avatar">
+                U
+            </div>
+
+            <h2>
+                Your Profile
+            </h2>
+
+            <p>
+                Welcome to XX CreatorHub
+            </p>
+
+            <div class="profile-stats">
+
+                <div>
+                    <strong>0</strong>
+                    <span>Liked</span>
                 </div>
 
-
-                <!-- POST 1 -->
-                <div class="post">
-
-                    <div class="post-header">
-
-                        <div class="avatar">
-                            S
-                        </div>
-
-                        <div>
-                            <strong>Sofia ✓</strong>
-                            <small>@sofia.creator</small>
-                        </div>
-
-                    </div>
-
-
-                    <div class="post-image">
-                        CREATOR PHOTO
-                    </div>
-
-
-                    <div class="post-actions">
-
-                        <button>
-                            ♡
-                        </button>
-
-                        <span>
-                            1.2K likes
-                        </span>
-
-                    </div>
-
-
-                    <p class="caption">
-                        New post ✨
-                    </p>
-
-
-                    <button class="exclusive-button">
-                        🔒 See Exclusive Content
-                    </button>
-
+                <div>
+                    <strong>0</strong>
+                    <span>Saved</span>
                 </div>
 
-            </section>
+                <div>
+                    <strong>0</strong>
+                    <span>Unlocked</span>
+                </div>
 
-        </main>
+            </div>
+
+        </div>
+
+    </main>
 
 
-        <!-- BOTTOM NAVIGATION -->
-        <nav class="bottom-nav">
+    <!-- ================= BOTTOM NAV ================= -->
 
-            <button class="active">
-                <span>⌂</span>
-                <small>Home</small>
+    <nav class="bottom-nav">
+
+        <button
+            class="nav-button active"
+            data-page="home"
+        >
+
+            <span>
+                ⌂
+            </span>
+
+            <small>
+                Home
+            </small>
+
+        </button>
+
+
+        <button
+            class="nav-button"
+            data-page="discover"
+        >
+
+            <span>
+                ⌕
+            </span>
+
+            <small>
+                Discover
+            </small>
+
+        </button>
+
+
+        <button
+            class="nav-button"
+            data-page="saved"
+        >
+
+            <span>
+                ♡
+            </span>
+
+            <small>
+                Saved
+            </small>
+
+        </button>
+
+
+        <button
+            class="nav-button"
+            data-page="profile"
+        >
+
+            <span>
+                ●
+            </span>
+
+            <small>
+                Profile
+            </small>
+
+        </button>
+
+    </nav>
+
+
+    <!-- ================= UNLOCK MODAL ================= -->
+
+    <div
+        id="unlock-modal"
+        class="modal"
+    >
+
+        <div class="modal-box">
+
+            <button
+                class="close-modal"
+                id="close-modal"
+            >
+                ×
             </button>
 
-            <button>
-                <span>⌕</span>
-                <small>Discover</small>
+            <div class="modal-icon">
+                🔒
+            </div>
+
+            <h2>
+                Exclusive Content
+            </h2>
+
+            <p>
+                Watch a short sponsored video to unlock this content.
+            </p>
+
+            <button
+                class="unlock-modal-button"
+                id="unlock-button"
+            >
+                Continue
             </button>
 
-            <button>
-                <span>♡</span>
-                <small>Saved</small>
-            </button>
+            <small>
+                You can close this window at any time.
+            </small>
 
-            <button>
-                <span>●</span>
-                <small>Profile</small>
-            </button>
-
-        </nav>
+        </div>
 
     </div>
+
+
+</div>
+
+
+<!-- JAVASCRIPT -->
 
 <script src="app.js"></script>
 
 </body>
-</html>
+    </html>
+
+                    
