@@ -1,78 +1,276 @@
 // ===============================
-// XX CREATORHUB - APP JAVASCRIPT
+// XX CREATORHUB APP
 // ===============================
 
-// Like buttons
-const likeButtons = document.querySelectorAll(".post-actions button");
 
-likeButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-        const isLiked = button.classList.toggle("liked");
+// ---------- PAGE NAVIGATION ----------
 
-        if (isLiked) {
-            button.textContent = "♥";
-            button.style.color = "#ff4f8b";
-        } else {
-            button.textContent = "♡";
-            button.style.color = "#ffffff";
+const pages = document.querySelectorAll(".page");
+const navButtons = document.querySelectorAll(".nav-button");
+const pageButtons = document.querySelectorAll("[data-page]");
+
+function showPage(pageName) {
+
+    pages.forEach((page) => {
+        page.classList.remove("active-page");
+    });
+
+    const selectedPage =
+        document.getElementById(`${pageName}-page`);
+
+    if (selectedPage) {
+        selectedPage.classList.add("active-page");
+    }
+
+    navButtons.forEach((button) => {
+        button.classList.remove("active");
+
+        if (button.dataset.page === pageName) {
+            button.classList.add("active");
         }
     });
-});
 
-
-// Featured content button
-const watchButton = document.querySelector(".watch-button");
-
-if (watchButton) {
-    watchButton.addEventListener("click", () => {
-        alert("Exclusive content will open here.");
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
     });
 }
 
 
-// Exclusive content buttons
-const exclusiveButtons =
-    document.querySelectorAll(".exclusive-button");
+pageButtons.forEach((button) => {
 
-exclusiveButtons.forEach((button) => {
     button.addEventListener("click", () => {
-        alert("Exclusive content will open here.");
+
+        const pageName = button.dataset.page;
+
+        if (pageName) {
+            showPage(pageName);
+        }
+
     });
+
 });
 
 
-// Bottom navigation
-const navButtons =
-    document.querySelectorAll(".bottom-nav button");
+// ---------- LIKE BUTTONS ----------
 
-navButtons.forEach((button) => {
+const likeButtons =
+    document.querySelectorAll(".like-button");
+
+likeButtons.forEach((button) => {
 
     button.addEventListener("click", () => {
 
-        navButtons.forEach((item) => {
+        const post = button.closest(".post");
+
+        const likesElement =
+            post.querySelector(".likes-count");
+
+        const currentlyLiked =
+            button.classList.contains("liked");
+
+        let currentLikes =
+            parseInt(
+                likesElement.textContent.replace(/\D/g, "")
+            ) || 0;
+
+
+        if (!currentlyLiked) {
+
+            button.classList.add("liked");
+
+            button.textContent = "♥";
+
+            currentLikes++;
+
+        } else {
+
+            button.classList.remove("liked");
+
+            button.textContent = "♡";
+
+            currentLikes--;
+
+        }
+
+
+        likesElement.textContent =
+            currentLikes.toLocaleString() + " likes";
+
+    });
+
+});
+
+
+// ---------- SAVE BUTTONS ----------
+
+const saveButtons =
+    document.querySelectorAll(".save-button");
+
+saveButtons.forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+        const saved =
+            button.classList.toggle("saved");
+
+        if (saved) {
+
+            button.textContent = "★";
+
+        } else {
+
+            button.textContent = "♧";
+
+        }
+
+    });
+
+});
+
+
+// ---------- FILTER BUTTONS ----------
+
+const filters =
+    document.querySelectorAll(".filter");
+
+filters.forEach((filter) => {
+
+    filter.addEventListener("click", () => {
+
+        filters.forEach((item) => {
             item.classList.remove("active");
         });
 
-        button.classList.add("active");
-
-        const label =
-            button.querySelector("small")?.textContent;
-
-        if (label === "Discover") {
-            document
-                .querySelector(".discover")
-                ?.scrollIntoView({
-                    behavior: "smooth"
-                });
-        }
-
-        if (label === "Home") {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        }
+        filter.classList.add("active");
 
     });
 
 });
+
+
+// ---------- EXCLUSIVE CONTENT MODAL ----------
+
+const modal =
+    document.getElementById("unlock-modal");
+
+const closeModal =
+    document.getElementById("close-modal");
+
+const unlockButtons =
+    document.querySelectorAll(
+        '[data-action="exclusive"]'
+    );
+
+
+function openUnlockModal() {
+
+    if (modal) {
+        modal.classList.add("show");
+        document.body.style.overflow = "hidden";
+    }
+
+}
+
+
+function closeUnlockModal() {
+
+    if (modal) {
+        modal.classList.remove("show");
+        document.body.style.overflow = "";
+    }
+
+}
+
+
+unlockButtons.forEach((button) => {
+
+    button.addEventListener("click", () => {
+        openUnlockModal();
+    });
+
+});
+
+
+if (closeModal) {
+
+    closeModal.addEventListener(
+        "click",
+        closeUnlockModal
+    );
+
+}
+
+
+// Close modal when tapping outside it
+
+if (modal) {
+
+    modal.addEventListener("click", (event) => {
+
+        if (event.target === modal) {
+            closeUnlockModal();
+        }
+
+    });
+
+}
+
+
+// ---------- CONTINUE BUTTON ----------
+
+const unlockButton =
+    document.getElementById("unlock-button");
+
+if (unlockButton) {
+
+    unlockButton.addEventListener("click", () => {
+
+        alert(
+            "AdsGram will be connected here."
+        );
+
+    });
+
+}
+
+
+// ---------- SEARCH BUTTON ----------
+
+const searchButton =
+    document.querySelector(".search-button");
+
+if (searchButton) {
+
+    searchButton.addEventListener("click", () => {
+
+        alert(
+            "Creator search will be added here."
+        );
+
+    });
+
+}
+
+
+// ---------- TELEGRAM MINI APP ----------
+
+// Telegram provides this object when the
+// website is opened inside Telegram.
+
+if (window.Telegram &&
+    window.Telegram.WebApp) {
+
+    const tg =
+        window.Telegram.WebApp;
+
+    tg.ready();
+
+    tg.expand();
+
+}
+
+
+// ---------- START ----------
+
+showPage("home");
