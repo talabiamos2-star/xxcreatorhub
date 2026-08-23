@@ -1,3 +1,12 @@
+const SUPABASE_URL = "https://hgqrtjuccspzwagntnxj.supabase.co";
+
+const SUPABASE_KEY = "sb_publishable_nLNI7mX50vhJZfz6xf9JaQ_HKw2usMf";
+
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
 // ===============================
 // XX CREATORHUB APP
 // ===============================
