@@ -487,3 +487,21 @@ async function loadPosts() {
 
 // Load posts when the app starts
 document.addEventListener("DOMContentLoaded", loadPosts);
+// ---------- REFRESH POSTS ----------
+
+const refreshPostsButton =
+    document.getElementById("refresh-posts");
+
+if (refreshPostsButton) {
+
+    refreshPostsButton.addEventListener("click", async () => {
+
+        refreshPostsButton.textContent = "⟳";
+
+        await loadPosts();
+
+        refreshPostsButton.textContent = "↻";
+
+    });
+
+}
