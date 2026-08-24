@@ -111,30 +111,27 @@ document.addEventListener("click", (event) => {
 
 });
 
-
 // ---------- SAVE BUTTONS ----------
 
-const saveButtons =
-    document.querySelectorAll(".save-button");
+// Works for posts loaded dynamically from Supabase
+document.addEventListener("click", (event) => {
 
-saveButtons.forEach((button) => {
+    const button = event.target.closest(".save-button");
 
-    button.addEventListener("click", () => {
+    if (!button) return;
 
-        const saved =
-            button.classList.toggle("saved");
+    const saved =
+        button.classList.toggle("saved");
 
-        if (saved) {
+    if (saved) {
 
-            button.textContent = "★";
+        button.textContent = "★";
 
-        } else {
+    } else {
 
-            button.textContent = "♧";
+        button.textContent = "♧";
 
-        }
-
-    });
+    }
 
 });
 
