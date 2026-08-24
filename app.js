@@ -60,53 +60,54 @@ pageButtons.forEach((button) => {
 
 });
 
-
 // ---------- LIKE BUTTONS ----------
 
-const likeButtons =
-    document.querySelectorAll(".like-button");
+// Works for posts loaded dynamically from Supabase
+document.addEventListener("click", (event) => {
 
-likeButtons.forEach((button) => {
+    const button = event.target.closest(".like-button");
 
-    button.addEventListener("click", () => {
+    if (!button) return;
 
-        const post = button.closest(".post");
+    const post = button.closest(".post");
 
-        const likesElement =
-            post.querySelector(".likes-count");
+    if (!post) return;
 
-        const currentlyLiked =
-            button.classList.contains("liked");
+    const likesElement =
+        post.querySelector(".likes-count");
 
-        let currentLikes =
-            parseInt(
-                likesElement.textContent.replace(/\D/g, "")
-            ) || 0;
+    if (!likesElement) return;
 
+    const currentlyLiked =
+        button.classList.contains("liked");
 
-        if (!currentlyLiked) {
-
-            button.classList.add("liked");
-
-            button.textContent = "♥";
-
-            currentLikes++;
-
-        } else {
-
-            button.classList.remove("liked");
-
-            button.textContent = "♡";
-
-            currentLikes--;
-
-        }
+    let currentLikes =
+        parseInt(
+            likesElement.textContent.replace(/\D/g, "")
+        ) || 0;
 
 
-        likesElement.textContent =
-            currentLikes.toLocaleString() + " likes";
+    if (!currentlyLiked) {
 
-    });
+        button.classList.add("liked");
+
+        button.textContent = "♥";
+
+        currentLikes++;
+
+    } else {
+
+        button.classList.remove("liked");
+
+        button.textContent = "♡";
+
+        currentLikes--;
+
+    }
+
+
+    likesElement.textContent =
+        currentLikes.toLocaleString() + " likes";
 
 });
 
