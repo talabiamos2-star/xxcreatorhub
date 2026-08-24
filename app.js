@@ -442,8 +442,8 @@ async function loadPosts() {
                     </button>
 
                     <button class="comment-button" aria-label="Comments">
-                        ♡
-                    </button>
+    💬
+</button>
 
                     <button class="share-button" aria-label="Share">
                         ↗
