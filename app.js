@@ -289,7 +289,28 @@ document.addEventListener("click", (event) => {
     );
 
 });
+// ---------- COMMENT BUTTONS ----------
 
+// Works for posts loaded dynamically from Supabase
+document.addEventListener("click", (event) => {
+
+    const button = event.target.closest(".comment-button");
+
+    if (!button) return;
+
+    const post = button.closest(".post");
+
+    if (!post) return;
+
+    const caption =
+        post.querySelector(".caption")?.textContent.trim() ||
+        "This post";
+
+    alert(
+        "Comments for: " + caption
+    );
+
+});
 // ---------- TELEGRAM MINI APP ----------
 
 // Telegram provides this object when the
