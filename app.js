@@ -258,7 +258,37 @@ if (searchButton) {
     });
 
 }
+// ---------- SHARE BUTTONS ----------
 
+// Works for posts loaded dynamically from Supabase
+document.addEventListener("click", (event) => {
+
+    const button = event.target.closest(".share-button");
+
+    if (!button) return;
+
+    const post = button.closest(".post");
+
+    if (!post) return;
+
+    const caption =
+        post.querySelector(".caption")?.textContent.trim() ||
+        "Check out this creator post!";
+
+    const shareUrl = window.location.href;
+
+    const telegramShareUrl =
+        "https://t.me/share/url?url=" +
+        encodeURIComponent(shareUrl) +
+        "&text=" +
+        encodeURIComponent(caption);
+
+    window.open(
+        telegramShareUrl,
+        "_blank"
+    );
+
+});
 
 // ---------- TELEGRAM MINI APP ----------
 
