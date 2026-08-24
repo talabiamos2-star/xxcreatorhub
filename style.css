@@ -686,3 +686,37 @@ button {
         height: 370px;
     }
     }
+/* ---------- DISCOVER ACTIONS ---------- */
+
+.discover-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.refresh-button {
+    width: 48px;
+    height: 48px;
+
+    border: 1px solid #252630;
+    border-radius: 50%;
+
+    background: #15161d;
+    color: #ffffff;
+
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+.refresh-button:active {
+    transform: rotate(180deg) scale(0.95);
+    background: #20212a;
+}
