@@ -399,8 +399,8 @@ async function loadPosts() {
         const caption = post.caption || "";
         
         return `
-            <article class="post">
-
+            
+<article class="post" data-post-id="${post.id}">
                 <div class="post-header">
 
                     <div class="avatar">
