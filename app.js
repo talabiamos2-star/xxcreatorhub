@@ -306,6 +306,28 @@ document.addEventListener("click", async (event) => {
 
     if (!postId) return;
 
+    const commentsPanel =
+        document.getElementById("comments-panel");
+
+    const commentsList =
+        document.getElementById("comments-list");
+
+    if (!commentsPanel || !commentsList) return;
+
+    // Remember which post is currently open
+    commentsPanel.dataset.postId = postId;
+
+    // Open panel
+    commentsPanel.classList.add("show");
+
+    // Show loading message
+    commentsList.innerHTML = `
+        <p class="comments-empty">
+            Loading comments...
+        </p>
+    `;
+
+    // Load comments from Supabase
     const { data, error } = await supabaseClient
         .from("comments")
         .select("id, comment_text")
@@ -316,28 +338,53 @@ document.addEventListener("click", async (event) => {
 
         console.error("Comments error:", error);
 
-        alert("Unable to load comments.");
+        commentsList.innerHTML = `
+            <p class="comments-empty">
+                Unable to load comments.
+            </p>
+        `;
 
         return;
     }
 
-    let commentsText = "";
-
     if (!data || data.length === 0) {
 
-        commentsText = "No comments yet.";
+        commentsList.innerHTML = `
+            <p class="comments-empty">
+                No comments yet. Be the first to comment!
+            </p>
+        `;
 
-    } else {
-
-        commentsText = data
-            .map(comment => "• " + comment.comment_text)
-            .join("\n");
-
+        return;
     }
 
-    alert(commentsText);
+    commentsList.innerHTML = data.map(comment => `
+        <div class="comment-item">
+            <p>${comment.comment_text}</p>
+        </div>
+    `).join("");
 
 });
+// ---------- CLOSE COMMENTS ----------
+
+const closeComments =
+    document.getElementById("close-comments");
+
+if (closeComments) {
+
+    closeComments.addEventListener("click", () => {
+
+        const commentsPanel =
+            document.getElementById("comments-panel");
+
+        if (commentsPanel) {
+            commentsPanel.classList.remove("show");
+        }
+
+    });
+
+}
+
 // ---------- TELEGRAM MINI APP ----------
 
 // Telegram provides this object when the
