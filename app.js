@@ -292,7 +292,7 @@ document.addEventListener("click", (event) => {
 // ---------- COMMENT BUTTONS ----------
 
 // Works for posts loaded dynamically from Supabase
-document.addEventListener("click", (event) => {
+document.addEventListener("click", async (event) => {
 
     const button = event.target.closest(".comment-button");
 
@@ -302,13 +302,40 @@ document.addEventListener("click", (event) => {
 
     if (!post) return;
 
-    const caption =
-        post.querySelector(".caption")?.textContent.trim() ||
-        "This post";
+    const postId = post.dataset.postId;
 
-    alert(
-        "Comments for: " + caption
-    );
+    if (!postId) return;
+
+    const { data, error } = await supabaseClient
+        .from("comments")
+        .select("id, comment_text")
+        .eq("post_id", postId)
+        .order("id", { ascending: true });
+
+    if (error) {
+
+        console.error("Comments error:", error);
+
+        alert("Unable to load comments.");
+
+        return;
+    }
+
+    let commentsText = "";
+
+    if (!data || data.length === 0) {
+
+        commentsText = "No comments yet.";
+
+    } else {
+
+        commentsText = data
+            .map(comment => "• " + comment.comment_text)
+            .join("\n");
+
+    }
+
+    alert(commentsText);
 
 });
 // ---------- TELEGRAM MINI APP ----------
