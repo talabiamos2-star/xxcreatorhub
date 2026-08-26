@@ -882,3 +882,136 @@ button {
 
     flex-shrink: 0;
     }
+/* ===============================
+   DISCOVER ACTION BUTTONS
+================================ */
+
+.discover-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Refresh + Search */
+
+.refresh-button,
+.search-button {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border-radius: 50%;
+
+    border: 1px solid #252832;
+
+    background: #15171d;
+
+    color: #ffffff;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        background 0.15s ease,
+        border-color 0.15s ease;
+}
+
+/* Refresh icon */
+
+.refresh-button {
+    font-size: 21px;
+}
+
+/* Tap effect */
+
+.refresh-button:active,
+.search-button:active {
+    transform: scale(0.92);
+
+    background: #1d2028;
+
+    border-color: #343844;
+}
+
+
+/* ===============================
+   POST ACTION BUTTONS
+================================ */
+
+.post-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 10px 12px;
+}
+
+.post-actions button {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: #9b9eaa;
+
+    font-size: 21px;
+
+    cursor: pointer;
+
+    border-radius: 50%;
+
+    transition:
+        transform 0.15s ease,
+        color 0.15s ease,
+        background 0.15s ease;
+}
+
+.post-actions button:active {
+    transform: scale(0.88);
+
+    background: #1b1e25;
+}
+
+.post-actions .like-button {
+    font-size: 22px;
+}
+
+.post-actions .comment-button {
+    font-size: 19px;
+}
+
+.post-actions .share-button {
+    font-size: 20px;
+}
+
+.post-actions .save-button {
+    font-size: 19px;
+}
+
+/* Liked state */
+
+.post-actions .like-button.liked {
+    color: #ff4f9a;
+}
+
+/* Saved state */
+
+.post-actions .save-button.saved {
+    color: #ff4f9a;
+    }
