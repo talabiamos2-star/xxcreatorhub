@@ -362,7 +362,7 @@ async function loadComments(postId) {
     const { data, error } =
         await supabaseClient
             .from("comments")
-            .select("id, comment")
+            .select("id, comment, created_at")
             .eq("post_id", postId)
             .order("created_at", {
                 ascending: true
