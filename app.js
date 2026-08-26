@@ -311,14 +311,14 @@ document.addEventListener("click", async (event) => {
         .eq("post_id", postId)
         .order("id", { ascending: true });
 
-    if (error) {
+if (error) {
 
-        console.error("Comments error:", error);
+    console.error("Comments error:", error);
 
-        alert("Unable to load comments.");
+    alert("Comment error: " + error.message);
 
-        return;
-    }
+    return;
+}
 
     let commentsText = "";
 
