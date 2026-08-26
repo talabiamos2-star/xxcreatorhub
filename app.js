@@ -655,12 +655,15 @@ async function loadPosts() {
 <article class="post" data-post-id="${post.id}">
                 <div class="post-header">
 
-                    <div class="avatar">
-                        ${photo
-                            ? `<img src="${photo}" alt="${name}">`
-                            : name.charAt(0).toUpperCase()
-                        }
-                    </div>
+                    <div
+    class="avatar creator-click"
+    data-creator-id="${creator.id}"
+>
+    ${photo
+        ? `<img src="${photo}" alt="${name}">`
+        : name.charAt(0).toUpperCase()
+    }
+</div>
 
                     <div class="creator-details">
 
