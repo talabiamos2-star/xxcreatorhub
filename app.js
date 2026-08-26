@@ -8,7 +8,7 @@ const supabaseClient = window.supabase.createClient(
 );
 
 // ===============================
-// XX CREATORHUB APP
+// XX CREATORHUB APP - COMMENTS FIX 2026
 // ===============================
 
 
