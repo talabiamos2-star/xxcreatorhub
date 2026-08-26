@@ -763,3 +763,22 @@ if (refreshPostsButton) {
     });
 
 }
+// ===============================
+// CREATOR PROFILE CLICK
+// ===============================
+
+document.addEventListener("click", (event) => {
+
+    const creatorElement =
+        event.target.closest(".creator-click");
+
+    if (!creatorElement) return;
+
+    const creatorId =
+        creatorElement.dataset.creatorId;
+
+    if (!creatorId) return;
+
+    console.log("Creator clicked:", creatorId);
+
+});
