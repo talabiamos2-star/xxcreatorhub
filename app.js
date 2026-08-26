@@ -307,7 +307,7 @@ document.addEventListener("click", async (event) => {
 
     const { data, error } = await supabaseClient
         .from("comments")
-        .select("id, comment_text")
+        .select("id, comment")
         .eq("post_id", postId)
         .order("id", { ascending: true });
 
@@ -329,9 +329,7 @@ document.addEventListener("click", async (event) => {
     } else {
 
         commentsText = data
-            .map(comment => "• " + comment.comment_text)
-            .join("\n");
-
+            .map(comment => "• " + comment.comment)
     }
 
     alert(commentsText);
