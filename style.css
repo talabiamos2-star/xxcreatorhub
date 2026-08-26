@@ -1084,3 +1084,46 @@ button {
 #home-page .hero .featured-label {
     max-width: 100% !important;
 }
+/* ===============================
+   DISCOVER MORE TRANSITION
+================================ */
+
+.discover-more {
+    margin: 8px 18px 28px;
+    padding: 15px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: #111319;
+    color: #bfc2ca;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.discover-more:active {
+    transform: scale(0.97);
+    background: #181a22;
+}
+
+.discover-arrow {
+    color: var(--pink);
+    font-size: 16px;
+    animation: discoverArrow 1.5s ease-in-out infinite;
+}
+
+@keyframes discoverArrow {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(4px);
+    }
+
+}
