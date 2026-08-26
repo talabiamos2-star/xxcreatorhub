@@ -1016,49 +1016,55 @@ button {
     color: #ff4f9a;
     }
 /* ===============================
-   HOME PAGE - COMPACT FIRST VIEW
+   HOME - FORCE COMPACT LAYOUT
 ================================ */
 
-.hero {
-    padding-top: 18px;
-    padding-bottom: 14px;
+#home-page .hero {
+    padding: 12px 0 8px !important;
 }
 
-.hero h1 {
-    font-size: 30px;
-    line-height: 1.08;
-    margin-top: 8px;
-    margin-bottom: 8px;
+#home-page .hero h1 {
+    font-size: 26px !important;
+    line-height: 1.05 !important;
+    margin: 5px 0 6px !important;
 }
 
-.hero p {
-    margin-top: 0;
-    margin-bottom: 14px;
-    font-size: 14px;
+#home-page .hero p {
+    font-size: 13px !important;
+    line-height: 1.3 !important;
+    margin: 0 0 8px !important;
 }
 
-.creator-card {
-    margin-top: 8px;
+#home-page .creator-card {
+    margin-top: 4px !important;
 }
 
-.creator-image {
-    min-height: 250px;
+#home-page .creator-image {
+    min-height: 190px !important;
+    height: 190px !important;
 }
 
-.creator-content {
-    padding-top: 14px;
-    padding-bottom: 16px;
+#home-page .creator-content {
+    padding: 10px 14px !important;
 }
 
-.stats {
-    margin-bottom: 10px;
+#home-page .stats {
+    margin-bottom: 6px !important;
 }
 
-.unlock-text {
-    margin-top: 10px;
-    margin-bottom: 10px;
+#home-page .divider {
+    margin: 6px 0 !important;
 }
 
-.watch-button {
-    margin-top: 4px;
+#home-page .unlock-text {
+    margin: 6px 0 !important;
+}
+
+#home-page .watch-button {
+    margin-top: 2px !important;
+    padding: 10px 14px !important;
+}
+
+#home-page .reward-text {
+    margin: 5px 0 0 !important;
 }
