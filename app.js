@@ -767,7 +767,7 @@ if (refreshPostsButton) {
 // CREATOR PROFILE CLICK
 // ===============================
 
-document.addEventListener("click", (event) => {
+document.addEventListener("click", async (event) => {
 
     const creatorElement =
         event.target.closest(".creator-click");
@@ -780,5 +780,96 @@ document.addEventListener("click", (event) => {
     if (!creatorId) return;
 
     showPage("creator-profile");
+
+    // Load creator information
+    const { data: creator, error } =
+        await supabaseClient
+            .from("creators")
+            .select(`
+                id,
+                name,
+                username,
+                photo_url,
+                bio,
+                verified
+            `)
+            .eq("id", creatorId)
+            .single();
+
+    if (error) {
+
+        console.error(
+            "Creator profile error:",
+            error
+        );
+
+        return;
+    }
+
+    if (!creator) return;
+
+    // Creator name
+    document.getElementById(
+        "creator-profile-name"
+    ).textContent =
+        creator.name || "Creator";
+
+
+    // Username
+    document.getElementById(
+        "creator-profile-username"
+    ).textContent =
+        creator.username || "";
+
+
+    // Bio
+    document.getElementById(
+        "creator-profile-bio"
+    ).textContent =
+        creator.bio || "No bio available.";
+
+
+    // Verified
+    const verified =
+        document.getElementById(
+            "creator-profile-verified"
+        );
+
+    if (creator.verified) {
+
+        verified.style.display =
+            "inline-block";
+
+    } else {
+
+        verified.style.display =
+            "none";
+
+    }
+
+
+    // Profile photo
+    const avatar =
+        document.getElementById(
+            "creator-profile-avatar"
+        );
+
+    if (creator.photo_url) {
+
+        avatar.innerHTML = `
+            <img
+                src="${creator.photo_url}"
+                alt="${creator.name || "Creator"}"
+            >
+        `;
+
+    } else {
+
+        avatar.textContent =
+            (creator.name || "C")
+                .charAt(0)
+                .toUpperCase();
+
+    }
 
 });
