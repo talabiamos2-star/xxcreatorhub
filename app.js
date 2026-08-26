@@ -665,17 +665,20 @@ async function loadPosts() {
     }
 </div>
 
-                    <div class="creator-details">
+                    <div
+    class="creator-details creator-click"
+    data-creator-id="${creator.id}"
+>
 
-                        <strong>
-                            ${name}${creator.verified ? " ✓" : ""}
-                        </strong>
+    <strong>
+        ${name}${creator.verified ? " ✓" : ""}
+    </strong>
 
-                        <small>
-                            ${username}
-                        </small>
+    <small>
+        ${username}
+    </small>
 
-                    </div>
+</div>
 
                     <button class="more-button">
                         •••
