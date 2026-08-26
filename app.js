@@ -401,15 +401,26 @@ async function loadComments(postId) {
 
     commentsList.innerHTML =
         data.map(comment => {
+const commentTime =
+    new Date(comment.created_at).toLocaleString();
 
-            return `
-                <div class="comment-item">
-                    <p>
-                        ${escapeComment(comment.comment)}
-                    </p>
-                </div>
-            `;
+return `
+    <div class="comment-item">
+        <div class="comment-body">
+            <strong class="comment-username">
+                User
+            </strong>
 
+            <p>
+                ${escapeComment(comment.comment)}
+            </p>
+
+            <small class="comment-time">
+                ${commentTime}
+            </small>
+        </div>
+    </div>
+`;
         }).join("");
 
 
