@@ -780,6 +780,7 @@ document.addEventListener("click", async (event) => {
     if (!creatorId) return;
 
     showPage("creator-profile");
+    loadCreatorPosts(creatorId);
 
     // Load creator information
     const { data: creator, error } =
