@@ -1049,3 +1049,10 @@ async function loadCreatorPosts(creatorId) {
     }
 
         }
+document
+    .getElementById("back-to-discover")
+    ?.addEventListener("click", () => {
+
+        showPage("discover");
+
+    });
