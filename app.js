@@ -289,70 +289,266 @@ document.addEventListener("click", (event) => {
     );
 
 });
-// ---------- COMMENT BUTTONS ----------
 
-document.addEventListener("click", async (event) => {
+// ===============================
+// COMMENTS PANEL
+// ===============================
 
-    const button = event.target.closest(".comment-button");
+let currentCommentPostId = null;
 
-    if (!button) return;
+const commentsPanel =
+    document.getElementById("comments-panel");
 
-    const post = button.closest(".post");
+const commentsList =
+    document.getElementById("comments-list");
 
-    if (!post) return;
+const commentInput =
+    document.getElementById("comment-input");
 
-    const postId = post.dataset.postId;
-
-    if (!postId) return;
-
-    const { data, error } = await supabaseClient
-        .from("comments")
-        .select("id, comment")
-        .eq("post_id", postId)
-        .order("id", { ascending: true });
-
-if (error) {
-
-    console.error("Comments error:", error);
-
-    alert("Comment error: " + error.message);
-
-    return;
-}
-
-    let commentsText = "";
-
-    if (!data || data.length === 0) {
-
-        commentsText = "No comments yet.";
-
-    } else {
-
-        commentsText = data
-            .map(comment => "• " + comment.comment)
-    }
-
-    alert(commentsText);
-
-});
-
-// ---------- CLOSE COMMENTS ----------
+const submitComment =
+    document.getElementById("submit-comment");
 
 const closeComments =
     document.getElementById("close-comments");
 
+
+// ---------- OPEN COMMENTS ----------
+
+document.addEventListener("click", async (event) => {
+
+    const button =
+        event.target.closest(".comment-button");
+
+    if (!button) return;
+
+    const post =
+        button.closest(".post");
+
+    if (!post) return;
+
+    currentCommentPostId =
+        post.dataset.postId;
+
+    if (!currentCommentPostId) return;
+
+
+    // Open panel
+
+    commentsPanel.classList.add("show");
+
+    document.body.style.overflow = "hidden";
+
+
+    // Show loading
+
+    commentsList.innerHTML = `
+        <p class="comments-empty">
+            Loading comments...
+        </p>
+    `;
+
+
+    // Load comments
+
+    await loadComments(currentCommentPostId);
+
+});
+
+
+// ---------- LOAD COMMENTS ----------
+
+async function loadComments(postId) {
+
+    const { data, error } =
+        await supabaseClient
+            .from("comments")
+            .select("id, comment")
+            .eq("post_id", postId)
+            .order("created_at", {
+                ascending: true
+            });
+
+
+    if (error) {
+
+        console.error(
+            "Comments error:",
+            error
+        );
+
+        commentsList.innerHTML = `
+            <p class="comments-empty">
+                Unable to load comments.
+            </p>
+        `;
+
+        return;
+    }
+
+
+    if (!data || data.length === 0) {
+
+        commentsList.innerHTML = `
+            <p class="comments-empty">
+                No comments yet.<br>
+                Be the first to comment!
+            </p>
+        `;
+
+        return;
+    }
+
+
+    commentsList.innerHTML =
+        data.map(comment => {
+
+            return `
+                <div class="comment-item">
+                    <p>
+                        ${escapeComment(comment.comment)}
+                    </p>
+                </div>
+            `;
+
+        }).join("");
+
+
+    // Scroll to newest comment
+
+    commentsList.scrollTop =
+        commentsList.scrollHeight;
+}
+
+
+// ---------- SEND COMMENT ----------
+
+if (submitComment) {
+
+    submitComment.addEventListener(
+        "click",
+        async () => {
+
+            const text =
+                commentInput.value.trim();
+
+
+            if (!text) return;
+
+
+            if (!currentCommentPostId) return;
+
+
+            submitComment.disabled = true;
+
+
+            const { error } =
+                await supabaseClient
+                    .from("comments")
+                    .insert([
+                        {
+                            post_id:
+                                currentCommentPostId,
+
+                            comment:
+                                text
+                        }
+                    ]);
+
+
+            if (error) {
+
+                console.error(
+                    "Comment insert error:",
+                    error
+                );
+
+                alert(
+                    "Unable to post comment: " +
+                    error.message
+                );
+
+                submitComment.disabled = false;
+
+                return;
+            }
+
+
+            // Clear input
+
+            commentInput.value = "";
+
+
+            // Reload comments
+
+            await loadComments(
+                currentCommentPostId
+            );
+
+
+            submitComment.disabled = false;
+
+        }
+    );
+
+}
+
+
+// ---------- ENTER TO SEND ----------
+
+if (commentInput) {
+
+    commentInput.addEventListener(
+        "keydown",
+        (event) => {
+
+            if (event.key === "Enter") {
+
+                event.preventDefault();
+
+                submitComment.click();
+
+            }
+
+        }
+    );
+
+}
+
+
+// ---------- CLOSE COMMENTS ----------
+
 if (closeComments) {
 
-    closeComments.addEventListener("click", () => {
+    closeComments.addEventListener(
+        "click",
+        () => {
 
-        const commentsPanel =
-            document.getElementById("comments-panel");
+            commentsPanel.classList.remove(
+                "show"
+            );
 
-        if (commentsPanel) {
-            commentsPanel.classList.remove("show");
+            document.body.style.overflow = "";
+
+            currentCommentPostId = null;
+
         }
+    );
 
-    });
+}
+
+
+// ---------- ESCAPE COMMENT HTML ----------
+
+function escapeComment(text) {
+
+    return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
 
 }
 
