@@ -1127,3 +1127,90 @@ button {
     }
 
 }
+/* ===============================
+   COMMENT UI UPGRADE
+================================ */
+
+.comment-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 13px 0;
+    border-bottom: 1px solid #20232b;
+}
+
+.comment-item::before {
+    content: "U";
+
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        var(--pink),
+        var(--purple)
+    );
+
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.comment-item p {
+    flex: 1;
+
+    margin: 0;
+    padding-top: 2px;
+
+    color: #f1f1f4;
+    font-size: 14px;
+    line-height: 1.45;
+    word-break: break-word;
+}
+
+/* Smooth comment panel */
+
+.comments-panel {
+    will-change: transform;
+}
+
+/* Better input */
+
+#comment-input {
+    min-width: 0;
+    height: 44px;
+}
+
+#comment-input:focus {
+    background: #22252e;
+}
+
+/* Send button */
+
+#submit-comment {
+    transition:
+        transform 0.15s ease,
+        opacity 0.15s ease;
+}
+
+#submit-comment:active {
+    transform: scale(0.9);
+}
+
+#submit-comment:disabled {
+    opacity: 0.5;
+}
+
+/* Empty state */
+
+.comments-empty {
+    line-height: 1.6;
+    font-size: 13px;
+    }
