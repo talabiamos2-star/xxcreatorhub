@@ -873,3 +873,178 @@ document.addEventListener("click", async (event) => {
     }
 
 });
+// ===============================
+// LOAD CREATOR POSTS
+// ===============================
+
+async function loadCreatorPosts(creatorId) {
+
+    const container =
+        document.getElementById("creator-posts-container");
+
+    if (!container) return;
+
+    container.innerHTML = `
+        <div class="empty-page">
+            <div class="empty-icon">✨</div>
+            <h2>Loading posts...</h2>
+            <p>Please wait.</p>
+        </div>
+    `;
+
+
+    const { data, error } =
+        await supabaseClient
+            .from("posts")
+            .select(`
+                id,
+                created_at,
+                image_url,
+                caption,
+                likes,
+                exclusive_url
+            `)
+            .eq("creator_id", creatorId)
+            .order("created_at", {
+                ascending: false
+            });
+
+
+    if (error) {
+
+        console.error(
+            "Creator posts error:",
+            error
+        );
+
+        container.innerHTML = `
+            <div class="empty-page">
+                <div class="empty-icon">⚠️</div>
+                <h2>Unable to load posts</h2>
+                <p>Please try again later.</p>
+            </div>
+        `;
+
+        return;
+    }
+
+
+    if (!data || data.length === 0) {
+
+        container.innerHTML = `
+            <div class="empty-page">
+                <div class="empty-icon">✨</div>
+                <h2>No posts yet</h2>
+                <p>This creator hasn't posted anything yet.</p>
+            </div>
+        `;
+
+        return;
+    }
+
+
+    container.innerHTML = data.map(post => {
+
+        return `
+            <article class="post">
+
+                <div class="post-image">
+
+                    ${post.image_url
+                        ? `<img
+                            src="${post.image_url}"
+                            alt="${post.caption || "Creator post"}"
+                        >`
+                        : "CREATOR PHOTO"
+                    }
+
+                </div>
+
+
+                <div class="post-actions">
+
+                    <button
+                        class="like-button"
+                        aria-label="Like"
+                    >
+                        ♡
+                    </button>
+
+                    <button
+                        class="comment-button"
+                        aria-label="Comments"
+                    >
+                        💬
+                    </button>
+
+                    <button
+                        class="share-button"
+                        aria-label="Share"
+                    >
+                        ↗
+                    </button>
+
+                    <button
+                        class="save-button"
+                        aria-label="Save"
+                    >
+                        ♧
+                    </button>
+
+                </div>
+
+
+                <div class="post-content">
+
+                    <strong class="likes-count">
+                        ${Number(post.likes || 0).toLocaleString()} likes
+                    </strong>
+
+                    <p class="caption">
+                        ${post.caption || ""}
+                    </p>
+
+                    <small class="post-time">
+                        ${new Date(
+                            post.created_at
+                        ).toLocaleDateString()}
+                    </small>
+
+                </div>
+
+            </article>
+        `;
+
+    }).join("");
+
+
+    // Update profile stats
+
+    const postCount =
+        document.getElementById(
+            "creator-post-count"
+        );
+
+    if (postCount) {
+        postCount.textContent = data.length;
+    }
+
+
+    const totalLikes =
+        data.reduce(
+            (total, post) =>
+                total + Number(post.likes || 0),
+            0
+        );
+
+    const likesElement =
+        document.getElementById(
+            "creator-total-likes"
+        );
+
+    if (likesElement) {
+        likesElement.textContent =
+            totalLikes.toLocaleString();
+    }
+
+        }
