@@ -301,49 +301,165 @@
     </main>
 
 
-    <!-- ================= PROFILE ================= -->
+<!-- ================= CREATOR PROFILE ================= -->
 
-    <main
-        id="profile-page"
-        class="page"
-    >
+<main
+    id="creator-profile-page"
+    class="page"
+>
 
-        <div class="profile-card">
+    <div class="creator-profile-header">
 
-            <div class="profile-avatar">
-                U
+        <button
+            id="back-to-discover"
+            class="profile-back-button"
+            aria-label="Back"
+        >
+            ←
+        </button>
+
+        <h1>Creator</h1>
+
+        <div></div>
+
+    </div>
+
+
+    <!-- CREATOR INFORMATION -->
+
+    <section class="creator-profile-card">
+
+        <div
+            id="creator-profile-avatar"
+            class="creator-profile-avatar"
+        >
+            C
+        </div>
+
+        <h2 id="creator-profile-name">
+            Creator
+        </h2>
+
+        <p id="creator-profile-username">
+            @creator
+        </p>
+
+        <div
+            id="creator-profile-verified"
+            class="creator-profile-verified"
+        >
+            ✓ Verified
+        </div>
+
+        <p
+            id="creator-profile-bio"
+            class="creator-profile-bio"
+        >
+            Creator bio
+        </p>
+
+
+        <!-- CREATOR STATS -->
+
+        <div class="creator-profile-stats">
+
+            <div>
+                <strong id="creator-post-count">
+                    0
+                </strong>
+
+                <span>
+                    Posts
+                </span>
             </div>
 
-            <h2>
-                Your Profile
-            </h2>
+            <div>
+                <strong id="creator-total-likes">
+                    0
+                </strong>
 
-            <p>
-                Welcome to XX CreatorHub
-            </p>
-
-            <div class="profile-stats">
-
-                <div>
-                    <strong>0</strong>
-                    <span>Liked</span>
-                </div>
-
-                <div>
-                    <strong>0</strong>
-                    <span>Saved</span>
-                </div>
-
-                <div>
-                    <strong>0</strong>
-                    <span>Unlocked</span>
-                </div>
-
+                <span>
+                    Likes
+                </span>
             </div>
 
         </div>
 
-    </main>
+    </section>
+
+
+    <!-- CREATOR POSTS -->
+
+    <div class="creator-posts-title">
+        <h2>Posts</h2>
+    </div>
+
+    <div id="creator-posts-container">
+
+        <div class="empty-page">
+
+            <div class="empty-icon">
+                ✨
+            </div>
+
+            <h2>
+                Loading posts...
+            </h2>
+
+            <p>
+                Please wait.
+            </p>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- ================= USER PROFILE ================= -->
+
+<main
+    id="profile-page"
+    class="page"
+>
+
+    <div class="profile-card">
+
+        <div class="profile-avatar">
+            U
+        </div>
+
+        <h2>
+            Your Profile
+        </h2>
+
+        <p>
+            Welcome to XX CreatorHub
+        </p>
+
+        <div class="profile-stats">
+
+            <div>
+                <strong>0</strong>
+                <span>Liked</span>
+            </div>
+
+            <div>
+                <strong>0</strong>
+                <span>Saved</span>
+            </div>
+
+            <div>
+                <strong>0</strong>
+                <span>Unlocked</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
 
 
     <!-- ================= BOTTOM NAV ================= -->
