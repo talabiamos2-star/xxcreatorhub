@@ -1056,3 +1056,21 @@ document
         showPage("discover");
 
     });
+/* ===============================
+   CREATOR / POST IMAGES
+================================ */
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+
+.post-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    }
