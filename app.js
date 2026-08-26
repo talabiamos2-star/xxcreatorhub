@@ -779,6 +779,6 @@ document.addEventListener("click", (event) => {
 
     if (!creatorId) return;
 
-    console.log("Creator clicked:", creatorId);
+    showPage("creator-profile");
 
 });
