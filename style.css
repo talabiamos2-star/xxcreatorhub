@@ -1068,3 +1068,11 @@ button {
 #home-page .reward-text {
     margin: 5px 0 0 !important;
 }
+/* ===============================
+   HOME HERO SIDE SPACING
+================================ */
+
+#home-page .hero {
+    padding-left: 34px !important;
+    padding-right: 24px !important;
+}
