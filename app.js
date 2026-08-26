@@ -550,7 +550,7 @@ function escapeComment(text) {
 
 }
 
-}
+
 
 // ---------- TELEGRAM MINI APP ----------
 
