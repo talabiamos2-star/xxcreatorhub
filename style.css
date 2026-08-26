@@ -1015,3 +1015,50 @@ button {
 .post-actions .save-button.saved {
     color: #ff4f9a;
     }
+/* ===============================
+   HOME PAGE - COMPACT FIRST VIEW
+================================ */
+
+.hero {
+    padding-top: 18px;
+    padding-bottom: 14px;
+}
+
+.hero h1 {
+    font-size: 30px;
+    line-height: 1.08;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.hero p {
+    margin-top: 0;
+    margin-bottom: 14px;
+    font-size: 14px;
+}
+
+.creator-card {
+    margin-top: 8px;
+}
+
+.creator-image {
+    min-height: 250px;
+}
+
+.creator-content {
+    padding-top: 14px;
+    padding-bottom: 16px;
+}
+
+.stats {
+    margin-bottom: 10px;
+}
+
+.unlock-text {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.watch-button {
+    margin-top: 4px;
+}
