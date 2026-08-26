@@ -289,18 +289,8 @@ document.addEventListener("click", (event) => {
     );
 
 });
-// ---------- COMMENTS PANEL ----------
+// ---------- COMMENT BUTTONS ----------
 
-let currentCommentPostId = null;
-
-const commentsPanel = document.getElementById("comments-panel");
-const closeComments = document.getElementById("close-comments");
-const commentsList = document.getElementById("comments-list");
-const commentInput = document.getElementById("comment-input");
-const submitComment = document.getElementById("submit-comment");
-
-
-// Open comments
 document.addEventListener("click", async (event) => {
 
     const button = event.target.closest(".comment-button");
@@ -311,27 +301,9 @@ document.addEventListener("click", async (event) => {
 
     if (!post) return;
 
-    currentCommentPostId = post.dataset.postId;
+    const postId = post.dataset.postId;
 
-    if (!currentCommentPostId) return;
-
-    commentsPanel.classList.add("show");
-
-    document.body.style.overflow = "hidden";
-
-    commentsList.innerHTML = `
-        <p class="comments-empty">
-            Loading comments...
-        </p>
-    `;
-
-    await loadComments(currentCommentPostId);
-
-});
-
-
-// Load comments from Supabase
-async function loadComments(postId) {
+    if (!postId) return;
 
     const { data, error } = await supabaseClient
         .from("comments")
@@ -343,123 +315,29 @@ async function loadComments(postId) {
 
         console.error("Comments error:", error);
 
-        commentsList.innerHTML = `
-            <p class="comments-empty">
-                Unable to load comments.
-            </p>
-        `;
+        alert("Unable to load comments.");
 
         return;
     }
+
+    let commentsText = "";
 
     if (!data || data.length === 0) {
 
-        commentsList.innerHTML = `
-            <p class="comments-empty">
-                No comments yet. Be the first to comment!
-            </p>
-        `;
+        commentsText = "No comments yet.";
 
-        return;
+    } else {
+
+        commentsText = data
+            .map(comment => "• " + comment.comment_text)
+            .join("\n");
+
     }
 
-    commentsList.innerHTML = data.map(comment => `
-        <div class="comment-item">
-            <p>${escapeComment(comment.comment_text)}</p>
-        </div>
-    `).join("");
-}
+    alert(commentsText);
 
+});
 
-// Send comment
-if (submitComment) {
-
-    submitComment.addEventListener("click", async () => {
-
-        const text = commentInput.value.trim();
-
-        if (!text) return;
-
-        if (!currentCommentPostId) return;
-
-        submitComment.disabled = true;
-
-        const { error } = await supabaseClient
-            .from("comments")
-            .insert([
-                {
-                    post_id: currentCommentPostId,
-                    comment_text: text
-                }
-            ]);
-
-        if (error) {
-
-            console.error("Comment insert error:", error);
-
-            alert("Unable to post comment.");
-
-            submitComment.disabled = false;
-
-            return;
-        }
-
-        commentInput.value = "";
-
-        await loadComments(currentCommentPostId);
-
-        submitComment.disabled = false;
-
-    });
-
-}
-
-
-// Close comments
-if (closeComments) {
-
-    closeComments.addEventListener("click", () => {
-
-        commentsPanel.classList.remove("show");
-
-        document.body.style.overflow = "";
-
-        currentCommentPostId = null;
-
-    });
-
-}
-
-
-// Press Enter to send
-if (commentInput) {
-
-    commentInput.addEventListener("keydown", (event) => {
-
-        if (event.key === "Enter") {
-
-            event.preventDefault();
-
-            submitComment.click();
-
-        }
-
-    });
-
-}
-
-
-// Protect comment text from being treated as HTML
-function escapeComment(text) {
-
-    return text
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-
-            }
 // ---------- CLOSE COMMENTS ----------
 
 const closeComments =
