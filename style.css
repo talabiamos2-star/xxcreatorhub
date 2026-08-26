@@ -1214,3 +1214,168 @@ button {
     line-height: 1.6;
     font-size: 13px;
     }
+/* ===============================
+   CREATOR PROFILE
+================================ */
+
+.creator-profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 17px;
+    border-bottom: 1px solid var(--border);
+}
+
+.creator-profile-header h1 {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.profile-back-button {
+    width: 40px;
+    height: 40px;
+
+    border: 1px solid var(--border);
+    border-radius: 50%;
+
+    background: var(--card);
+    color: white;
+
+    font-size: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-back-button:active {
+    transform: scale(.92);
+}
+
+
+/* ---------- CREATOR INFO ---------- */
+
+.creator-profile-card {
+    text-align: center;
+    padding: 28px 20px 22px;
+}
+
+.creator-profile-avatar {
+    width: 92px;
+    height: 92px;
+
+    margin: 0 auto 14px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        var(--pink),
+        var(--purple)
+    );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+    font-size: 30px;
+    font-weight: 800;
+
+    overflow: hidden;
+}
+
+.creator-profile-avatar img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.creator-profile-card h2 {
+    font-size: 22px;
+}
+
+.creator-profile-username {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.creator-profile-verified {
+    display: inline-block;
+
+    margin-top: 9px;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    background: #ff4f8b18;
+    color: var(--pink);
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.creator-profile-bio {
+    max-width: 340px;
+
+    margin: 13px auto 0;
+
+    color: #c5c8d0;
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* ---------- CREATOR STATS ---------- */
+
+.creator-profile-stats {
+    display: flex;
+
+    max-width: 260px;
+
+    margin: 22px auto 0;
+
+    padding: 14px 0;
+
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.creator-profile-stats div {
+    flex: 1;
+    text-align: center;
+}
+
+.creator-profile-stats strong {
+    display: block;
+    font-size: 16px;
+}
+
+.creator-profile-stats span {
+    display: block;
+
+    margin-top: 4px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+}
+
+
+/* ---------- CREATOR POSTS ---------- */
+
+.creator-posts-title {
+    padding: 5px 15px 12px;
+}
+
+.creator-posts-title h2 {
+    font-size: 18px;
+}
+
+#creator-posts-container {
+    padding-bottom: 20px;
+    }
