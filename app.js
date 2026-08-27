@@ -1,4 +1,4 @@
-alert("JavaScript is running");
+
 const SUPABASE_URL = "https://hgqrtjuccspzwagntnxj.supabase.co";
 
 const SUPABASE_KEY = "sb_publishable_nLNI7mX50vhJZfz6xf9JaQ_HKw2usMf";
@@ -110,14 +110,14 @@ document.addEventListener("click", async (event) => {
         })
         .eq("id", postId);
 
-    if (error) {
+if (error) {
 
-        console.error("Like update error:", error);
+    console.error("Like update error:", error);
 
-        alert("Unable to update like.");
+    alert("LIKE ERROR: " + error.message);
 
-        return;
-    }
+    return;
+}
 
     // Update screen only after Supabase succeeds
 
