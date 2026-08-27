@@ -62,9 +62,9 @@ pageButtons.forEach((button) => {
 });
 
 // ---------- LIKE BUTTONS ----------
+// Saves likes permanently to Supabase
 
-// Works for posts loaded dynamically from Supabase
-document.addEventListener("click", (event) => {
+document.addEventListener("click", async (event) => {
 
     const button = event.target.closest(".like-button");
 
@@ -74,8 +74,11 @@ document.addEventListener("click", (event) => {
 
     if (!post) return;
 
-    const likesElement =
-        post.querySelector(".likes-count");
+    const postId = post.dataset.postId;
+
+    if (!postId) return;
+
+    const likesElement = post.querySelector(".likes-count");
 
     if (!likesElement) return;
 
@@ -87,6 +90,36 @@ document.addEventListener("click", (event) => {
             likesElement.textContent.replace(/\D/g, "")
         ) || 0;
 
+    let newLikes;
+
+    if (!currentlyLiked) {
+
+        newLikes = currentLikes + 1;
+
+    } else {
+
+        newLikes = Math.max(0, currentLikes - 1);
+
+    }
+
+    // Save to Supabase
+    const { error } = await supabaseClient
+        .from("posts")
+        .update({
+            likes: newLikes
+        })
+        .eq("id", postId);
+
+    if (error) {
+
+        console.error("Like update error:", error);
+
+        alert("Unable to update like.");
+
+        return;
+    }
+
+    // Update screen only after Supabase succeeds
 
     if (!currentlyLiked) {
 
@@ -94,21 +127,16 @@ document.addEventListener("click", (event) => {
 
         button.textContent = "♥";
 
-        currentLikes++;
-
     } else {
 
         button.classList.remove("liked");
 
         button.textContent = "♡";
 
-        currentLikes--;
-
     }
 
-
     likesElement.textContent =
-        currentLikes.toLocaleString() + " likes";
+        newLikes.toLocaleString() + " likes";
 
 });
 
