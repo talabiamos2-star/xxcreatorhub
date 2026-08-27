@@ -152,7 +152,9 @@ document.addEventListener("click", async (event) => {
 
     if (!post) return;
 
-    const postId = post.dataset.postId;
+ const postId = post.dataset.postId;
+
+alert("Post ID: " + postId);
 
     if (!postId) {
         alert("Post ID not found");
