@@ -142,28 +142,78 @@ if (error) {
 
 // ---------- SAVE BUTTONS ----------
 
-// Works for posts loaded dynamically from Supabase
-document.addEventListener("click", (event) => {
+document.addEventListener("click", async (event) => {
 
     const button = event.target.closest(".save-button");
 
     if (!button) return;
 
-    const saved =
-        button.classList.toggle("saved");
+    const post = button.closest(".post");
 
-    if (saved) {
+    if (!post) return;
 
+    const postId = post.dataset.postId;
+
+    if (!postId) {
+        alert("Post ID not found");
+        return;
+    }
+
+    const saved = button.classList.contains("saved");
+
+    button.disabled = true;
+
+    if (!saved) {
+
+        // SAVE POST
+
+        const { error } = await supabaseClient
+            .from("saved_posts")
+            .insert({
+                post_id: postId,
+                user_id: "guest"
+            });
+
+        if (error) {
+
+            console.error("Save error:", error);
+
+            alert("Unable to save post: " + error.message);
+
+            button.disabled = false;
+            return;
+        }
+
+        button.classList.add("saved");
         button.textContent = "★";
 
     } else {
 
-        button.textContent = "♧";
+        // UNSAVE POST
 
+        const { error } = await supabaseClient
+            .from("saved_posts")
+            .delete()
+            .eq("post_id", postId)
+            .eq("user_id", "guest");
+
+        if (error) {
+
+            console.error("Unsave error:", error);
+
+            alert("Unable to unsave post: " + error.message);
+
+            button.disabled = false;
+            return;
+        }
+
+        button.classList.remove("saved");
+        button.textContent = "♧";
     }
 
-});
+    button.disabled = false;
 
+});
 
 // ---------- FILTER BUTTONS ----------
 
