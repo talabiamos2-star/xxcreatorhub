@@ -673,7 +673,14 @@ async function loadPosts() {
     const postsContainer = document.getElementById("posts-container");
 
     if (!postsContainer) return;
+    const { data: savedPosts } = await supabaseClient
+        .from("saved_posts")
+        .select("post_id")
+        .eq("user_id", "guest");
 
+    const savedPostIds = new Set(
+        (savedPosts || []).map(item => String(item.post_id))
+    );
     const { data, error } = await supabaseClient
         .from("posts")
         .select(`
