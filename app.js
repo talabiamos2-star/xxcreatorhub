@@ -681,6 +681,9 @@ async function loadPosts() {
     const savedPostIds = new Set(
         (savedPosts || []).map(item => String(item.post_id))
     );
+    console.log("Saved posts:", savedPosts);
+console.log("Saved post IDs:", savedPostIds);
+    
     const { data, error } = await supabaseClient
         .from("posts")
         .select(`
