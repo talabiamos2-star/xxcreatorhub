@@ -795,11 +795,8 @@ async function loadPosts() {
                         ↗
                     </button>
 
-                    <button
-    class="save-button ${savedPostIds.has(String(post.id)) ? "saved" : ""}"
-    aria-label="Save"
->
-    ${savedPostIds.has(String(post.id)) ? "★" : "♧"}
+                    <button class="save-button" aria-label="Save">
+    ♧
 </button>
                 </div>
 
