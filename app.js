@@ -673,10 +673,20 @@ async function loadPosts() {
     const postsContainer = document.getElementById("posts-container");
 
     if (!postsContainer) return;
-    const { data: savedPosts } = await supabaseClient
+    const { data: savedPosts, error: savedPostsError } =
+    await supabaseClient
         .from("saved_posts")
         .select("post_id")
         .eq("user_id", "guest");
+
+if (savedPostsError) {
+    console.error("Saved posts error:", savedPostsError);
+    alert("SAVED POSTS ERROR: " + savedPostsError.message);
+}
+
+const savedPostIds = new Set(
+    (savedPosts || []).map(item => String(item.post_id))
+);
 
     const savedPostIds = new Set(
         (savedPosts || []).map(item => String(item.post_id))
