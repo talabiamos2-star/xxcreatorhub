@@ -688,7 +688,7 @@ if (savedPostsError) {
 const savedPostIds = new Set(
     (savedPosts || []).map(item => String(item.post_id))
 );
-alert("Saved posts found: " + JSON.stringify(savedPosts));
+
     
     console.log("Saved posts:", savedPosts);
 console.log("Saved post IDs:", savedPostIds);
