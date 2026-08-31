@@ -689,9 +689,7 @@ const savedPostIds = new Set(
     (savedPosts || []).map(item => String(item.post_id))
 );
 
-    const savedPostIds = new Set(
-        (savedPosts || []).map(item => String(item.post_id))
-    );
+    
     console.log("Saved posts:", savedPosts);
 console.log("Saved post IDs:", savedPostIds);
     
