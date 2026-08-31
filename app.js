@@ -682,7 +682,7 @@ async function loadPosts() {
 
 if (savedPostsError) {
     console.error("Saved posts error:", savedPostsError);
-    alert("SAVED POSTS ERROR: " + savedPostsError.message);
+   
 }
 
 const savedPostIds = new Set(
