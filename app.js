@@ -1,4 +1,4 @@
-alert("APP JS STARTED");
+
 const SUPABASE_URL = "https://hgqrtjuccspzwagntnxj.supabase.co";
 
 const SUPABASE_KEY = "sb_publishable_nLNI7mX50vhJZfz6xf9JaQ_HKw2usMf";
