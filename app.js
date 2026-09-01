@@ -236,20 +236,13 @@ filters.forEach((filter) => {
     });
 
 });
-
-
 // ---------- EXCLUSIVE CONTENT MODAL ----------
-
+let currentExclusiveUrl = "";
 const modal =
     document.getElementById("unlock-modal");
 
 const closeModal =
     document.getElementById("close-modal");
-
-const unlockButtons =
-    document.querySelectorAll(
-        '[data-action="exclusive"]'
-    );
 
 function openUnlockModal(url) {
 
@@ -262,8 +255,6 @@ function openUnlockModal(url) {
 
 }
 
-
-
 function closeUnlockModal() {
 
     if (modal) {
@@ -273,25 +264,24 @@ function closeUnlockModal() {
 
 }
 
-unlockButtons.forEach((button) => {
+document.addEventListener("click", (event) => {
 
-    button.addEventListener("click", () => {
+    const button =
+        event.target.closest('[data-action="exclusive"]');
 
-        const post =
-            button.closest(".post");
+    if (!button) return;
 
-        const url =
-            button.dataset.exclusiveUrl ||
-            post?.querySelector(".exclusive-button")?.dataset.exclusiveUrl ||
-            "";
+    const post =
+        button.closest(".post");
 
-        openUnlockModal(url);
+    const url =
+        button.dataset.exclusiveUrl ||
+        post?.querySelector(".exclusive-button")?.dataset.exclusiveUrl ||
+        "";
 
-    });
+    openUnlockModal(url);
 
 });
-
-
 
 if (closeModal) {
 
@@ -303,20 +293,6 @@ if (closeModal) {
 }
 
 
-// Close modal when tapping outside it
-
-if (modal) {
-
-    modal.addEventListener("click", (event) => {
-
-        if (event.target === modal) {
-            closeUnlockModal();
-        }
-
-    });
-
-}
-let currentExclusiveUrl = "";
 // ---------- CONTINUE BUTTON ----------
 
 const unlockButton =
