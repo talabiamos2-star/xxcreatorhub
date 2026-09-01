@@ -304,6 +304,7 @@ if (modal) {
     });
 
 }
+let currentExclusiveUrl = "";
 // ---------- CONTINUE BUTTON ----------
 
 const unlockButton =
