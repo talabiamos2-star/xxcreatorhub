@@ -312,15 +312,14 @@ if (unlockButton) {
             await AdController.show();
 
             // Ad completed successfully
+
             if (currentExclusiveUrl) {
 
-                window.open(
-                    currentExclusiveUrl,
-                    "_blank"
-                );
+    closeUnlockModal();
 
-            } else {
+    window.location.href = currentExclusiveUrl;
 
+} else {
                 alert("No exclusive content link found.");
 
             }
