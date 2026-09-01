@@ -277,8 +277,13 @@ unlockButtons.forEach((button) => {
 
     button.addEventListener("click", () => {
 
+        const post =
+            button.closest(".post");
+
         const url =
-            button.dataset.exclusiveUrl || "";
+            button.dataset.exclusiveUrl ||
+            post?.querySelector(".exclusive-button")?.dataset.exclusiveUrl ||
+            "";
 
         openUnlockModal(url);
 
