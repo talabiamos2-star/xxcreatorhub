@@ -330,7 +330,19 @@ if (unlockButton) {
 
             await AdController.show();
 
-            alert("Ad completed! Unlocking content...");
+            // Ad completed successfully
+            if (currentExclusiveUrl) {
+
+                window.open(
+                    currentExclusiveUrl,
+                    "_blank"
+                );
+
+            } else {
+
+                alert("No exclusive content link found.");
+
+            }
 
         } catch (error) {
 
