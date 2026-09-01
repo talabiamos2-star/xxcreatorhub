@@ -273,14 +273,19 @@ function closeUnlockModal() {
 
 }
 
-
 unlockButtons.forEach((button) => {
 
     button.addEventListener("click", () => {
-        openUnlockModal();
+
+        const url =
+            button.dataset.exclusiveUrl || "";
+
+        openUnlockModal(url);
+
     });
 
 });
+
 
 
 if (closeModal) {
