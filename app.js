@@ -251,8 +251,9 @@ const unlockButtons =
         '[data-action="exclusive"]'
     );
 
+function openUnlockModal(url) {
 
-function openUnlockModal() {
+    currentExclusiveUrl = url || "";
 
     if (modal) {
         modal.classList.add("show");
@@ -260,6 +261,7 @@ function openUnlockModal() {
     }
 
 }
+
 
 
 function closeUnlockModal() {
