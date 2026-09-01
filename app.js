@@ -304,8 +304,6 @@ if (modal) {
     });
 
 }
-
-
 // ---------- CONTINUE BUTTON ----------
 
 const unlockButton =
@@ -313,15 +311,36 @@ const unlockButton =
 
 if (unlockButton) {
 
-    unlockButton.addEventListener("click", () => {
+    unlockButton.addEventListener("click", async () => {
 
-        alert(
-            "AdsGram will be connected here."
-        );
+        try {
+
+            const AdController =
+                window.Adsgram.init({
+                    blockId: "45602"
+                });
+
+            await AdController.show();
+
+            alert("Ad completed! Unlocking content...");
+
+        } catch (error) {
+
+            console.error(
+                "AdsGram error:",
+                error
+            );
+
+            alert(
+                "The ad could not be loaded. Please try again."
+            );
+
+        }
 
     });
 
 }
+
 
 
 // ---------- SEARCH BUTTON ----------
