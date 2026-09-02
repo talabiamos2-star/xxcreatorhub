@@ -52,11 +52,37 @@
         border-radius: 12px;
     }
     </style>
+    <style>
+    #creator-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    #creator-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+        background: #333;
+        flex-shrink: 0;
+    }
+
+    #creator-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+</style>
 </head>
 
 <body>
 
+    <div id="creator-header">
+    <div id="creator-avatar"></div>
     <h1 id="creator-name">Exclusive Content</h1>
+</div>
 
     <div id="exclusive-content">
     Loading...
