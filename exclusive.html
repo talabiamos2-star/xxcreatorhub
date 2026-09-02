@@ -88,11 +88,20 @@
         font-size: 13px;
         color: #999;
     }
+        #back-button {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 0;
+    margin-bottom: 20px;
+    cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
-
+<button id="back-button">← Back</button>
     <div id="creator-header">
     <div id="creator-avatar"></div>
 
@@ -180,6 +189,9 @@ loadCreatorName();
     }
 
     loadExclusiveContent();
+    document.getElementById("back-button").addEventListener("click", () => {
+    window.history.back();
+});
 </script>
 </body>
 </html>
