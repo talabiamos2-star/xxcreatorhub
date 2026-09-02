@@ -65,7 +65,25 @@
 <script>
     const params = new URLSearchParams(window.location.search);
     const creatorId = params.get("creator");
+async function loadCreatorName() {
+    const { data, error } = await supabaseClient
+        .from("creators")
+        .select("name")
+        .eq("id", creatorId)
+        .single();
 
+    if (error) {
+        console.error("Creator name error:", error);
+        return;
+    }
+
+    if (data) {
+        document.getElementById("creator-name").textContent =
+            data.name || "Exclusive Content";
+    }
+}
+
+loadCreatorName();
     async function loadExclusiveContent() {
 
         if (!creatorId) {
