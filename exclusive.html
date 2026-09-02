@@ -25,8 +25,14 @@
     <h1>Exclusive Content</h1>
 
     <div id="exclusive-content">
-        Loading...
-    </div>
+    Loading...
+</div>
 
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const creatorId = params.get("creator");
+
+    console.log("Creator ID:", creatorId);
+</script>
 </body>
 </html>
