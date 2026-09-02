@@ -22,7 +22,7 @@
     body {
         margin: 0;
         padding: 20px;
-        background: #08050d;
+        background: #08080d;
         color: #ffffff;
         font-family: Arial, sans-serif;
     }
@@ -31,32 +31,21 @@
         margin-bottom: 20px;
     }
 
-    #exclusive-content {
-        display: grid;
-        gap: 20px;
-    }
-
-    #exclusive-content div {
-        background: #120b1c;
-        padding: 15px;
-        border-radius: 16px;
-    }
-
-    #exclusive-content h3 {
-        margin-top: 0;
-    }
-
-    #exclusive-content img {
-        width: 100%;
-        display: block;
-        border-radius: 12px;
+    #back-button {
+        background: transparent;
+        border: none;
+        color: #ff4fa3;
+        font-size: 16px;
+        padding: 0;
+        margin-bottom: 20px;
+        cursor: pointer;
     }
 
     #creator-header {
         display: flex;
         align-items: center;
         gap: 12px;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
     }
 
     #creator-avatar {
@@ -64,7 +53,8 @@
         height: 50px;
         border-radius: 50%;
         overflow: hidden;
-        background: #333;
+        background: #191923;
+        border: 2px solid #a855f7;
         flex-shrink: 0;
     }
 
@@ -82,36 +72,41 @@
 
     .creator-header-info strong {
         font-size: 18px;
+        color: #ffffff;
     }
 
     .creator-header-info span {
         font-size: 13px;
-        color: #999;
+        color: #ff4fa3;
     }
-        #back-button {
-    background: transparent;
-    border: none;
-    color: #ffffff;
-    font-size: 16px;
-    padding: 0;
-    margin-bottom: 20px;
-    cursor: pointer;
-        }
-        #back-button {
-    color: #b45cff;
-}
 
-#creator-name {
-    color: #ffffff;
-}
+    #exclusive-content {
+        display: grid;
+        gap: 20px;
+    }
 
-.creator-header-info span {
-    color: #b45cff;
-}
+    #exclusive-content div {
+        background: linear-gradient(
+            145deg,
+            #171720,
+            #0f0f15
+        );
+        padding: 15px;
+        border-radius: 18px;
+        border: 1px solid #292936;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+    }
 
-#creator-avatar {
-    border: 2px solid #b45cff;
-        }
+    #exclusive-content h3 {
+        margin-top: 0;
+        color: #ffffff;
+    }
+
+    #exclusive-content img {
+        width: 100%;
+        display: block;
+        border-radius: 14px;
+    }
     </style>
 </head>
 
