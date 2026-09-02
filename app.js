@@ -866,7 +866,7 @@ console.log("Saved post IDs:", savedPostIds);
                     <button
                         class="exclusive-button"
                         data-action="exclusive"
-                        data-exclusive-url="${post.exclusive_url || ""}"
+                        data-exclusive-url="exclusive.html?creator=${post.creator_id}"
                     >
                         🔒 See Exclusive Content
                     </button>
