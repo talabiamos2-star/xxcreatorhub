@@ -74,6 +74,22 @@
         height: 100%;
         object-fit: cover;
     }
+        <style>
+    .creator-header-info {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .creator-header-info strong {
+        font-size: 18px;
+    }
+
+    .creator-header-info span {
+        font-size: 13px;
+        color: #999;
+    }
+</style>
 </style>
 </head>
 
@@ -81,8 +97,12 @@
 
     <div id="creator-header">
     <div id="creator-avatar"></div>
-    <h1 id="creator-name">Exclusive Content</h1>
-</div>
+
+    <div class="creator-header-info">
+        <strong id="creator-name">Exclusive Content</strong>
+        <span>Exclusive content</span>
+    </div>
+    </div>
 
     <div id="exclusive-content">
     Loading...
