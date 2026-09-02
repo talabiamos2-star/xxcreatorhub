@@ -94,7 +94,7 @@
 async function loadCreatorName() {
     const { data, error } = await supabaseClient
         .from("creators")
-        .select("name")
+        .select("name, photo_url")
         .eq("id", creatorId)
         .single();
 
@@ -104,8 +104,17 @@ async function loadCreatorName() {
     }
 
     if (data) {
-        document.getElementById("creator-name").textContent =
-            data.name || "Exclusive Content";
+    document.getElementById("creator-name").textContent =
+        data.name || "Exclusive Content";
+
+    if (data.photo_url) {
+        document.getElementById("creator-avatar").innerHTML = `
+            <img
+                src="${data.photo_url}"
+                alt="${data.name || "Creator"}"
+            >
+        `;
+    }
     }
 }
 
