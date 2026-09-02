@@ -32,7 +32,49 @@
     const params = new URLSearchParams(window.location.search);
     const creatorId = params.get("creator");
 
-    console.log("Creator ID:", creatorId);
+    async function loadExclusiveContent() {
+
+        if (!creatorId) {
+            document.getElementById("exclusive-content").innerHTML =
+                "No creator specified.";
+            return;
+        }
+
+        const { data, error } = await supabaseClient
+            .from("exclusive_content")
+            .select("*")
+            .eq("creator_id", creatorId)
+            .order("created_at", { ascending: false });
+
+        if (error) {
+            console.error("Exclusive content error:", error);
+
+            document.getElementById("exclusive-content").innerHTML =
+                "Unable to load exclusive content.";
+
+            return;
+        }
+
+        if (!data || data.length === 0) {
+            document.getElementById("exclusive-content").innerHTML =
+                "No exclusive content yet.";
+            return;
+        }
+
+        document.getElementById("exclusive-content").innerHTML =
+            data.map(item => `
+                <div>
+                    <h3>${item.title || "Exclusive Content"}</h3>
+                    <img
+                        src="${item.media_url}"
+                        alt="${item.title || "Exclusive content"}"
+                        style="max-width:100%;"
+                    >
+                </div>
+            `).join("");
+    }
+
+    loadExclusiveContent();
 </script>
 </body>
 </html>
