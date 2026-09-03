@@ -213,10 +213,13 @@ const { count: visitCount, error: visitError } =
         .from("site_visits")
         .select("*", { count: "exact", head: true });
 
-if (!visitError) {
+if (visitError) {
+    console.error("Visit count error:", visitError);
+} else {
+    console.log("Visit count:", visitCount);
     document.getElementById("total-visits").textContent =
         visitCount || 0;
-}
+    }
 
     }
 
