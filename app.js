@@ -45,6 +45,7 @@ function showPage(pageName) {
 
     if (selectedPage) {
         selectedPage.classList.add("active-page");
+        recordVisit(pageName);
     }
 
     navButtons.forEach((button) => {
