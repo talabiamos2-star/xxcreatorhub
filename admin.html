@@ -185,6 +185,31 @@ const supabaseClient = window.supabase.createClient(
         <button>View Analytics</button>
 
     </div>
+<script>
+async function loadDashboardStats() {
 
+    const { count: creatorCount, error: creatorError } =
+        await supabaseClient
+            .from("creators")
+            .select("*", { count: "exact", head: true });
+
+    if (!creatorError) {
+        document.getElementById("total-creators").textContent =
+            creatorCount || 0;
+    }
+
+    const { count: postCount, error: postError } =
+        await supabaseClient
+            .from("posts")
+            .select("*", { count: "exact", head: true });
+
+    if (!postError) {
+        document.getElementById("total-posts").textContent =
+            postCount || 0;
+    }
+}
+
+loadDashboardStats();
+</script>
 </body>
       </html>
