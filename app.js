@@ -7,7 +7,22 @@ const supabaseClient = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
+// ---------- VISIT TRACKING ----------
 
+async function recordVisit(pageName) {
+
+    const { error } = await supabaseClient
+        .from("site_visits")
+        .insert({
+            page: pageName
+        });
+
+    if (error) {
+        console.error("Visit tracking error:", error);
+    }
+}
+
+recordVisit("home");
 // ===============================
 // XX CREATORHUB APP - COMMENTS FIX 2026
 // ===============================
