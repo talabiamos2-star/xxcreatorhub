@@ -203,11 +203,22 @@ async function loadDashboardStats() {
             .from("posts")
             .select("*", { count: "exact", head: true });
 
-    if (!postError) {
-        document.getElementById("total-posts").textContent =
-            postCount || 0;
-    }
+if (!postError) {
+    document.getElementById("total-posts").textContent =
+        postCount || 0;
 }
+
+const { count: visitCount, error: visitError } =
+    await supabaseClient
+        .from("site_visits")
+        .select("*", { count: "exact", head: true });
+
+if (!visitError) {
+    document.getElementById("total-visits").textContent =
+        visitCount || 0;
+}
+
+    }
 
 loadDashboardStats();
 </script>
