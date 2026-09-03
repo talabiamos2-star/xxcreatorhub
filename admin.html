@@ -216,7 +216,7 @@ const { count: visitCount, error: visitError } =
 if (visitError) {
     console.error("Visit count error:", visitError);
 } else {
-    alert("Visit count: " + visitCount);
+    console.log("Visit count:", visitCount);
 document.getElementById("total-visits").textContent =
     visitCount || 0;
     }
