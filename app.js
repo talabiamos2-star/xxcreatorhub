@@ -326,9 +326,15 @@ if (unlockButton) {
 
             await AdController.show();
 
-            // Ad completed successfully
+// Ad completed successfully
 
-            if (currentExclusiveUrl) {
+await supabaseClient
+    .from("ad_watches")
+    .insert({
+        ad_type: "exclusive"
+    });
+
+if (currentExclusiveUrl) {
 
     closeUnlockModal();
 
