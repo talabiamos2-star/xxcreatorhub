@@ -328,11 +328,15 @@ if (unlockButton) {
 
 // Ad completed successfully
 
-await supabaseClient
+const { error: adWatchError } = await supabaseClient
     .from("ad_watches")
     .insert({
         ad_type: "exclusive"
     });
+
+if (adWatchError) {
+    console.error("Ad watch tracking error:", adWatchError);
+}
 
 if (currentExclusiveUrl) {
 
