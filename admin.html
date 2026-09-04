@@ -213,7 +213,17 @@ if (!postError) {
     document.getElementById("total-posts").textContent =
         postCount || 0;
 }
+const { count: adWatchCount, error: adWatchError } =
+    await supabaseClient
+        .from("ad_watches")
+        .select("*", { count: "exact", head: true });
 
+if (adWatchError) {
+    console.error("Ad watch count error:", adWatchError);
+} else {
+    document.getElementById("total-ads-watched").textContent =
+        adWatchCount || 0;
+}
 const { count: visitCount, error: visitError } =
     await supabaseClient
         .from("site_visits")
