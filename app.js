@@ -43,11 +43,10 @@ function showPage(pageName) {
     const selectedPage =
         document.getElementById(`${pageName}-page`);
 
-    if (selectedPage) {
-        selectedPage.classList.add("active-page");
-        recordVisit(pageName);
-    }
-
+    
+if (selectedPage) {
+    selectedPage.classList.add("active-page");
+}
     navButtons.forEach((button) => {
         button.classList.remove("active");
 
