@@ -348,15 +348,6 @@ if (currentExclusiveUrl) {
     alert("No exclusive content link found.");
 }
 
-    closeUnlockModal();
-
-    window.location.href = currentExclusiveUrl;
-
-} else {
-
-                alert("No exclusive content link found.");
-
-            }
 
         } catch (error) {
 
