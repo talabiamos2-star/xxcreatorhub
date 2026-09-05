@@ -327,16 +327,16 @@ if (unlockButton) {
             await AdController.show();
 
 // Ad completed successfully
-
-const { error: adWatchError } = await supabaseClient
+supabaseClient
     .from("ad_watches")
     .insert({
         ad_type: "exclusive"
+    })
+    .then(({ error }) => {
+        if (error) {
+            console.error("Ad watch tracking error:", error);
+        }
     });
-
-if (adWatchError) {
-    console.error("Ad watch tracking error:", adWatchError);
-}
 
 if (currentExclusiveUrl) {
 
@@ -345,6 +345,7 @@ if (currentExclusiveUrl) {
     window.location.href = currentExclusiveUrl;
 
 } else {
+
                 alert("No exclusive content link found.");
 
             }
