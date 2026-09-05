@@ -705,8 +705,12 @@ if (window.Telegram &&
     tg.expand();
 
 }
-window.addEventListener("load", async () => {
+// ---------- OPENING ADSGRAM AD ----------
+
+(async function showOpeningAd() {
+
     try {
+
         const AdController = window.Adsgram.init({
             blockId: "45602"
         });
@@ -714,10 +718,14 @@ window.addEventListener("load", async () => {
         await AdController.show();
 
         console.log("Opening ad completed.");
+
     } catch (error) {
+
         console.error("Opening AdsGram error:", error);
+
     }
-});
+
+})();
 
 // ---------- START ----------
 
