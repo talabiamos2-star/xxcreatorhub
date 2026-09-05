@@ -327,24 +327,26 @@ if (unlockButton) {
             await AdController.show();
 // Ad completed successfully
 
-try {
-    await Promise.race([
-        supabaseClient
-            .from("ad_watches")
-            .insert({
-                ad_type: "exclusive"
-            }),
-
-        new Promise(resolve =>
-            setTimeout(resolve, 1500)
-        )
-    ]);
-} catch (error) {
-    console.error("Ad watch tracking error:", error);
-}
+supabaseClient
+    .from("ad_watches")
+    .insert({
+        ad_type: "exclusive"
+    })
+    .then(({ error }) => {
+        if (error) {
+            console.error("Ad watch tracking error:", error);
+        }
+    });
 
 if (currentExclusiveUrl) {
 
+    closeUnlockModal();
+
+    window.location.href = currentExclusiveUrl;
+
+} else {
+    alert("No exclusive content link found.");
+}
 
     closeUnlockModal();
 
