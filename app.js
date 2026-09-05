@@ -337,12 +337,7 @@ supabaseClient
             console.error("Ad watch tracking error:", error);
         }
     });
-    .then(({ error }) => {
-        if (error) {
-            console.error("Ad watch tracking error:", error);
-        }
-    });
-
+    
 if (currentExclusiveUrl) {
 
     closeUnlockModal();
