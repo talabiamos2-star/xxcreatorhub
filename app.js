@@ -327,18 +327,16 @@ if (unlockButton) {
             await AdController.show();
 
 // Ad completed successfully
-const { data, error } = await supabaseClient
+supabaseClient
     .from("ad_watches")
     .insert({
         ad_type: "exclusive"
     })
-    .select();
-
-if (error) {
-    alert("Ad tracking error: " + error.message);
-} else {
-    alert("Ad tracking worked!");
-    }
+    .then(({ error }) => {
+        if (error) {
+            console.error("Ad watch tracking error:", error);
+        }
+    });
     .then(({ error }) => {
         if (error) {
             console.error("Ad watch tracking error:", error);
