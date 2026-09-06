@@ -325,6 +325,12 @@ if (unlockButton) {
                 });
 
             await AdController.show();
+            const loadingScreen =
+    document.getElementById("exclusive-loading");
+
+if (loadingScreen) {
+    loadingScreen.style.display = "flex";
+}
 // Ad completed successfully
 
 fetch(`${SUPABASE_URL}/rest/v1/ad_watches`, {
