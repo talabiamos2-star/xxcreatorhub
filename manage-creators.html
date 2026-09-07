@@ -115,7 +115,66 @@ document.getElementById("add-creator-button")
 
     });
 
+document.getElementById("save-creator-button")
+    .addEventListener("click", async function () {
 
+        const name =
+            document.getElementById("creator-name").value;
+
+        const username =
+            document.getElementById("creator-username").value;
+
+        const photo_url =
+            document.getElementById("creator-photo").value;
+
+        const bio =
+            document.getElementById("creator-bio").value;
+
+
+        if (!name || !username || !photo_url) {
+
+            alert("Please fill in name, username and photo URL.");
+
+            return;
+        }
+
+
+        const { error } =
+            await supabaseClient
+                .from("creators")
+                .insert({
+                    name: name,
+                    username: username,
+                    photo_url: photo_url,
+                    bio: bio
+                });
+
+
+        if (error) {
+
+            console.error(error);
+
+            alert("Failed to save creator: " + error.message);
+
+            return;
+        }
+
+
+        alert("Creator added successfully!");
+
+
+        document.getElementById("creator-name").value = "";
+        document.getElementById("creator-username").value = "";
+        document.getElementById("creator-photo").value = "";
+        document.getElementById("creator-bio").value = "";
+
+        document.getElementById("add-creator-form")
+            .style.display = "none";
+
+
+        loadCreators();
+
+    });
 loadCreators();
 
 </script>
