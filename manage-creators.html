@@ -112,15 +112,17 @@ async function loadCreators() {
     `).join("");
 }
 
-
 document.getElementById("add-creator-button")
     .addEventListener("click", function () {
-document.getElementById("add-creator-form")
-    .setAttribute("data-editing-id", id);
+
+        document.getElementById("add-creator-form")
+            .setAttribute("data-editing-id", "");
+
         document.getElementById("add-creator-form")
             .style.display = "block";
 
     });
+
 
 document.getElementById("save-creator-button")
     .addEventListener("click", async function () {
