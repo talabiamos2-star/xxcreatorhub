@@ -52,7 +52,7 @@ async function loadCreators() {
         console.error(error);
 
         document.getElementById("creator-list").textContent =
-            "Failed to load creators.";
+    "Failed to load creators: " + error.message;
 
         return;
     }
