@@ -226,10 +226,13 @@ const { count: unlockCount, error: unlockError } =
         .from("unlock_events")
         .select("*", { count: "exact", head: true });
 
-if (!unlockError) {
+if (unlockError) {
+    console.error("Unlock count error:", unlockError);
+} else {
+    console.log("Unlock count:", unlockCount);
     document.getElementById("total-unlocks").textContent =
         unlockCount || 0;
-            }
+}
     }
 
 loadDashboardStats();
