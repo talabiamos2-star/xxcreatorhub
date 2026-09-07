@@ -115,7 +115,8 @@ async function loadCreators() {
 
 document.getElementById("add-creator-button")
     .addEventListener("click", function () {
-
+document.getElementById("add-creator-form")
+    .setAttribute("data-editing-id", id);
         document.getElementById("add-creator-form")
             .style.display = "block";
 
