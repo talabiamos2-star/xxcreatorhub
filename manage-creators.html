@@ -190,7 +190,11 @@ if (editingId) {
         }
 
 
-        alert("Creator added successfully!");
+        if (editingId) {
+    alert("Creator updated successfully!");
+} else {
+    alert("Creator added successfully!");
+    }
 
 
         document.getElementById("creator-name").value = "";
