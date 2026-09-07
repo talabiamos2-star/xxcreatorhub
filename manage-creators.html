@@ -179,6 +179,35 @@ document.getElementById("save-creator-button")
         loadCreators();
 
     });
+    async function editCreator(id) {
+
+    const { data, error } =
+        await supabaseClient
+            .from("creators")
+            .select("*")
+            .eq("id", id)
+            .single();
+
+    if (error) {
+        alert("Failed to load creator: " + error.message);
+        return;
+    }
+
+    document.getElementById("creator-name").value =
+        data.name || "";
+
+    document.getElementById("creator-username").value =
+        data.username || "";
+
+    document.getElementById("creator-photo").value =
+        data.photo_url || "";
+
+    document.getElementById("creator-bio").value =
+        data.bio || "";
+
+    document.getElementById("add-creator-form")
+        .style.display = "block";
+    }
 loadCreators();
 
 </script>
