@@ -23,7 +23,36 @@
     <div id="creator-list">
         Loading creators...
     </div>
+<div id="add-creator-form" style="display:none;">
 
+    <input
+        type="text"
+        id="creator-name"
+        placeholder="Creator name"
+    >
+
+    <input
+        type="text"
+        id="creator-username"
+        placeholder="Username"
+    >
+
+    <input
+        type="text"
+        id="creator-photo"
+        placeholder="Photo URL"
+    >
+
+    <textarea
+        id="creator-bio"
+        placeholder="Bio"
+    ></textarea>
+
+    <button id="save-creator-button">
+        Save Creator
+    </button>
+
+</div>
 <script>
 
 const SUPABASE_URL =
