@@ -98,12 +98,16 @@ async function loadCreators() {
     }
 
     list.innerHTML =
-        data.map(creator => `
-            <div>
-                <h3>${creator.name}</h3>
-                <p>@${creator.username}</p>
-            </div>
-        `).join("");
+    data.map(creator => `
+        <div>
+            <h3>${creator.name}</h3>
+            <p>@${creator.username}</p>
+
+            <button onclick="editCreator(${creator.id})">
+                Edit
+            </button>
+        </div>
+    `).join("");
 }
 
 
