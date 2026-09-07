@@ -221,7 +221,15 @@ if (visitError) {
 document.getElementById("total-visits").textContent =
     visitCount || 0;
     }
+const { count: unlockCount, error: unlockError } =
+    await supabaseClient
+        .from("unlock_events")
+        .select("*", { count: "exact", head: true });
 
+if (!unlockError) {
+    document.getElementById("total-unlocks").textContent =
+        unlockCount || 0;
+            }
     }
 
 loadDashboardStats();
