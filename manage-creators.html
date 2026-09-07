@@ -42,10 +42,8 @@ async function loadCreators() {
     const { data, error } =
         await supabaseClient
             .from("creators")
-            .select("*")
-            .order("created_at", {
-                ascending: false
-            });
+            .select("*");
+            
 
     if (error) {
 
