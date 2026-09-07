@@ -331,21 +331,7 @@ if (unlockButton) {
 if (loadingScreen) {
     loadingScreen.style.display = "flex";
 }
-// Ad completed successfully
 
-fetch(`${SUPABASE_URL}/rest/v1/ad_watches`, {
-    method: "POST",
-    headers: {
-        "apikey": SUPABASE_KEY,
-        "Authorization": `Bearer ${SUPABASE_KEY}`,
-        "Content-Type": "application/json",
-        "Prefer": "return=minimal"
-    },
-    body: JSON.stringify({
-        ad_type: "exclusive"
-    }),
-    keepalive: true
-});
 if (currentExclusiveUrl) {
 
     closeUnlockModal();
