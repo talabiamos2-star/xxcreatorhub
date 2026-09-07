@@ -146,15 +146,38 @@ document.getElementById("save-creator-button")
         }
 
 
-        const { error } =
-            await supabaseClient
-                .from("creators")
-                .insert({
-                    name: name,
-                    username: username,
-                    photo_url: photo_url,
-                    bio: bio
-                });
+        const form = document.getElementById("add-creator-form");
+const editingId = form.getAttribute("data-editing-id");
+
+let error;
+
+if (editingId) {
+
+    const result = await supabaseClient
+        .from("creators")
+        .update({
+            name: name,
+            username: username,
+            photo_url: photo_url,
+            bio: bio
+        })
+        .eq("id", editingId);
+
+    error = result.error;
+
+} else {
+
+    const result = await supabaseClient
+        .from("creators")
+        .insert({
+            name: name,
+            username: username,
+            photo_url: photo_url,
+            bio: bio
+        });
+
+    error = result.error;
+                                }
 
 
         if (error) {
