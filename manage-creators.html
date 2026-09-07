@@ -10,13 +10,77 @@
 
     <title>Manage Creators</title>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 </head>
 
 <body>
 
     <h1>Manage Creators</h1>
 
-    <p>Creator management page</p>
+    <div id="creator-list">
+        Loading creators...
+    </div>
+
+<script>
+
+const SUPABASE_URL =
+    "https://hgqrtjuccspzwagntnxj.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_nLNI7mX50vhJZfz6xf9JaQ_HKw2usMf";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+async function loadCreators() {
+
+    const { data, error } =
+        await supabaseClient
+            .from("creators")
+            .select("*")
+            .order("created_at", {
+                ascending: false
+            });
+
+    if (error) {
+
+        console.error(error);
+
+        document.getElementById("creator-list").textContent =
+            "Failed to load creators.";
+
+        return;
+    }
+
+    const list =
+        document.getElementById("creator-list");
+
+    if (!data || data.length === 0) {
+
+        list.textContent =
+            "No creators yet.";
+
+        return;
+    }
+
+    list.innerHTML =
+        data.map(creator => `
+            <div>
+                <h3>${creator.name}</h3>
+                <p>@${creator.username}</p>
+            </div>
+        `).join("");
+}
+
+
+loadCreators();
+
+</script>
 
 </body>
 
