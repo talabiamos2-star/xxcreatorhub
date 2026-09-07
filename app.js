@@ -325,9 +325,18 @@ if (unlockButton) {
                 });
 
             await AdController.show();
-            const loadingScreen =
-    document.getElementById("exclusive-loading");
 
+// Record successful unlock
+const { error: unlockError } = await supabaseClient
+    .from("unlock_events")
+    .insert({});
+
+if (unlockError) {
+    console.error("Unlock tracking error:", unlockError);
+}
+
+const loadingScreen =
+    document.getElementById("exclusive-loading");
 if (loadingScreen) {
     loadingScreen.style.display = "flex";
 }
