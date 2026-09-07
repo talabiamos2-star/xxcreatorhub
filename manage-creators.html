@@ -219,21 +219,16 @@ if (editingId) {
         return;
     }
 
-    document.getElementById("creator-name").value =
-        data.name || "";
+    document.getElementById("add-creator-button")
+    .addEventListener("click", function () {
 
-    document.getElementById("creator-username").value =
-        data.username || "";
+        document.getElementById("add-creator-form")
+            .setAttribute("data-editing-id", "");
 
-    document.getElementById("creator-photo").value =
-        data.photo_url || "";
+        document.getElementById("add-creator-form")
+            .style.display = "block";
 
-    document.getElementById("creator-bio").value =
-        data.bio || "";
-
-    document.getElementById("add-creator-form")
-        .style.display = "block";
-    }
+    });
 loadCreators();
 
 </script>
