@@ -106,8 +106,12 @@ async function loadCreators() {
             <p>@${creator.username}</p>
 
             <button onclick="editCreator(${creator.id})">
-                Edit
-            </button>
+    Edit
+</button>
+
+<button onclick="deleteCreator(${creator.id})">
+    Delete
+</button>
         </div>
     `).join("");
 }
