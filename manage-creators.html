@@ -246,7 +246,31 @@ if (editingId) {
         document.getElementById("add-creator-form")
         .style.display = "block";
     }
+async function deleteCreator(id) {
 
+    const confirmed =
+        confirm("Are you sure you want to delete this creator?");
+
+    if (!confirmed) {
+        return;
+    }
+
+    const { error } =
+        await supabaseClient
+            .from("creators")
+            .delete()
+            .eq("id", id);
+
+    if (error) {
+        console.error(error);
+        alert("Failed to delete creator: " + error.message);
+        return;
+    }
+
+    alert("Creator deleted successfully!");
+
+    loadCreators();
+        }
 loadCreators();
 
 </script>
