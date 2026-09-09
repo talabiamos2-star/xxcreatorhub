@@ -424,11 +424,19 @@ document.getElementById("add-exclusive-photo-button")
 
     list.innerHTML = data.map(photo => `
         <div style="margin-bottom:15px;">
-            <img
-                src="${photo.photo_url}"
-                style="width:150px; height:150px; object-fit:cover;"
-            >
-        </div>
+
+    <img
+        src="${photo.photo_url}"
+        style="width:150px; height:150px; object-fit:cover;"
+    >
+
+    <br>
+
+    <button onclick="deleteExclusivePhoto(${photo.id})">
+        Delete
+    </button>
+
+</div>
     `).join("");
     }
 loadExclusiveCreators();
