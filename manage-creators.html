@@ -388,7 +388,52 @@ document.getElementById("add-exclusive-photo-button")
         fileInput.value = "";
 
     });
+    async function loadExclusivePhotos() {
+
+    const creatorId =
+        document.getElementById("exclusive-creator-select").value;
+
+    const list =
+        document.getElementById("exclusive-photo-list");
+
+    if (!creatorId) {
+        list.textContent =
+            "Select a creator to see their photos.";
+        return;
+    }
+
+    const { data, error } =
+        await supabaseClient
+            .from("exclusive_photos")
+            .select("*")
+            .eq("creator_id", creatorId)
+            .order("created_at", { ascending: true });
+
+    if (error) {
+        console.error(error);
+        list.textContent =
+            "Failed to load photos: " + error.message;
+        return;
+    }
+
+    if (!data || data.length === 0) {
+        list.textContent =
+            "No exclusive photos yet.";
+        return;
+    }
+
+    list.innerHTML = data.map(photo => `
+        <div style="margin-bottom:15px;">
+            <img
+                src="${photo.photo_url}"
+                style="width:150px; height:150px; object-fit:cover;"
+            >
+        </div>
+    `).join("");
+    }
 loadExclusiveCreators();
+    document.getElementById("exclusive-creator-select")
+    .addEventListener("change", loadExclusivePhotos);
 loadCreators();
     </script>
 </body>
