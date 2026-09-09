@@ -65,11 +65,21 @@
 
     <br><br>
 
-    <input
-        type="text"
-        id="exclusive-photo-url"
-        placeholder="Exclusive photo URL"
-    >
+    <select id="exclusive-creator-select">
+    <option value="">Select a creator</option>
+</select>
+
+<br><br>
+
+<input
+    type="file"
+    id="exclusive-photo-file"
+    accept="image/*"
+>
+
+<button id="add-exclusive-photo-button">
+    Add Photo
+</button>
 
     <button id="add-exclusive-photo-button">
         Add Photo
