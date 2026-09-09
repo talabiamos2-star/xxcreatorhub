@@ -296,9 +296,40 @@ async function deleteCreator(id) {
 
     loadCreators();
         }
-loadCreators();
+async function loadExclusiveCreators() {
 
-</script>
+    const { data, error } =
+        await supabaseClient
+            .from("creators")
+            .select("id, name, username");
+
+    if (error) {
+        console.error("Exclusive creator error:", error);
+        return;
+    }
+
+    const select =
+        document.getElementById("exclusive-creator-select");
+
+    select.innerHTML =
+        '<option value="">Select a creator</option>';
+
+    data.forEach(creator => {
+
+        const option =
+            document.createElement("option");
+
+        option.value = creator.id;
+
+        option.textContent =
+            `${creator.name} (@${creator.username})`;
+
+        select.appendChild(option);
+    });
+}
+
+loadExclusiveCreators();
+loadCreators();
 </body>
 
 </html>
