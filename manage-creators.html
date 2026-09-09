@@ -442,6 +442,31 @@ document.getElementById("add-exclusive-photo-button")
 loadExclusiveCreators();
     document.getElementById("exclusive-creator-select")
     .addEventListener("change", loadExclusivePhotos);
+    async function deleteExclusivePhoto(id) {
+
+    const confirmed =
+        confirm("Are you sure you want to delete this photo?");
+
+    if (!confirmed) {
+        return;
+    }
+
+    const { error } =
+        await supabaseClient
+            .from("exclusive_photos")
+            .delete()
+            .eq("id", id);
+
+    if (error) {
+        console.error(error);
+        alert("Failed to delete photo: " + error.message);
+        return;
+    }
+
+    alert("Exclusive photo deleted successfully!");
+
+    loadExclusivePhotos();
+        }
 loadCreators();
     </script>
 </body>
