@@ -372,10 +372,11 @@ document.getElementById("add-exclusive-photo-button")
         const { error: databaseError } =
             await supabaseClient
                 .from("exclusive_photos")
-                .insert({
-                    creator_id: creatorId,
-                    photo_url: publicData.publicUrl
-                });
+.insert({
+    creator_id: creatorId,
+    photo_url: publicData.publicUrl,
+    storage_path: fileName
+});
 
         if (databaseError) {
             console.error(databaseError);
