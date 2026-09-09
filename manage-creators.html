@@ -337,7 +337,67 @@ async function loadExclusiveCreators() {
         select.appendChild(option);
     });
 }
+document.getElementById("add-exclusive-photo-button")
+    .addEventListener("click", async function () {
 
+        const creatorId =
+            document.getElementById("exclusive-creator-select").value;
+
+        const fileInput =
+            document.getElementById("exclusive-photo-file");
+
+        const file = fileInput.files[0];
+
+        if (!creatorId) {
+            alert("Please select a creator.");
+            return;
+        }
+
+        if (!file) {
+            alert("Please select a photo.");
+            return;
+        }
+
+        const fileName =
+            Date.now() + "_" + file.name;
+
+        const { error: uploadError } =
+            await supabaseClient
+                .storage
+                .from("images")
+                .upload(fileName, file);
+
+        if (uploadError) {
+            console.error(uploadError);
+            alert("Failed to upload photo: " + uploadError.message);
+            return;
+        }
+
+        const { data: publicData } =
+            supabaseClient
+                .storage
+                .from("images")
+                .getPublicUrl(fileName);
+
+        const { error: databaseError } =
+            await supabaseClient
+                .from("exclusive_photos")
+                .insert({
+                    creator_id: creatorId,
+                    photo_url: publicData.publicUrl
+                });
+
+        if (databaseError) {
+            console.error(databaseError);
+            alert("Photo uploaded but failed to save: " + databaseError.message);
+            return;
+        }
+
+        alert("Exclusive photo added successfully!");
+
+        fileInput.value = "";
+
+    });
 loadExclusiveCreators();
 loadCreators();
     </script>
