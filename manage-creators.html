@@ -503,8 +503,43 @@ loadExclusiveCreators();
 
     loadExclusivePhotos();
         }
+async function loadPostCreators() {
+
+    const { data, error } =
+        await supabaseClient
+            .from("creators")
+            .select("id, name, username");
+
+    if (error) {
+        console.error("Post creator error:", error);
+        return;
+    }
+
+    const select =
+        document.getElementById("post-creator-select");
+
+    select.innerHTML =
+        '<option value="">Select a creator</option>';
+
+    data.forEach(creator => {
+
+        const option =
+            document.createElement("option");
+
+        option.value = creator.id;
+
+        option.textContent =
+            `${creator.name} (@${creator.username})`;
+
+        select.appendChild(option);
+
+    });
+}
+
 loadCreators();
-    </script>
+loadPostCreators();
+
+</script>
 </body>
 
 </html>
