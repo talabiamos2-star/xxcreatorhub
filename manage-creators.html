@@ -653,6 +653,10 @@ async function loadPosts() {
 
                 <p>${post.caption || ""}</p>
 
+<button onclick="editPost(${post.id})">
+    Edit
+</button>
+
 <button onclick="deletePost(${post.id})">
     Delete
 </button>
