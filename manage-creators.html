@@ -660,7 +660,31 @@ async function loadPosts() {
 </div>
         `).join("");
 }
+async function deletePost(id) {
 
+    const confirmed =
+        confirm("Are you sure you want to delete this post?");
+
+    if (!confirmed) {
+        return;
+    }
+
+    const { error } =
+        await supabaseClient
+            .from("posts")
+            .delete()
+            .eq("id", id);
+
+    if (error) {
+        console.error(error);
+        alert("Failed to delete post: " + error.message);
+        return;
+    }
+
+    alert("Post deleted successfully!");
+
+    loadPosts();
+    }
 document.getElementById("post-creator-select")
     .addEventListener("change", loadPosts);
 
