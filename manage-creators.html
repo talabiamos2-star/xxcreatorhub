@@ -684,7 +684,31 @@ async function deletePost(id) {
         alert("Failed to delete post: " + error.message);
         return;
     }
+async function editPost(id) {
 
+    const newCaption = prompt("Enter the new caption:");
+
+    if (newCaption === null) {
+        return;
+    }
+
+    const { error } = await supabaseClient
+        .from("posts")
+        .update({
+            caption: newCaption
+        })
+        .eq("id", id);
+
+    if (error) {
+        console.error(error);
+        alert("Failed to update post: " + error.message);
+        return;
+    }
+
+    alert("Post updated successfully!");
+
+    loadPosts();
+    }
     alert("Post deleted successfully!");
 
     loadPosts();
