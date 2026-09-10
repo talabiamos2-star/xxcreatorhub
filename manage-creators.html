@@ -653,7 +653,11 @@ async function loadPosts() {
 
                 <p>${post.caption || ""}</p>
 
-            </div>
+<button onclick="deletePost(${post.id})">
+    Delete
+</button>
+
+</div>
         `).join("");
 }
 
