@@ -679,11 +679,17 @@ async function deletePost(id) {
             .delete()
             .eq("id", id);
 
-    if (error) {
+        if (error) {
         console.error(error);
         alert("Failed to delete post: " + error.message);
         return;
     }
+
+    alert("Post deleted successfully!");
+
+    loadPosts();
+}
+
 async function editPost(id) {
 
     const newCaption = prompt("Enter the new caption:");
@@ -709,10 +715,7 @@ async function editPost(id) {
 
     loadPosts();
     }
-    alert("Post deleted successfully!");
-
-    loadPosts();
-    }
+    
 document.getElementById("post-creator-select")
     .addEventListener("change", loadPosts);
 
