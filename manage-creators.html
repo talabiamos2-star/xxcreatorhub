@@ -80,6 +80,41 @@
     </div>
 
 </div>
+    <h2>Manage Posts</h2>
+
+<div id="manage-posts-section">
+
+    <select id="post-creator-select">
+        <option value="">Select a creator</option>
+    </select>
+
+    <br><br>
+
+    <input
+        type="file"
+        id="post-image-file"
+        accept="image/*"
+    >
+
+    <br><br>
+
+    <input
+        type="text"
+        id="post-caption"
+        placeholder="Post caption"
+    >
+
+    <br><br>
+
+    <button id="add-post-button">
+        Add Post
+    </button>
+
+    <div id="post-list">
+        Select a creator to see their posts.
+    </div>
+
+</div>
 <script>
 
 const SUPABASE_URL =
