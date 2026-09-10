@@ -604,6 +604,62 @@ async function addPost() {
 document.getElementById("add-post-button")
     .addEventListener("click", addPost);
 
+async function loadPosts() {
+
+    const creatorId =
+        document.getElementById("post-creator-select").value;
+
+    const list =
+        document.getElementById("post-list");
+
+    if (!creatorId) {
+        list.textContent =
+            "Select a creator to see their posts.";
+        return;
+    }
+
+    const { data, error } =
+        await supabaseClient
+            .from("posts")
+            .select("*")
+            .eq("creator_id", creatorId)
+            .order("created_at", { ascending: false });
+
+    if (error) {
+        console.error(error);
+
+        list.textContent =
+            "Failed to load posts: " + error.message;
+
+        return;
+    }
+
+    if (!data || data.length === 0) {
+
+        list.textContent =
+            "No posts yet.";
+
+        return;
+    }
+
+    list.innerHTML =
+        data.map(post => `
+            <div style="margin-bottom:20px;">
+
+                <img
+                    src="${post.image_url}"
+                    style="width:150px; height:150px; object-fit:cover;"
+                >
+
+                <p>${post.caption || ""}</p>
+
+            </div>
+        `).join("");
+}
+
+document.getElementById("post-creator-select")
+    .addEventListener("change", loadPosts);
+
 loadCreators();
 loadPostCreators();
 
