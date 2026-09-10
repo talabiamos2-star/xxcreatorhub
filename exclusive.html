@@ -188,7 +188,7 @@ loadCreatorName();
         }
 
         const { data, error } = await supabaseClient
-            .from("exclusive_content")
+            .from("exclusive_photos")
             .select("*")
             .eq("creator_id", creatorId)
             .order("created_at", { ascending: false });
