@@ -536,6 +536,74 @@ async function loadPostCreators() {
     });
 }
 
+async function addPost() {
+
+    const creatorId =
+        document.getElementById("post-creator-select").value;
+
+    const fileInput =
+        document.getElementById("post-image-file");
+
+    const file = fileInput.files[0];
+
+    const caption =
+        document.getElementById("post-caption").value;
+
+    if (!creatorId) {
+        alert("Please select a creator.");
+        return;
+    }
+
+    if (!file) {
+        alert("Please select a post image.");
+        return;
+    }
+
+    const fileName =
+        Date.now() + "_post_" + file.name;
+
+    const { error: uploadError } =
+        await supabaseClient
+            .storage
+            .from("images")
+            .upload(fileName, file);
+
+    if (uploadError) {
+        console.error(uploadError);
+        alert("Failed to upload post image: " + uploadError.message);
+        return;
+    }
+
+    const { data: publicData } =
+        supabaseClient
+            .storage
+            .from("images")
+            .getPublicUrl(fileName);
+
+    const { error: databaseError } =
+        await supabaseClient
+            .from("posts")
+            .insert({
+                creator_id: creatorId,
+                image_url: publicData.publicUrl,
+                caption: caption
+            });
+
+    if (databaseError) {
+        console.error(databaseError);
+        alert("Image uploaded but failed to create post: " + databaseError.message);
+        return;
+    }
+
+    alert("Post added successfully!");
+
+    fileInput.value = "";
+    document.getElementById("post-caption").value = "";
+}
+
+document.getElementById("add-post-button")
+    .addEventListener("click", addPost);
+
 loadCreators();
 loadPostCreators();
 
