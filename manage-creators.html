@@ -723,13 +723,15 @@ async function editPost(id) {
         return;
     }
 
-    const newImageInput = document.createElement("input");
+  const newImageInput = document.createElement("input");
 
-    newImageInput.type = "file";
-    newImageInput.accept = "image/*";
+newImageInput.type = "file";
+newImageInput.accept = "image/*";
+newImageInput.style.display = "none";
 
-    document.body.appendChild(newImageInput);
+document.body.appendChild(newImageInput);
 
+newImageInput.click();
     newImageInput.onchange = async function () {
 
         const newImage = newImageInput.files[0];
