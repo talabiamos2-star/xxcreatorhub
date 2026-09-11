@@ -727,7 +727,8 @@ async function editPost(id) {
 
 newImageInput.type = "file";
 newImageInput.accept = "image/*";
-newImageInput.style.display = "none";
+newImageInput.style.position = "fixed";
+newImageInput.style.left = "-9999px";
 
 document.body.appendChild(newImageInput);
 
