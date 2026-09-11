@@ -697,23 +697,61 @@ async function editPost(id) {
         return;
     }
 
-    const { error } = await supabaseClient
-        .from("posts")
-        .update({
-            caption: newCaption
-        })
-        .eq("id", id);
+    const newImageInput = document.createElement("input");
+    newImageInput.type = "file";
+    newImageInput.accept = "image/*";
 
-    if (error) {
-        console.error(error);
-        alert("Failed to update post: " + error.message);
-        return;
-    }
+    newImageInput.click();
 
-    alert("Post updated successfully!");
+    newImageInput.onchange = async function () {
+
+        const newImage = newImageInput.files[0];
+
+        if (!newImage) {
+            return;
+        }
+
+        const fileName =
+            Date.now() + "_post_" + newImage.name;
+
+        const { error: uploadError } =
+            await supabaseClient
+                .storage
+                .from("images")
+                .upload(fileName, newImage);
+
+        if (uploadError) {
+            console.error(uploadError);
+            alert("Failed to upload new image: " + uploadError.message);
+            return;
+        }
+
+        const { data: publicData } =
+            supabaseClient
+                .storage
+                .from("images")
+                .getPublicUrl(fileName);
+
+        const { error: databaseError } =
+            await supabaseClient
+                .from("posts")
+                .update({
+                    caption: newCaption,
+                    image_url: publicData.publicUrl
+                })
+                .eq("id", id);
+
+        if (databaseError) {
+            console.error(databaseError);
+            alert("Failed to update post: " + databaseError.message);
+            return;
+        }
+
+        alert("Post updated successfully!");
 
         loadPosts();
-}
+    };
+    }
     
 document.getElementById("post-creator-select")
     .addEventListener("change", loadPosts);
