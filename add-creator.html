@@ -98,10 +98,46 @@ document.getElementById("save-creator-button")
         }
 
 
-        const { error } =
-            await supabaseClient
-                .from("creators")
-                .insert({
+        const fileName =
+    Date.now() + "_creator_" + photoFile.name;
+
+const { error: uploadError } =
+    await supabaseClient
+        .storage
+        .from("images")
+        .upload(fileName, photoFile);
+
+if (uploadError) {
+
+    console.error(uploadError);
+
+    alert(
+        "Failed to upload profile photo: " +
+        uploadError.message
+    );
+
+    return;
+}
+
+const { data: publicData } =
+    supabaseClient
+        .storage
+        .from("images")
+        .getPublicUrl(fileName);
+
+const photo_url =
+    publicData.publicUrl;
+
+
+const { error } =
+    await supabaseClient
+        .from("creators")
+        .insert({
+            name: name,
+            username: username,
+            photo_url: photo_url,
+            bio: bio
+        });
                     name: name,
                     username: username,
                     photo_url: photo_url,
