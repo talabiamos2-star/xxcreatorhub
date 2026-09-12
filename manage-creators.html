@@ -689,29 +689,74 @@ async function deletePost(id) {
     loadPosts();
 }
 
-async function editPost(id) {
+async function addPost() {
 
-    const newCaption = prompt("Enter the new caption:");
+    const creatorId =
+        document.getElementById("post-creator-select").value;
 
-    if (newCaption === null) {
+    const fileInput =
+        document.getElementById("post-image-file");
+
+    const file = fileInput.files[0];
+
+    const caption =
+        document.getElementById("post-caption").value;
+
+    if (!creatorId) {
+        alert("Please select a creator.");
         return;
     }
 
-    const { error } =
+    if (!file) {
+        alert("Please select a post image.");
+        return;
+    }
+
+    const fileName =
+        Date.now() + "_post_" + file.name;
+
+    const { data, error } =
         await supabaseClient
-            .from("posts")
-            .update({
-                caption: newCaption
-            })
-            .eq("id", id);
+            .storage
+            .from("images")
+            .upload(fileName, file);
 
     if (error) {
-        console.error(error);
-        alert("Failed to update post: " + error.message);
+        console.error("Upload error:", error);
+        alert("Failed to upload post image: " + error.message);
         return;
     }
 
-    alert("Post caption updated successfully!");
+    const { data: publicData } =
+        supabaseClient
+            .storage
+            .from("images")
+            .getPublicUrl(fileName);
+
+    const imageUrl = publicData.publicUrl;
+
+    const { error: databaseError } =
+        await supabaseClient
+            .from("posts")
+            .insert({
+                creator_id: creatorId,
+                image_url: imageUrl,
+                caption: caption
+            });
+
+    if (databaseError) {
+        console.error("Database error:", databaseError);
+        alert(
+            "Image uploaded but failed to create post: " +
+            databaseError.message
+        );
+        return;
+    }
+
+    alert("Post added successfully!");
+
+    fileInput.value = "";
+    document.getElementById("post-caption").value = "";
 
     loadPosts();
     }
