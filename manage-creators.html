@@ -810,7 +810,28 @@ async function addPost() {
     
 document.getElementById("post-creator-select")
     .addEventListener("change", loadPosts);
+document.getElementById("toggle-creators-button")
+    .addEventListener("click", function () {
 
+        const list =
+            document.getElementById("creator-list");
+
+        if (list.style.display === "none") {
+
+            list.style.display = "block";
+
+            this.textContent =
+                "Hide creators ▲";
+
+        } else {
+
+            list.style.display = "none";
+
+            this.textContent =
+                "See all creators ▼";
+        }
+
+    });
 loadCreators();
 loadPostCreators();
 
