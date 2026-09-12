@@ -168,19 +168,22 @@ async function loadCreators() {
         return;
     }
 
-    list.innerHTML =
+    document.getElementById("creator-count").textContent =
+    data.length + (data.length === 1 ? " creator" : " creators");
+
+list.innerHTML =
     data.map(creator => `
         <div>
             <h3>${creator.name}</h3>
             <p>@${creator.username}</p>
 
             <button onclick="editCreator(${creator.id})">
-    Edit
-</button>
+                Edit
+            </button>
 
-<button onclick="deleteCreator(${creator.id})">
-    Delete
-</button>
+            <button onclick="deleteCreator(${creator.id})">
+                Delete
+            </button>
         </div>
     `).join("");
 }
