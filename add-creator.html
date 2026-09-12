@@ -1,1 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Add Creator</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+</head>
+
+<body>
+
+    <h1>Add Creator</h1>
+
+    <div id="add-creator-form">
+
+        <input
+            type="text"
+            id="creator-name"
+            placeholder="Creator name"
+        >
+
+        <br><br>
+
+        <input
+            type="text"
+            id="creator-username"
+            placeholder="Username"
+        >
+
+        <br><br>
+
+        <input
+            type="text"
+            id="creator-photo"
+            placeholder="Photo URL"
+        >
+
+        <br><br>
+
+        <textarea
+            id="creator-bio"
+            placeholder="Bio"
+        ></textarea>
+
+        <br><br>
+
+        <button id="save-creator-button">
+            Save Creator
+        </button>
+
+    </div>
+
+
+<script>
+
+const SUPABASE_URL =
+    "https://hgqrtjuccspzwagntnxj.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_nLNI7mX50vhJZfz6xf9JaQ_HKw2usMf";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+document.getElementById("save-creator-button")
+    .addEventListener("click", async function () {
+
+        const name =
+            document.getElementById("creator-name").value;
+
+        const username =
+            document.getElementById("creator-username").value;
+
+        const photo_url =
+            document.getElementById("creator-photo").value;
+
+        const bio =
+            document.getElementById("creator-bio").value;
+
+
+        if (!name || !username || !photo_url) {
+
+            alert(
+                "Please fill in name, username and photo URL."
+            );
+
+            return;
+        }
+
+
+        const { error } =
+            await supabaseClient
+                .from("creators")
+                .insert({
+                    name: name,
+                    username: username,
+                    photo_url: photo_url,
+                    bio: bio
+                });
+
+
+        if (error) {
+
+            console.error(error);
+
+            alert(
+                "Failed to add creator: " +
+                error.message
+            );
+
+            return;
+        }
+
+
+        alert("Creator added successfully!");
+
+
+        document.getElementById("creator-name").value = "";
+
+        document.getElementById("creator-username").value = "";
+
+        document.getElementById("creator-photo").value = "";
+
+        document.getElementById("creator-bio").value = "";
+
+    });
+
+</script>
+
+</body>
+
+              </html>
