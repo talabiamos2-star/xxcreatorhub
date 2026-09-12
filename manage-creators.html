@@ -693,6 +693,12 @@ async function editPost(id) {
 
     const newCaption = prompt("Enter the new caption:");
 
+if (newCaption === null) {
+    return;
+}
+
+alert("Caption received: " + newCaption);
+
     if (newCaption === null) {
         return;
     }
