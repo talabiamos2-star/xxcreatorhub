@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Posts</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+</head>
+
+<body>
+
+    <h1>Manage Posts</h1>
+
+    <div id="manage-posts-section">
+
+        <select id="post-creator-select">
+            <option value="">Select a creator</option>
+        </select>
+
+        <br><br>
+
+        <input
+            type="file"
+            id="post-image-file"
+            accept="image/*"
+        >
+
+        <br><br>
+
+        <input
+            type="text"
+            id="post-caption"
+            placeholder="Post caption"
+        >
+
+        <br><br>
+
+        <button id="add-post-button">
+            Add Post
+        </button>
+
+        <div id="post-list">
+            Select a creator to see their posts.
+        </div>
+
+    </div>
+
+
+<script>
+
+const SUPABASE_URL =
+    "https://hgqrtjuccspzwagntnxj.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_nLNI7mX50vhJZfz6xf9JaQ_HKw2usMf";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+// ===============================
+// LOAD CREATORS
+// ===============================
+
+async function loadPostCreators() {
+
+    const { data, error } =
+        await supabaseClient
+            .from("creators")
+            .select("id, name, username");
+
+    if (error) {
+
+        console.error("Post creator error:", error);
+
+        return;
+    }
+
+    const select =
+        document.getElementById("post-creator-select");
+
+    select.innerHTML =
+        '<option value="">Select a creator</option>';
+
+    data.forEach(creator => {
+
+        const option =
+            document.createElement("option");
+
+        option.value = creator.id;
+
+        option.textContent =
+            `${creator.name} (@${creator.username})`;
+
+        select.appendChild(option);
+
+    });
+}
+
+
+// ===============================
+// ADD POST
+// ===============================
+
+async function addPost() {
+
+    const creatorId =
+        document.getElementById("post-creator-select").value;
+
+    const fileInput =
+        document.getElementById("post-image-file");
+
+    const file =
+        fileInput.files[0];
+
+    const caption =
+        document.getElementById("post-caption").value;
+
+
+    if (!creatorId) {
+
+        alert("Please select a creator.");
+
+        return;
+    }
+
+
+    if (!file) {
+
+        alert("Please select a post image.");
+
+        return;
+    }
+
+
+    const fileName =
+        Date.now() + "_post_" + file.name;
+
+
+    const { error: uploadError } =
+        await supabaseClient
+            .storage
+            .from("images")
+            .upload(fileName, file);
+
+
+    if (uploadError) {
+
+        console.error(uploadError);
+
+        alert(
+            "Failed to upload post image: " +
+            uploadError.message
+        );
+
+        return;
+    }
+
+
+    const { data: publicData } =
+        supabaseClient
+            .storage
+            .from("images")
+            .getPublicUrl(fileName);
+
+
+    const imageUrl =
+        publicData.publicUrl;
+
+
+    const { error: databaseError } =
+        await supabaseClient
+            .from("posts")
+            .insert({
+                creator_id: creatorId,
+                image_url: imageUrl,
+                caption: caption
+            });
+
+
+    if (databaseError) {
+
+        console.error(databaseError);
+
+        alert(
+            "Image uploaded but failed to create post: " +
+            databaseError.message
+        );
+
+        return;
+    }
+
+
+    alert("Post added successfully!");
+
+
+    fileInput.value = "";
+
+    document.getElementById("post-caption").value = "";
+
+
+    loadPosts();
+}
+
+
+// ===============================
+// LOAD POSTS
+// ===============================
+
+async function loadPosts() {
+
+    const creatorId =
+        document.getElementById("post-creator-select").value;
+
+    const list =
+        document.getElementById("post-list");
+
+
+    if (!creatorId) {
+
+        list.textContent =
+            "Select a creator to see their posts.";
+
+        return;
+    }
+
+
+    const { data, error } =
+        await supabaseClient
+            .from("posts")
+            .select("*")
+            .eq("creator_id", creatorId)
+            .order("created_at", {
+                ascending: false
+            });
+
+
+    if (error) {
+
+        console.error(error);
+
+        list.textContent =
+            "Failed to load posts: " +
+            error.message;
+
+        return;
+    }
+
+
+    if (!data || data.length === 0) {
+
+        list.textContent =
+            "No posts yet.";
+
+        return;
+    }
+
+
+    list.innerHTML =
+        data.map(post => `
+
+            <div style="margin-bottom:20px;">
+
+                <img
+                    src="${post.image_url}"
+                    style="
+                        width:150px;
+                        height:150px;
+                        object-fit:cover;
+                    "
+                >
+
+                <p>
+                    ${post.caption || ""}
+                </p>
+
+                <button
+                    onclick="editPost(${post.id})"
+                >
+                    Edit Caption
+                </button>
+
+                <button
+                    onclick="deletePost(${post.id})"
+                >
+                    Delete
+                </button>
+
+            </div>
+
+        `).join("");
+}
+
+
+// ===============================
+// EDIT CAPTION
+// ===============================
+
+async function editPost(id) {
+
+    const newCaption =
+        prompt("Enter the new caption:");
+
+
+    if (newCaption === null) {
+
+        return;
+    }
+
+
+    const { error } =
+        await supabaseClient
+            .from("posts")
+            .update({
+                caption: newCaption
+            })
+            .eq("id", id);
+
+
+    if (error) {
+
+        console.error(error);
+
+        alert(
+            "Failed to update post: " +
+            error.message
+        );
+
+        return;
+    }
+
+
+    alert("Caption updated successfully!");
+
+
+    loadPosts();
+}
+
+
+// ===============================
+// DELETE POST
+// ===============================
+
+async function deletePost(id) {
+
+    const confirmed =
+        confirm(
+            "Are you sure you want to delete this post?"
+        );
+
+
+    if (!confirmed) {
+
+        return;
+    }
+
+
+    const { error } =
+        await supabaseClient
+            .from("posts")
+            .delete()
+            .eq("id", id);
+
+
+    if (error) {
+
+        console.error(error);
+
+        alert(
+            "Failed to delete post: " +
+            error.message
+        );
+
+        return;
+    }
+
+
+    alert("Post deleted successfully!");
+
+
+    loadPosts();
+}
+
+
+// ===============================
+// BUTTONS
+// ===============================
+
+document.getElementById("add-post-button")
+    .addEventListener(
+        "click",
+        addPost
+    );
+
+
+document.getElementById("post-creator-select")
+    .addEventListener(
+        "change",
+        loadPosts
+    );
+
+
+// ===============================
+// START
+// ===============================
+
+loadPostCreators();
+
+</script>
+
+</body>
+
+</html>
