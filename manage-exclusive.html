@@ -1,1 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Exclusive Content</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+</head>
+
+<body>
+
+    <h1>Manage Exclusive Content</h1>
+
+    <div id="exclusive-photo-section">
+
+        <select id="exclusive-creator-select">
+            <option value="">Select a creator</option>
+        </select>
+
+        <br><br>
+
+        <input
+            type="file"
+            id="exclusive-photo-file"
+            accept="image/*"
+        >
+
+        <button id="add-exclusive-photo-button">
+            Add Photo
+        </button>
+
+        <div id="exclusive-photo-list">
+            Select a creator to see their photos.
+        </div>
+
+    </div>
+
+
+<script>
+
+const SUPABASE_URL =
+    "https://hgqrtjuccspzwagntnxj.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_nLNI7mX50vhJZfz6xf9JaQ_HKw2usMf";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+// ===============================
+// LOAD CREATORS
+// ===============================
+
+async function loadExclusiveCreators() {
+
+    const { data, error } =
+        await supabaseClient
+            .from("creators")
+            .select("id, name, username");
+
+    if (error) {
+
+        console.error(
+            "Exclusive creator error:",
+            error
+        );
+
+        return;
+    }
+
+    const select =
+        document.getElementById(
+            "exclusive-creator-select"
+        );
+
+    select.innerHTML =
+        '<option value="">Select a creator</option>';
+
+    data.forEach(creator => {
+
+        const option =
+            document.createElement("option");
+
+        option.value =
+            creator.id;
+
+        option.textContent =
+            `${creator.name} (@${creator.username})`;
+
+        select.appendChild(option);
+
+    });
+}
+
+
+// ===============================
+// ADD EXCLUSIVE PHOTO
+// ===============================
+
+document.getElementById(
+    "add-exclusive-photo-button"
+)
+.addEventListener(
+    "click",
+    async function () {
+
+        const creatorId =
+            document.getElementById(
+                "exclusive-creator-select"
+            ).value;
+
+        const fileInput =
+            document.getElementById(
+                "exclusive-photo-file"
+            );
+
+        const file =
+            fileInput.files[0];
+
+
+        if (!creatorId) {
+
+            alert(
+                "Please select a creator."
+            );
+
+            return;
+        }
+
+
+        if (!file) {
+
+            alert(
+                "Please select a photo."
+            );
+
+            return;
+        }
+
+
+        const fileName =
+            Date.now() + "_" + file.name;
+
+
+        const { error: uploadError } =
+            await supabaseClient
+                .storage
+                .from("images")
+                .upload(
+                    fileName,
+                    file
+                );
+
+
+        if (uploadError) {
+
+            console.error(uploadError);
+
+            alert(
+                "Failed to upload photo: " +
+                uploadError.message
+            );
+
+            return;
+        }
+
+
+        const { data: publicData } =
+            supabaseClient
+                .storage
+                .from("images")
+                .getPublicUrl(fileName);
+
+
+        const { error: databaseError } =
+            await supabaseClient
+                .from("exclusive_photos")
+                .insert({
+                    creator_id: creatorId,
+                    photo_url: publicData.publicUrl,
+                    storage_path: fileName
+                });
+
+
+        if (databaseError) {
+
+            console.error(databaseError);
+
+            alert(
+                "Photo uploaded but failed to save: " +
+                databaseError.message
+            );
+
+            return;
+        }
+
+
+        alert(
+            "Exclusive photo added successfully!"
+        );
+
+
+        fileInput.value = "";
+
+        loadExclusivePhotos();
+
+    }
+);
+
+
+// ===============================
+// LOAD EXCLUSIVE PHOTOS
+// ===============================
+
+async function loadExclusivePhotos() {
+
+    const creatorId =
+        document.getElementById(
+            "exclusive-creator-select"
+        ).value;
+
+    const list =
+        document.getElementById(
+            "exclusive-photo-list"
+        );
+
+
+    if (!creatorId) {
+
+        list.textContent =
+            "Select a creator to see their photos.";
+
+        return;
+    }
+
+
+    const { data, error } =
+        await supabaseClient
+            .from("exclusive_photos")
+            .select("*")
+            .eq("creator_id", creatorId)
+            .order(
+                "created_at",
+                {
+                    ascending: true
+                }
+            );
+
+
+    if (error) {
+
+        console.error(error);
+
+        list.textContent =
+            "Failed to load photos: " +
+            error.message;
+
+        return;
+    }
+
+
+    if (!data || data.length === 0) {
+
+        list.textContent =
+            "No exclusive photos yet.";
+
+        return;
+    }
+
+
+    list.innerHTML =
+        data.map(photo => `
+
+            <div
+                style="margin-bottom:15px;"
+            >
+
+                <img
+                    src="${photo.photo_url}"
+                    style="
+                        width:150px;
+                        height:150px;
+                        object-fit:cover;
+                    "
+                >
+
+                <br><br>
+
+                <button
+                    onclick="deleteExclusivePhoto(${photo.id})"
+                >
+                    Delete
+                </button>
+
+            </div>
+
+        `).join("");
+}
+
+
+// ===============================
+// DELETE EXCLUSIVE PHOTO
+// ===============================
+
+async function deleteExclusivePhoto(id) {
+
+    const confirmed =
+        confirm(
+            "Are you sure you want to delete this photo?"
+        );
+
+
+    if (!confirmed) {
+
+        return;
+    }
+
+
+    const { error } =
+        await supabaseClient
+            .from("exclusive_photos")
+            .delete()
+            .eq("id", id);
+
+
+    if (error) {
+
+        console.error(error);
+
+        alert(
+            "Failed to delete photo: " +
+            error.message
+        );
+
+        return;
+    }
+
+
+    alert(
+        "Exclusive photo deleted successfully!"
+    );
+
+
+    loadExclusivePhotos();
+}
+
+
+// ===============================
+// CREATOR SELECTION
+// ===============================
+
+document.getElementById(
+    "exclusive-creator-select"
+)
+.addEventListener(
+    "change",
+    loadExclusivePhotos
+);
+
+
+// ===============================
+// START
+// ===============================
+
+loadExclusiveCreators();
+
+</script>
+
+</body>
+
+          </html>
