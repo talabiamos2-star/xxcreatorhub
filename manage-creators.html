@@ -693,105 +693,28 @@ async function editPost(id) {
 
     const newCaption = prompt("Enter the new caption:");
 
-if (newCaption === null) {
-    return;
-}
-
-alert("Caption received: " + newCaption);
-
     if (newCaption === null) {
         return;
     }
 
-    const changeImage = confirm(
-        "Do you want to change the post image?"
-    );
-
-    if (!changeImage) {
-
-        const { error } = await supabaseClient
+    const { error } =
+        await supabaseClient
             .from("posts")
             .update({
                 caption: newCaption
             })
             .eq("id", id);
 
-        if (error) {
-            console.error(error);
-            alert("Failed to update post: " + error.message);
-            return;
-        }
-
-        alert("Post updated successfully!");
-        loadPosts();
+    if (error) {
+        console.error(error);
+        alert("Failed to update post: " + error.message);
         return;
     }
 
-    const newImageInput = document.createElement("input");
+    alert("Post caption updated successfully!");
 
-    newImageInput.type = "file";
-    newImageInput.accept = "image/*";
-    newImageInput.style.display = "none";
-
-    document.body.appendChild(newImageInput);
-
-    newImageInput.addEventListener("change", async function () {
-
-        const newImage = newImageInput.files[0];
-
-        if (!newImage) {
-            newImageInput.remove();
-            return;
-        }
-
-        const fileName =
-            Date.now() + "_post_" + newImage.name;
-
-        const { error: uploadError } =
-            await supabaseClient
-                .storage
-                .from("images")
-                .upload(fileName, newImage);
-
-        if (uploadError) {
-            console.error(uploadError);
-            alert("Failed to upload new image: " + uploadError.message);
-            newImageInput.remove();
-            return;
-        }
-
-        const { data: publicData } =
-            supabaseClient
-                .storage
-                .from("images")
-                .getPublicUrl(fileName);
-
-        const { error: databaseError } =
-            await supabaseClient
-                .from("posts")
-                .update({
-                    caption: newCaption,
-                    image_url: publicData.publicUrl
-                })
-                .eq("id", id);
-
-        if (databaseError) {
-            console.error(databaseError);
-            alert("Failed to update post: " + databaseError.message);
-            newImageInput.remove();
-            return;
-        }
-
-        alert("Post updated successfully!");
-
-        newImageInput.remove();
-
-        loadPosts();
-
-    });
-
-    newImageInput.click();
-}
+    loadPosts();
+    }
     
 document.getElementById("post-creator-select")
     .addEventListener("change", loadPosts);
