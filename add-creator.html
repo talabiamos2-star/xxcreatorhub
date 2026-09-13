@@ -12,50 +12,245 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #08080d;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+
+        .admin-container {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 24px 18px 40px;
+        }
+
+        .page-header {
+            margin-bottom: 24px;
+        }
+
+        .page-header h1 {
+            margin: 0;
+            font-size: 27px;
+        }
+
+        .page-header p {
+            margin: 7px 0 0;
+            color: #8f8f9d;
+            font-size: 13px;
+        }
+
+        .creator-card {
+            background: #121218;
+            border: 1px solid #292936;
+            border-radius: 20px;
+            padding: 18px;
+        }
+
+        .creator-card h2 {
+            margin: 0 0 5px;
+            font-size: 18px;
+        }
+
+        .creator-card > p {
+            margin: 0 0 20px;
+            color: #8f8f9d;
+            font-size: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 7px;
+            color: #b7b7c3;
+            font-size: 12px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            background: #0b0b11;
+            border: 1px solid #2c2c38;
+            border-radius: 12px;
+            color: #ffffff;
+            padding: 13px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            border-color: #8b4dff;
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical;
+            line-height: 1.5;
+        }
+
+        .file-box {
+            background: #0b0b11;
+            border: 1px dashed #3a3a49;
+            border-radius: 13px;
+            padding: 13px;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            color: #aaaab5;
+            font-size: 12px;
+        }
+
+        input[type="file"]::file-selector-button {
+            border: none;
+            border-radius: 9px;
+            padding: 9px 12px;
+            margin-right: 10px;
+            background: #242431;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        #save-creator-button {
+            width: 100%;
+            border: none;
+            border-radius: 13px;
+            padding: 14px;
+            margin-top: 5px;
+            background: linear-gradient(
+                135deg,
+                #ff3f9f,
+                #8b4dff
+            );
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        #save-creator-button:active {
+            transform: scale(0.98);
+        }
+
+        .hint {
+            margin-top: 7px;
+            color: #6f6f7c;
+            font-size: 11px;
+        }
+
+    </style>
+
 </head>
 
 <body>
 
-    <h1>Add Creator</h1>
+<div class="admin-container">
 
-    <div id="add-creator-form">
+    <div class="page-header">
 
-        <input
-            type="text"
-            id="creator-name"
-            placeholder="Creator name"
-        >
+        <h1>Add Creator</h1>
 
-        <br><br>
+        <p>
+            Create a new creator profile.
+        </p>
 
-        <input
-            type="text"
-            id="creator-username"
-            placeholder="Username"
-        >
+    </div>
 
-        <br><br>
 
-       <input
-    type="file"
-    id="creator-photo"
-    accept="image/*"
->
+    <div class="creator-card">
 
-        <br><br>
+        <h2>Creator Details</h2>
 
-        <textarea
-            id="creator-bio"
-            placeholder="Bio"
-        ></textarea>
+        <p>
+            Add the creator's profile information and photo.
+        </p>
 
-        <br><br>
+
+        <div class="form-group">
+
+            <label class="form-label">
+                Creator Name
+            </label>
+
+            <input
+                type="text"
+                id="creator-name"
+                placeholder="Creator name"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label class="form-label">
+                Username
+            </label>
+
+            <input
+                type="text"
+                id="creator-username"
+                placeholder="Username"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label class="form-label">
+                Profile Photo
+            </label>
+
+            <div class="file-box">
+
+                <input
+                    type="file"
+                    id="creator-photo"
+                    accept="image/*"
+                >
+
+            </div>
+
+            <div class="hint">
+                Choose an image for the creator's profile.
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label class="form-label">
+                Bio
+            </label>
+
+            <textarea
+                id="creator-bio"
+                placeholder="Write a short creator bio..."
+            ></textarea>
+
+        </div>
+
 
         <button id="save-creator-button">
-            Save Creator
+            + Save Creator
         </button>
 
     </div>
+
+</div>
 
 
 <script>
@@ -83,7 +278,8 @@ document.getElementById("save-creator-button")
             document.getElementById("creator-username").value;
 
         const photoFile =
-    document.getElementById("creator-photo").files[0];
+            document.getElementById("creator-photo").files[0];
+
         const bio =
             document.getElementById("creator-bio").value;
 
@@ -99,46 +295,55 @@ document.getElementById("save-creator-button")
 
 
         const fileName =
-    Date.now() + "_creator_" + photoFile.name;
-
-const { error: uploadError } =
-    await supabaseClient
-        .storage
-        .from("images")
-        .upload(fileName, photoFile);
-
-if (uploadError) {
-
-    console.error(uploadError);
-
-    alert(
-        "Failed to upload profile photo: " +
-        uploadError.message
-    );
-
-    return;
-}
-
-const { data: publicData } =
-    supabaseClient
-        .storage
-        .from("images")
-        .getPublicUrl(fileName);
-
-const photo_url =
-    publicData.publicUrl;
+            Date.now() +
+            "_creator_" +
+            photoFile.name;
 
 
-const { error } =
-    await supabaseClient
-        .from("creators")
-        .insert({
-            name: name,
-            username: username,
-            photo_url: photo_url,
-            bio: bio
-        });
-                    
+        const { error: uploadError } =
+            await supabaseClient
+                .storage
+                .from("images")
+                .upload(
+                    fileName,
+                    photoFile
+                );
+
+
+        if (uploadError) {
+
+            console.error(uploadError);
+
+            alert(
+                "Failed to upload profile photo: " +
+                uploadError.message
+            );
+
+            return;
+        }
+
+
+        const { data: publicData } =
+            supabaseClient
+                .storage
+                .from("images")
+                .getPublicUrl(fileName);
+
+
+        const photo_url =
+            publicData.publicUrl;
+
+
+        const { error } =
+            await supabaseClient
+                .from("creators")
+                .insert({
+                    name: name,
+                    username: username,
+                    photo_url: photo_url,
+                    bio: bio
+                });
+
 
         if (error) {
 
@@ -153,16 +358,26 @@ const { error } =
         }
 
 
-        alert("Creator added successfully!");
+        alert(
+            "Creator added successfully!"
+        );
 
 
-        document.getElementById("creator-name").value = "";
+        document.getElementById(
+            "creator-name"
+        ).value = "";
 
-        document.getElementById("creator-username").value = "";
+        document.getElementById(
+            "creator-username"
+        ).value = "";
 
-        document.getElementById("creator-photo").value = "";
+        document.getElementById(
+            "creator-photo"
+        ).value = "";
 
-        document.getElementById("creator-bio").value = "";
+        document.getElementById(
+            "creator-bio"
+        ).value = "";
 
     });
 
@@ -170,4 +385,4 @@ const { error } =
 
 </body>
 
-              </html>
+                </html>
