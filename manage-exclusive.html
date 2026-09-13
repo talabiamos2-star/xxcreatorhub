@@ -12,35 +12,291 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #08080d;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+
+        .admin-container {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 24px 18px 40px;
+        }
+
+        .page-header {
+            margin-bottom: 24px;
+        }
+
+        .page-header h1 {
+            margin: 0;
+            font-size: 27px;
+        }
+
+        .page-header p {
+            margin: 7px 0 0;
+            color: #8f8f9d;
+            font-size: 13px;
+        }
+
+        .upload-card {
+            background: #121218;
+            border: 1px solid #292936;
+            border-radius: 20px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+
+        .upload-card h2 {
+            margin: 0 0 5px;
+            font-size: 18px;
+        }
+
+        .upload-card > p {
+            margin: 0 0 18px;
+            color: #8f8f9d;
+            font-size: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 7px;
+            color: #b7b7c3;
+            font-size: 12px;
+        }
+
+        select {
+            width: 100%;
+            background: #0b0b11;
+            border: 1px solid #2c2c38;
+            border-radius: 12px;
+            color: #ffffff;
+            padding: 13px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        select:focus {
+            border-color: #8b4dff;
+        }
+
+        .file-box {
+            background: #0b0b11;
+            border: 1px dashed #3a3a49;
+            border-radius: 13px;
+            padding: 13px;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            color: #aaaab5;
+            font-size: 12px;
+        }
+
+        input[type="file"]::file-selector-button {
+            border: none;
+            border-radius: 9px;
+            padding: 9px 12px;
+            margin-right: 10px;
+            background: #242431;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        #add-exclusive-photo-button {
+            width: 100%;
+            border: none;
+            border-radius: 13px;
+            padding: 14px;
+            background: linear-gradient(
+                135deg,
+                #ff3f9f,
+                #8b4dff
+            );
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        #add-exclusive-photo-button:active {
+            transform: scale(0.98);
+        }
+
+        .photos-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 5px 0 13px;
+        }
+
+        .photos-header h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .photo-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 13px;
+        }
+
+        .photo-card {
+            background: #121218;
+            border: 1px solid #292936;
+            border-radius: 17px;
+            padding: 10px;
+            overflow: hidden;
+        }
+
+        .exclusive-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 12px;
+            display: block;
+            background: #0b0b11;
+        }
+
+        .delete-button {
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 9px;
+            background: #2a151d;
+            color: #ff6b91;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .empty-message {
+            grid-column: 1 / -1;
+            background: #121218;
+            border: 1px solid #292936;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            color: #888895;
+            font-size: 13px;
+        }
+
+        @media (max-width: 420px) {
+
+            .photo-list {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .photo-card {
+                padding: 8px;
+            }
+
+        }
+
+    </style>
+
 </head>
 
 <body>
 
-    <h1>Manage Exclusive Content</h1>
+<div class="admin-container">
 
-    <div id="exclusive-photo-section">
+    <div class="page-header">
 
-        <select id="exclusive-creator-select">
-            <option value="">Select a creator</option>
-        </select>
+        <h1>Manage Exclusive Content</h1>
 
-        <br><br>
+        <p>
+            Upload and manage exclusive creator photos.
+        </p>
 
-        <input
-            type="file"
-            id="exclusive-photo-file"
-            accept="image/*"
-        >
+    </div>
+
+
+    <div class="upload-card">
+
+        <h2>Add Exclusive Photo</h2>
+
+        <p>
+            Select a creator and upload an exclusive photo.
+        </p>
+
+
+        <div class="form-group">
+
+            <label class="form-label">
+                Creator
+            </label>
+
+            <select id="exclusive-creator-select">
+
+                <option value="">
+                    Select a creator
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label class="form-label">
+                Exclusive Photo
+            </label>
+
+            <div class="file-box">
+
+                <input
+                    type="file"
+                    id="exclusive-photo-file"
+                    accept="image/*"
+                >
+
+            </div>
+
+        </div>
+
 
         <button id="add-exclusive-photo-button">
-            Add Photo
+            + Add Exclusive Photo
         </button>
 
-        <div id="exclusive-photo-list">
+    </div>
+
+
+    <div class="photos-header">
+
+        <h2>Exclusive Photos</h2>
+
+    </div>
+
+
+    <div
+        id="exclusive-photo-list"
+        class="photo-list"
+    >
+
+        <div class="empty-message">
             Select a creator to see their photos.
         </div>
 
     </div>
+
+</div>
 
 
 <script>
@@ -150,7 +406,9 @@ document.getElementById(
 
 
         const fileName =
-            Date.now() + "_" + file.name;
+            Date.now() +
+            "_" +
+            file.name;
 
 
         const { error: uploadError } =
@@ -238,8 +496,10 @@ async function loadExclusivePhotos() {
 
     if (!creatorId) {
 
-        list.textContent =
-            "Select a creator to see their photos.";
+        list.innerHTML =
+            `<div class="empty-message">
+                Select a creator to see their photos.
+            </div>`;
 
         return;
     }
@@ -249,7 +509,10 @@ async function loadExclusivePhotos() {
         await supabaseClient
             .from("exclusive_photos")
             .select("*")
-            .eq("creator_id", creatorId)
+            .eq(
+                "creator_id",
+                creatorId
+            )
             .order(
                 "created_at",
                 {
@@ -262,9 +525,11 @@ async function loadExclusivePhotos() {
 
         console.error(error);
 
-        list.textContent =
-            "Failed to load photos: " +
-            error.message;
+        list.innerHTML =
+            `<div class="empty-message">
+                Failed to load photos:
+                ${error.message}
+            </div>`;
 
         return;
     }
@@ -272,8 +537,10 @@ async function loadExclusivePhotos() {
 
     if (!data || data.length === 0) {
 
-        list.textContent =
-            "No exclusive photos yet.";
+        list.innerHTML =
+            `<div class="empty-message">
+                No exclusive photos yet.
+            </div>`;
 
         return;
     }
@@ -282,30 +549,25 @@ async function loadExclusivePhotos() {
     list.innerHTML =
         data.map(photo => `
 
-            <div
-                style="margin-bottom:15px;"
-            >
+            <div class="photo-card">
 
                 <img
                     src="${photo.photo_url}"
-                    style="
-                        width:150px;
-                        height:150px;
-                        object-fit:cover;
-                    "
+                    class="exclusive-image"
+                    alt="Exclusive photo"
                 >
-
-                <br><br>
 
                 <button
+                    class="delete-button"
                     onclick="deleteExclusivePhoto(${photo.id})"
                 >
-                    Delete
+                    Delete Photo
                 </button>
 
             </div>
 
         `).join("");
+
 }
 
 
@@ -331,7 +593,10 @@ async function deleteExclusivePhoto(id) {
         await supabaseClient
             .from("exclusive_photos")
             .delete()
-            .eq("id", id);
+            .eq(
+                "id",
+                id
+            );
 
 
     if (error) {
@@ -379,4 +644,4 @@ loadExclusiveCreators();
 
 </body>
 
-          </html>
+    </html>
