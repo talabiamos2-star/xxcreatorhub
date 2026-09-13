@@ -245,6 +245,11 @@ if (unlockError) {
 }
     }
 
+document.getElementById("refresh-dashboard-button")
+    .addEventListener("click", function () {
+        loadDashboardStats();
+    });
+
 loadDashboardStats();
 </script>
 </body>
