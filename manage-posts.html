@@ -12,45 +12,330 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #08080d;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+
+        .admin-container {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 24px 18px 40px;
+        }
+
+        /* ---------- HEADER ---------- */
+
+        .page-header {
+            margin-bottom: 24px;
+        }
+
+        .page-header h1 {
+            margin: 0;
+            font-size: 27px;
+        }
+
+        .page-header p {
+            margin: 7px 0 0;
+            color: #8f8f9d;
+            font-size: 13px;
+        }
+
+        /* ---------- ADD POST CARD ---------- */
+
+        .upload-card {
+            background: #121218;
+            border: 1px solid #292936;
+            border-radius: 20px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+
+        .upload-card h2 {
+            margin: 0 0 5px;
+            font-size: 18px;
+        }
+
+        .upload-card > p {
+            margin: 0 0 18px;
+            color: #8f8f9d;
+            font-size: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 7px;
+            color: #b7b7c3;
+            font-size: 12px;
+        }
+
+        select,
+        input[type="text"] {
+            width: 100%;
+            background: #0b0b11;
+            border: 1px solid #2c2c38;
+            border-radius: 12px;
+            color: #ffffff;
+            padding: 13px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        select:focus,
+        input[type="text"]:focus {
+            border-color: #8b4dff;
+        }
+
+        /* ---------- FILE INPUT ---------- */
+
+        .file-box {
+            background: #0b0b11;
+            border: 1px dashed #3a3a49;
+            border-radius: 13px;
+            padding: 13px;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            color: #aaaab5;
+            font-size: 12px;
+        }
+
+        input[type="file"]::file-selector-button {
+            border: none;
+            border-radius: 9px;
+            padding: 9px 12px;
+            margin-right: 10px;
+            background: #242431;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        /* ---------- ADD BUTTON ---------- */
+
+        #add-post-button {
+            width: 100%;
+            border: none;
+            border-radius: 13px;
+            padding: 14px;
+            background: linear-gradient(
+                135deg,
+                #ff3f9f,
+                #8b4dff
+            );
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        #add-post-button:active {
+            transform: scale(0.98);
+        }
+
+        /* ---------- POSTS SECTION ---------- */
+
+        .posts-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 5px 0 13px;
+        }
+
+        .posts-header h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .post-list {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
+
+        /* ---------- POST CARD ---------- */
+
+        .post-card {
+            background: #121218;
+            border: 1px solid #292936;
+            border-radius: 18px;
+            padding: 13px;
+        }
+
+        .post-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 13px;
+            display: block;
+            background: #0b0b11;
+        }
+
+        .post-caption {
+            margin: 12px 2px;
+            color: #d7d7df;
+            font-size: 13px;
+            line-height: 1.5;
+            word-break: break-word;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .edit-button,
+        .delete-button {
+            flex: 1;
+            border: none;
+            border-radius: 11px;
+            padding: 11px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .edit-button {
+            background: #242431;
+            color: #ffffff;
+        }
+
+        .delete-button {
+            background: #2a151d;
+            color: #ff6b91;
+        }
+
+        /* ---------- EMPTY ---------- */
+
+        .empty-message {
+            background: #121218;
+            border: 1px solid #292936;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            color: #888895;
+            font-size: 13px;
+        }
+
+    </style>
+
 </head>
 
 <body>
 
-    <h1>Manage Posts</h1>
+<div class="admin-container">
 
-    <div id="manage-posts-section">
+    <div class="page-header">
 
-        <select id="post-creator-select">
-            <option value="">Select a creator</option>
-        </select>
+        <h1>Manage Posts</h1>
 
-        <br><br>
-
-        <input
-            type="file"
-            id="post-image-file"
-            accept="image/*"
-        >
-
-        <br><br>
-
-        <input
-            type="text"
-            id="post-caption"
-            placeholder="Post caption"
-        >
-
-        <br><br>
-
-        <button id="add-post-button">
-            Add Post
-        </button>
-
-        <div id="post-list">
-            Select a creator to see their posts.
-        </div>
+        <p>
+            Add and manage creator posts.
+        </p>
 
     </div>
+
+
+    <!-- ---------- ADD POST ---------- -->
+
+    <div class="upload-card">
+
+        <h2>Add New Post</h2>
+
+        <p>
+            Select a creator and upload a post image.
+        </p>
+
+
+        <div class="form-group">
+
+            <label class="form-label">
+                Creator
+            </label>
+
+            <select id="post-creator-select">
+
+                <option value="">
+                    Select a creator
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label class="form-label">
+                Post Image
+            </label>
+
+            <div class="file-box">
+
+                <input
+                    type="file"
+                    id="post-image-file"
+                    accept="image/*"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label class="form-label">
+                Caption
+            </label>
+
+            <input
+                type="text"
+                id="post-caption"
+                placeholder="Post caption"
+            >
+
+        </div>
+
+
+        <button id="add-post-button">
+            + Add Post
+        </button>
+
+    </div>
+
+
+    <!-- ---------- POSTS ---------- -->
+
+    <div class="posts-header">
+
+        <h2>Creator Posts</h2>
+
+    </div>
+
+
+    <div
+        id="post-list"
+        class="post-list"
+    >
+        <div class="empty-message">
+            Select a creator to see their posts.
+        </div>
+    </div>
+
+</div>
 
 
 <script>
@@ -81,30 +366,43 @@ async function loadPostCreators() {
 
     if (error) {
 
-        console.error("Post creator error:", error);
+        console.error(
+            "Post creator error:",
+            error
+        );
 
         return;
     }
 
+
     const select =
-        document.getElementById("post-creator-select");
+        document.getElementById(
+            "post-creator-select"
+        );
+
 
     select.innerHTML =
         '<option value="">Select a creator</option>';
+
 
     data.forEach(creator => {
 
         const option =
             document.createElement("option");
 
-        option.value = creator.id;
+
+        option.value =
+            creator.id;
+
 
         option.textContent =
             `${creator.name} (@${creator.username})`;
 
+
         select.appendChild(option);
 
     });
+
 }
 
 
@@ -115,21 +413,32 @@ async function loadPostCreators() {
 async function addPost() {
 
     const creatorId =
-        document.getElementById("post-creator-select").value;
+        document.getElementById(
+            "post-creator-select"
+        ).value;
+
 
     const fileInput =
-        document.getElementById("post-image-file");
+        document.getElementById(
+            "post-image-file"
+        );
+
 
     const file =
         fileInput.files[0];
 
+
     const caption =
-        document.getElementById("post-caption").value;
+        document.getElementById(
+            "post-caption"
+        ).value;
 
 
     if (!creatorId) {
 
-        alert("Please select a creator.");
+        alert(
+            "Please select a creator."
+        );
 
         return;
     }
@@ -137,21 +446,28 @@ async function addPost() {
 
     if (!file) {
 
-        alert("Please select a post image.");
+        alert(
+            "Please select a post image."
+        );
 
         return;
     }
 
 
     const fileName =
-        Date.now() + "_post_" + file.name;
+        Date.now() +
+        "_post_" +
+        file.name;
 
 
     const { error: uploadError } =
         await supabaseClient
             .storage
             .from("images")
-            .upload(fileName, file);
+            .upload(
+                fileName,
+                file
+            );
 
 
     if (uploadError) {
@@ -201,15 +517,20 @@ async function addPost() {
     }
 
 
-    alert("Post added successfully!");
+    alert(
+        "Post added successfully!"
+    );
 
 
     fileInput.value = "";
 
-    document.getElementById("post-caption").value = "";
+    document.getElementById(
+        "post-caption"
+    ).value = "";
 
 
     loadPosts();
+
 }
 
 
@@ -220,16 +541,23 @@ async function addPost() {
 async function loadPosts() {
 
     const creatorId =
-        document.getElementById("post-creator-select").value;
+        document.getElementById(
+            "post-creator-select"
+        ).value;
+
 
     const list =
-        document.getElementById("post-list");
+        document.getElementById(
+            "post-list"
+        );
 
 
     if (!creatorId) {
 
-        list.textContent =
-            "Select a creator to see their posts.";
+        list.innerHTML =
+            `<div class="empty-message">
+                Select a creator to see their posts.
+            </div>`;
 
         return;
     }
@@ -239,19 +567,27 @@ async function loadPosts() {
         await supabaseClient
             .from("posts")
             .select("*")
-            .eq("creator_id", creatorId)
-            .order("created_at", {
-                ascending: false
-            });
+            .eq(
+                "creator_id",
+                creatorId
+            )
+            .order(
+                "created_at",
+                {
+                    ascending: false
+                }
+            );
 
 
     if (error) {
 
         console.error(error);
 
-        list.textContent =
-            "Failed to load posts: " +
-            error.message;
+        list.innerHTML =
+            `<div class="empty-message">
+                Failed to load posts:
+                ${error.message}
+            </div>`;
 
         return;
     }
@@ -259,8 +595,10 @@ async function loadPosts() {
 
     if (!data || data.length === 0) {
 
-        list.textContent =
-            "No posts yet.";
+        list.innerHTML =
+            `<div class="empty-message">
+                No posts yet.
+            </div>`;
 
         return;
     }
@@ -269,36 +607,45 @@ async function loadPosts() {
     list.innerHTML =
         data.map(post => `
 
-            <div style="margin-bottom:20px;">
+            <div class="post-card">
 
                 <img
                     src="${post.image_url}"
-                    style="
-                        width:150px;
-                        height:150px;
-                        object-fit:cover;
-                    "
+                    class="post-image"
+                    alt="Creator post"
                 >
 
-                <p>
-                    ${post.caption || ""}
-                </p>
 
-                <button
-                    onclick="editPost(${post.id})"
-                >
-                    Edit Caption
-                </button>
+                <div class="post-caption">
 
-                <button
-                    onclick="deletePost(${post.id})"
-                >
-                    Delete
-                </button>
+                    ${post.caption || "No caption"}
+
+                </div>
+
+
+                <div class="post-actions">
+
+                    <button
+                        class="edit-button"
+                        onclick="editPost(${post.id})"
+                    >
+                        Edit Caption
+                    </button>
+
+
+                    <button
+                        class="delete-button"
+                        onclick="deletePost(${post.id})"
+                    >
+                        Delete
+                    </button>
+
+                </div>
 
             </div>
 
         `).join("");
+
 }
 
 
@@ -309,7 +656,9 @@ async function loadPosts() {
 async function editPost(id) {
 
     const newCaption =
-        prompt("Enter the new caption:");
+        prompt(
+            "Enter the new caption:"
+        );
 
 
     if (newCaption === null) {
@@ -324,7 +673,10 @@ async function editPost(id) {
             .update({
                 caption: newCaption
             })
-            .eq("id", id);
+            .eq(
+                "id",
+                id
+            );
 
 
     if (error) {
@@ -340,10 +692,13 @@ async function editPost(id) {
     }
 
 
-    alert("Caption updated successfully!");
+    alert(
+        "Caption updated successfully!"
+    );
 
 
     loadPosts();
+
 }
 
 
@@ -369,7 +724,10 @@ async function deletePost(id) {
         await supabaseClient
             .from("posts")
             .delete()
-            .eq("id", id);
+            .eq(
+                "id",
+                id
+            );
 
 
     if (error) {
@@ -385,10 +743,13 @@ async function deletePost(id) {
     }
 
 
-    alert("Post deleted successfully!");
+    alert(
+        "Post deleted successfully!"
+    );
 
 
     loadPosts();
+
 }
 
 
@@ -396,18 +757,22 @@ async function deletePost(id) {
 // BUTTONS
 // ===============================
 
-document.getElementById("add-post-button")
-    .addEventListener(
-        "click",
-        addPost
-    );
+document.getElementById(
+    "add-post-button"
+)
+.addEventListener(
+    "click",
+    addPost
+);
 
 
-document.getElementById("post-creator-select")
-    .addEventListener(
-        "change",
-        loadPosts
-    );
+document.getElementById(
+    "post-creator-select"
+)
+.addEventListener(
+    "change",
+    loadPosts
+);
 
 
 // ===============================
@@ -420,4 +785,4 @@ loadPostCreators();
 
 </body>
 
-</html>
+    </html>
