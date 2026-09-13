@@ -246,8 +246,13 @@ if (unlockError) {
     }
 
 document.getElementById("refresh-dashboard-button")
-    .addEventListener("click", function () {
-        loadDashboardStats();
+    .addEventListener("click", async function () {
+
+        this.textContent = "⟳";
+
+        await loadDashboardStats();
+
+        this.textContent = "↻";
     });
 
 loadDashboardStats();
