@@ -190,6 +190,20 @@ document.getElementById("save-creator-button")
         let error;
         let photo_url = null;
 
+if (editingId) {
+
+    const { data: existingCreator } =
+        await supabaseClient
+            .from("creators")
+            .select("photo_url")
+            .eq("id", editingId)
+            .single();
+
+    if (existingCreator) {
+        photo_url = existingCreator.photo_url;
+    }
+    }
+
 if (photoFile) {
 
     const fileName =
