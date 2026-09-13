@@ -188,6 +188,40 @@ document.getElementById("save-creator-button")
             form.getAttribute("data-editing-id");
 
         let error;
+        let photo_url = null;
+
+if (photoFile) {
+
+    const fileName =
+        Date.now() + "_creator_" + photoFile.name;
+
+    const { error: uploadError } =
+        await supabaseClient
+            .storage
+            .from("images")
+            .upload(fileName, photoFile);
+
+    if (uploadError) {
+
+        console.error(uploadError);
+
+        alert(
+            "Failed to upload profile photo: " +
+            uploadError.message
+        );
+
+        return;
+    }
+
+    const { data: publicData } =
+        supabaseClient
+            .storage
+            .from("images")
+            .getPublicUrl(fileName);
+
+    photo_url =
+        publicData.publicUrl;
+}
 
         if (editingId) {
 
