@@ -194,7 +194,80 @@ async function loadAnalytics() {
     }
 
 }
+    // ===============================
+    // ROLLING VISIT ANALYTICS
+    // ===============================
 
+    const now = new Date();
+
+    const last24Hours =
+        new Date(now.getTime() - 24 * 60 * 60 * 1000);
+
+    const last7Days =
+        new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+
+    const last30Days =
+        new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+
+
+    const { count: visits24h, error: error24h } =
+        await supabaseClient
+            .from("site_visits")
+            .select("*", {
+                count: "exact",
+                head: true
+            })
+            .gte(
+                "created_at",
+                last24Hours.toISOString()
+            );
+
+
+    const { count: visits7d, error: error7d } =
+        await supabaseClient
+            .from("site_visits")
+            .select("*", {
+                count: "exact",
+                head: true
+            })
+            .gte(
+                "created_at",
+                last7Days.toISOString()
+            );
+
+
+    const { count: visits30d, error: error30d } =
+        await supabaseClient
+            .from("site_visits")
+            .select("*", {
+                count: "exact",
+                head: true
+            })
+            .gte(
+                "created_at",
+                last30Days.toISOString()
+            );
+
+
+    if (!error24h) {
+        document.getElementById(
+            "analytics-24h"
+        ).textContent = visits24h || 0;
+    }
+
+
+    if (!error7d) {
+        document.getElementById(
+            "analytics-7d"
+        ).textContent = visits7d || 0;
+    }
+
+
+    if (!error30d) {
+        document.getElementById(
+            "analytics-30d"
+        ).textContent = visits30d || 0;
+    }
 loadAnalytics();
 
     </div>
