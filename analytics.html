@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+        const SUPABASE_URL =
+            "https://hgqrtjuccspzwagntnxj.supabase.co";
+
+        const SUPABASE_KEY =
+            "sb_publishable_nLNI7mX50vhJZfz6xf9JaQ_HKw2usMf";
+
+        const supabaseClient =
+            window.supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_KEY
+            );
+    </script>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>XX CreatorHub Analytics</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #08080d;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+
+        .analytics-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .back-button {
+            width: 42px;
+            height: 42px;
+            border: 1px solid #292936;
+            border-radius: 12px;
+            background: #121218;
+            color: #ffffff;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .analytics-header h1 {
+            margin: 0;
+            font-size: 23px;
+        }
+
+        .analytics-header span {
+            color: #ff4fa3;
+            font-size: 12px;
+        }
+
+        .analytics-card {
+            background: #121218;
+            border: 1px solid #292936;
+            border-radius: 18px;
+            padding: 18px;
+            margin-bottom: 15px;
+        }
+
+        .analytics-card p {
+            margin: 0 0 8px;
+            color: #999;
+            font-size: 13px;
+        }
+
+        .analytics-card strong {
+            font-size: 28px;
+        }
+
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="analytics-header">
+
+        <button
+            class="back-button"
+            onclick="history.back()"
+        >
+            ←
+        </button>
+
+        <div>
+            <h1>XX CreatorHub</h1>
+            <span>Analytics</span>
+        </div>
+
+    </div>
+
+    <div class="analytics-grid">
+
+        <div class="analytics-card">
+            <p>Total Visits</p>
+            <strong id="analytics-total-visits">0</strong>
+        </div>
+
+        <div class="analytics-card">
+            <p>Total Unlocks</p>
+            <strong id="analytics-total-unlocks">0</strong>
+        </div>
+
+    </div>
+
+</body>
+</html>
