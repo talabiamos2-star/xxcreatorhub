@@ -462,7 +462,21 @@ document.getElementById("refresh-dashboard-button")
 
         this.textContent = "↻";
     });
+const analyticsToggle =
+    document.getElementById("analytics-toggle");
 
+const analyticsSection =
+    document.querySelector(".analytics-section");
+
+analyticsToggle.addEventListener("click", function () {
+
+    analyticsSection.classList.toggle("open");
+
+    this.querySelector("strong").textContent =
+        analyticsSection.classList.contains("open")
+            ? "−"
+            : "＋";
+});
 loadDashboardStats();
 </script>
 </body>
