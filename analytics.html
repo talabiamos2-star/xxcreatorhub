@@ -279,14 +279,79 @@ async function loadAnalytics() {
     }
 
 
-    if (!error30d) {
+        if (!error30d) {
         document.getElementById(
             "analytics-30d"
         ).textContent = visits30d || 0;
     }
 
+    const { data: visitData, error: chartError } =
+        await supabaseClient
+            .from("site_visits")
+            .select("created_at")
+            .gte(
+                "created_at",
+                new Date(
+                    Date.now() - 30 * 24 * 60 * 60 * 1000
+                ).toISOString()
+            )
+            .order("created_at", { ascending: true });
+
+    if (chartError) {
+        console.error("Chart data error:", chartError);
+    } else {
+        const dailyVisits = {};
+
+        visitData.forEach(visit => {
+            const date =
+                new Date(visit.created_at)
+                    .toISOString()
+                    .split("T")[0];
+
+            dailyVisits[date] =
+                (dailyVisits[date] || 0) + 1;
+        });
+
+        const canvas =
+            document.getElementById("traffic-chart");
+
+        if (canvas) {
+            const ctx = canvas.getContext("2d");
+
+            new Chart(ctx, {
+                type: "line",
+                data: {
+                    labels: Object.keys(dailyVisits),
+                    datasets: [{
+                        label: "Visits",
+                        data: Object.values(dailyVisits),
+                        tension: 0.35,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                precision: 0
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    }
 }
-const { data: visitData, error: chartError } =
+
+loadAnalytics();
     await supabaseClient
         .from("site_visits")
         .select("created_at")
