@@ -351,7 +351,7 @@ async function loadAnalytics() {
     }
 }
 
-loadAnalytics();
+
     await supabaseClient
         .from("site_visits")
         .select("created_at")
