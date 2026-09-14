@@ -193,7 +193,7 @@ async function loadAnalytics() {
         ).textContent = unlockCount || 0;
     }
 
-}
+
     // ===============================
     // ROLLING VISIT ANALYTICS
     // ===============================
@@ -268,32 +268,37 @@ async function loadAnalytics() {
             "analytics-30d"
         ).textContent = visits30d || 0;
     }
+
+}
+
 loadAnalytics();
 
-    </div>
+</script>
 
-    <div class="analytics-card">
-        <p>Visit Analytics</p>
 
-        <div class="rolling-analytics">
+<div class="analytics-card">
+    <p>Visit Analytics</p>
 
-            <div>
-                <span>Last 24 Hours</span>
-                <strong id="analytics-24h">0</strong>
-            </div>
+    <div class="rolling-analytics">
 
-            <div>
-                <span>Last 7 Days</span>
-                <strong id="analytics-7d">0</strong>
-            </div>
-
-            <div>
-                <span>Last 30 Days</span>
-                <strong id="analytics-30d">0</strong>
-            </div>
-
+        <div>
+            <span>Last 24 Hours</span>
+            <strong id="analytics-24h">0</strong>
         </div>
+
+        <div>
+            <span>Last 7 Days</span>
+            <strong id="analytics-7d">0</strong>
+        </div>
+
+        <div>
+            <span>Last 30 Days</span>
+            <strong id="analytics-30d">0</strong>
+        </div>
+
     </div>
+</div>
+
 
 </body>
-</html>
+    </html>
