@@ -141,7 +141,43 @@ const supabaseClient = window.supabase.createClient(
         .analytics-section {
     margin-bottom: 25px;
 }
+.analytics-toggle {
+    width: 100%;
+    padding: 14px 15px;
+    border: 1px solid #292936;
+    border-radius: 16px;
+    background: #121218;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    cursor: pointer;
+}
 
+.analytics-toggle h2 {
+    margin: 0 0 4px;
+    font-size: 16px;
+}
+
+.analytics-toggle span {
+    color: #777;
+    font-size: 12px;
+}
+
+.analytics-toggle strong {
+    font-size: 22px;
+    color: #ff4fa3;
+}
+
+.analytics-content {
+    display: none;
+    margin-top: 10px;
+}
+
+.analytics-section.open .analytics-content {
+    display: block;
+}
 .analytics-title {
     display: flex;
     align-items: center;
