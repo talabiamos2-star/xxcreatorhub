@@ -237,12 +237,39 @@ const supabaseClient = window.supabase.createClient(
 
     <div class="analytics-section">
 
-        <div class="analytics-title">
-            <h2>Visit Analytics</h2>
+    <button id="analytics-toggle" class="analytics-toggle">
+        <div>
+            <h2>📊 Visit Analytics</h2>
             <span>Rolling traffic</span>
         </div>
 
+        <strong>＋</strong>
+    </button>
+
+    <div id="analytics-content" class="analytics-content">
+
         <div class="analytics-grid">
+
+            <div class="analytics-card">
+                <p>Last 24 Hours</p>
+                <strong id="visits-24h">0</strong>
+            </div>
+
+            <div class="analytics-card">
+                <p>Last 7 Days</p>
+                <strong id="visits-7d">0</strong>
+            </div>
+
+            <div class="analytics-card">
+                <p>Last 30 Days</p>
+                <strong id="visits-30d">0</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+        </div>
 
             <div class="analytics-card">
                 <p>Last 24 Hours</p>
