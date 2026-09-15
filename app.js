@@ -925,7 +925,7 @@ if (refreshPostsButton) {
 
         refreshPostsButton.textContent = "Loading...";
 
-        await loadPosts();
+        await loadPosts(true);
 
         refreshPostsButton.textContent = "↻";
 
