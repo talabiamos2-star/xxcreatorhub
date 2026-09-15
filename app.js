@@ -779,8 +779,7 @@ console.log("Saved post IDs:", savedPostIds);
                 verified
             )
         `)
-        .order("created_at", { ascending: !isRefresh });
-
+        .order("created_at", { ascending: false });
     if (error) {
         console.error("Supabase posts error:", error);
 
