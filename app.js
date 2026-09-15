@@ -780,6 +780,9 @@ console.log("Saved post IDs:", savedPostIds);
             )
         `)
         .order("created_at", { ascending: false });
+    if (isRefresh && data) {
+    data.sort(() => Math.random() - 0.5);
+            }
     if (error) {
         console.error("Supabase posts error:", error);
 
