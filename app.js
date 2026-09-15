@@ -923,7 +923,7 @@ if (refreshPostsButton) {
 
     refreshPostsButton.addEventListener("click", async () => {
 
-        refreshPostsButton.textContent = "⟳";
+        refreshPostsButton.textContent = "Loading...";
 
         await loadPosts();
 
