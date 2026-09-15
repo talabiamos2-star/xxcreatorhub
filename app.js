@@ -737,7 +737,7 @@ showPage("home");
 // SUPABASE POSTS
 // ===============================
 
-async function loadPosts() {
+async function loadPosts(isRefresh = false) {
     const postsContainer = document.getElementById("posts-container");
 
     if (!postsContainer) return;
