@@ -733,6 +733,82 @@ if (window.Telegram &&
 // ---------- START ----------
 
 showPage("home");
+// ---------- RANDOM HOME CREATOR ----------
+
+async function loadRandomHomeCreator() {
+
+    const { data, error } = await supabaseClient
+        .from("creators")
+        .select(`
+            id,
+            name,
+            username,
+            photo_url,
+            verified
+        `);
+
+    if (error) {
+        console.error("Random creator error:", error);
+        return;
+    }
+
+    if (!data || data.length === 0) return;
+
+    const creator =
+        data[Math.floor(Math.random() * data.length)];
+
+    const creatorCard =
+        document.querySelector(".creator-card");
+
+    if (!creatorCard) return;
+
+    const imagePlaceholder =
+        creatorCard.querySelector(".image-placeholder");
+
+    const creatorName =
+        creatorCard.querySelector(".creator-info h2");
+
+    const creatorUsername =
+        creatorCard.querySelector(".creator-info p");
+
+    const verified =
+        creatorCard.querySelector(".verified");
+
+    const exclusiveButton =
+        creatorCard.querySelector(".watch-button");
+
+    if (imagePlaceholder) {
+        if (creator.photo_url) {
+            imagePlaceholder.innerHTML =
+                `<img src="${creator.photo_url}" alt="${creator.name || "Creator"}">`;
+        } else {
+            imagePlaceholder.textContent =
+                "CREATOR PHOTO";
+        }
+    }
+
+    if (creatorName) {
+        creatorName.textContent =
+            creator.name || "Creator";
+    }
+
+    if (creatorUsername) {
+        creatorUsername.textContent =
+            creator.username || "";
+    }
+
+    if (verified) {
+        verified.style.display =
+            creator.verified ? "block" : "none";
+    }
+
+    if (exclusiveButton) {
+        exclusiveButton.dataset.exclusiveUrl =
+            `exclusive.html?creator=${creator.id}`;
+    }
+}
+
+loadRandomHomeCreator();
 // ===============================
 // SUPABASE POSTS
 // ===============================
