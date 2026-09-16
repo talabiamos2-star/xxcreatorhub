@@ -1036,6 +1036,10 @@ button {
 
 #home-page .creator-card {
     margin-top: 4px !important;
+    position: relative;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 
 #home-page .creator-image {
@@ -1044,8 +1048,14 @@ button {
 }
 
 #home-page .creator-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
     padding: 10px 14px !important;
-}
+    background: transparent !important;
+    z-index: 5;
+    }
 
 #home-page .stats {
     margin-bottom: 6px !important;
