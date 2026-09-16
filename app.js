@@ -777,15 +777,19 @@ async function loadRandomHomeCreator() {
     const exclusiveButton =
         creatorCard.querySelector(".watch-button");
 
-    if (imagePlaceholder) {
-        if (creator.photo_url) {
-            imagePlaceholder.innerHTML =
-                `<img src="${creator.photo_url}" alt="${creator.name || "Creator"}">`;
-        } else {
-            imagePlaceholder.textContent =
-                "CREATOR PHOTO";
-        }
+  if (imagePlaceholder) {
+    if (creator.photo_url) {
+        imagePlaceholder.innerHTML = "";
+
+        const img = document.createElement("img");
+        img.src = creator.photo_url;
+        img.alt = creator.name || "Creator";
+
+        imagePlaceholder.appendChild(img);
+    } else {
+        imagePlaceholder.textContent = "CREATOR PHOTO";
     }
+        }
 
     if (creatorName) {
         creatorName.textContent =
