@@ -134,8 +134,9 @@ button {
 
 .creator-image {
     width: 100%;
+    position: relative;
     overflow: hidden;
-}
+    }
 
 .image-placeholder {
     width: 100%;
