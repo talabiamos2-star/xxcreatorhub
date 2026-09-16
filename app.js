@@ -733,29 +733,34 @@ if (window.Telegram &&
 // ---------- START ----------
 
 showPage("home");
-// ---------- RANDOM HOME CREATOR ----------
-
 async function loadRandomHomeCreator() {
 
     const { data, error } = await supabaseClient
-        .from("creators")
+        .from("posts")
         .select(`
             id,
-            name,
-            username,
-            photo_url,
-            verified
-        `);
+            creator_id,
+            image_url,
+            creators (
+                id,
+                name,
+                username,
+                verified
+            )
+        `)
+        .not("image_url", "is", null);
 
     if (error) {
-        console.error("Random creator error:", error);
+        console.error("Random home post error:", error);
         return;
     }
 
     if (!data || data.length === 0) return;
 
-    const creator =
+    const post =
         data[Math.floor(Math.random() * data.length)];
+
+    const creator = post.creators || {};
 
     const creatorCard =
         document.querySelector(".creator-card");
@@ -777,19 +782,19 @@ async function loadRandomHomeCreator() {
     const exclusiveButton =
         creatorCard.querySelector(".watch-button");
 
-  if (imagePlaceholder) {
-    if (creator.photo_url) {
+    if (imagePlaceholder) {
+
         imagePlaceholder.innerHTML = "";
 
         const img = document.createElement("img");
-        img.src = creator.photo_url;
-        img.alt = creator.name || "Creator";
+
+        img.src = post.image_url;
+
+        img.alt =
+            creator.name || "Creator";
 
         imagePlaceholder.appendChild(img);
-    } else {
-        imagePlaceholder.textContent = "CREATOR PHOTO";
     }
-        }
 
     if (creatorName) {
         creatorName.textContent =
@@ -808,7 +813,7 @@ async function loadRandomHomeCreator() {
 
     if (exclusiveButton) {
         exclusiveButton.dataset.exclusiveUrl =
-            `exclusive.html?creator=${creator.id}`;
+            `exclusive.html?creator=${post.creator_id}`;
     }
 }
 
