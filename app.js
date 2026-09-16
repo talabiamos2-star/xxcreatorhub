@@ -870,9 +870,10 @@ async function loadHomeDiscoverPreview() {
 
         return `
             <article
-                class="home-preview-post"
-                data-page="discover"
-            >
+    class="home-preview-post"
+    data-page="discover"
+    onclick="showPage('discover')"
+>
 
                 <div class="home-preview-image">
                     ${
