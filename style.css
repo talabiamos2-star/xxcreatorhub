@@ -190,8 +190,11 @@ button {
     padding: 17px;
     background: transparent;
 }
+
 #home-page .creator-card {
-    background: transparent;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 .stats {
     display: flex;
