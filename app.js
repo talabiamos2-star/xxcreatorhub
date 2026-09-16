@@ -817,7 +817,7 @@ async function loadRandomHomeCreator() {
     }
 }
 
-loadRandomHomeCreator();
+
 loadRandomHomeCreator();
 
 // ---------- HOME DISCOVER PREVIEW ----------
