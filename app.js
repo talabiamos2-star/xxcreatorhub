@@ -818,6 +818,93 @@ async function loadRandomHomeCreator() {
 }
 
 loadRandomHomeCreator();
+loadRandomHomeCreator();
+
+// ---------- HOME DISCOVER PREVIEW ----------
+
+async function loadHomeDiscoverPreview() {
+
+    const container =
+        document.getElementById("home-discover-posts");
+
+    if (!container) return;
+
+    const { data, error } = await supabaseClient
+        .from("posts")
+        .select(`
+            id,
+            image_url,
+            caption,
+            creator_id,
+            creators (
+                name,
+                username,
+                photo_url,
+                verified
+            )
+        `)
+        .order("created_at", {
+            ascending: false
+        })
+        .limit(2);
+
+    if (error) {
+        console.error(
+            "Home discover preview error:",
+            error
+        );
+        container.innerHTML = "";
+        return;
+    }
+
+    if (!data || data.length === 0) {
+        container.innerHTML =
+            "<p>No posts yet.</p>";
+        return;
+    }
+
+    container.innerHTML = data.map(post => {
+
+        const creator =
+            post.creators || {};
+
+        return `
+            <article
+                class="home-preview-post"
+                data-page="discover"
+            >
+
+                <div class="home-preview-image">
+                    ${
+                        post.image_url
+                            ? `<img
+                                src="${post.image_url}"
+                                alt="${post.caption || "Creator post"}"
+                              >`
+                            : "CREATOR PHOTO"
+                    }
+                </div>
+
+                <div class="home-preview-info">
+
+                    <strong>
+                        ${creator.name || "Creator"}
+                    </strong>
+
+                    <span>
+                        ${creator.username || ""}
+                    </span>
+
+                </div>
+
+            </article>
+        `;
+
+    }).join("");
+
+}
+
+loadHomeDiscoverPreview();
 // ===============================
 // SUPABASE POSTS
 // ===============================
