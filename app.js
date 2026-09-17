@@ -462,8 +462,11 @@ document.addEventListener("click", (event) => {
         post.querySelector(".caption")?.textContent.trim() ||
         "Check out this creator post!";
 
-    const shareUrl = window.location.href;
-
+    const shareUrl =
+    window.location.origin +
+    window.location.pathname +
+    "?post=" +
+    post.dataset.postId;
     const telegramShareUrl =
         "https://t.me/share/url?url=" +
         encodeURIComponent(shareUrl) +
