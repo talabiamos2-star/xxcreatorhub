@@ -978,6 +978,11 @@ async function loadPosts(isRefresh = false) {
         .from("saved_posts")
         .select("post_id")
         .eq("user_id", "guest");
+    const { data: likedPosts, error: likedPostsError } =
+    await supabaseClient
+        .from("post_likes")
+        .select("post_id")
+        .eq("user_id", "guest");
 
 if (savedPostsError) {
     console.error("Saved posts error:", savedPostsError);
