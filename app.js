@@ -1106,10 +1106,12 @@ console.log("Saved post IDs:", savedPostIds);
 
                 <div class="post-actions">
 
-                    <button class="like-button" aria-label="Like">
-                        ♡
-                    </button>
-
+                    <button
+    class="like-button ${likedPostIds.has(String(post.id)) ? "liked" : ""}"
+    aria-label="Like"
+>
+    ${likedPostIds.has(String(post.id)) ? "♥" : "♡"}
+</button>
                     <button class="comment-button" aria-label="Comments">
     💬
 </button>
