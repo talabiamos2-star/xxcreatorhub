@@ -983,6 +983,11 @@ async function loadPosts(isRefresh = false) {
         .from("post_likes")
         .select("post_id")
         .eq("user_id", "guest");
+    const likedPostIds = new Set(
+    (likedPosts || []).map(
+        item => String(item.post_id)
+    )
+);
 
 if (savedPostsError) {
     console.error("Saved posts error:", savedPostsError);
