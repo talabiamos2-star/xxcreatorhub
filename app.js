@@ -93,65 +93,124 @@ document.addEventListener("click", async (event) => {
 
     if (!postId) return;
 
-    const likesElement = post.querySelector(".likes-count");
+    const likesElement =
+        post.querySelector(".likes-count");
 
     if (!likesElement) return;
 
     const currentlyLiked =
         button.classList.contains("liked");
 
-    let currentLikes =
-        parseInt(
-            likesElement.textContent.replace(/\D/g, "")
-        ) || 0;
-
-    let newLikes;
+    // ---------- LIKE ----------
 
     if (!currentlyLiked) {
 
-        newLikes = currentLikes + 1;
+        const { error } =
+            await supabaseClient
+                .from("post_likes")
+                .insert({
+                    post_id: postId,
+                    user_id: "guest"
+                });
 
-    } else {
+        if (error) {
 
-        newLikes = Math.max(0, currentLikes - 1);
+            // Already liked
+            if (error.code === "23505") {
 
-    }
+                button.classList.add("liked");
+                button.textContent = "♥";
 
-    // Save to Supabase
-    const { error } = await supabaseClient
-        .from("posts")
-        .update({
-            likes: newLikes
-        })
-        .eq("id", postId);
+                return;
+            }
 
-if (error) {
+            console.error(
+                "Like insert error:",
+                error
+            );
 
-    console.error("Like update error:", error);
+            alert(
+                "LIKE ERROR: " +
+                error.message
+            );
 
-    alert("LIKE ERROR: " + error.message);
+            return;
+        }
 
-    return;
-}
+        // Increase post like count
+        const currentLikes =
+            parseInt(
+                likesElement.textContent.replace(/\D/g, "")
+            ) || 0;
 
-    // Update screen only after Supabase succeeds
+        const newLikes =
+            currentLikes + 1;
 
-    if (!currentlyLiked) {
+        await supabaseClient
+            .from("posts")
+            .update({
+                likes: newLikes
+            })
+            .eq("id", postId);
 
         button.classList.add("liked");
-
         button.textContent = "♥";
 
-    } else {
-
-        button.classList.remove("liked");
-
-        button.textContent = "♡";
+        likesElement.textContent =
+            newLikes.toLocaleString() +
+            " likes";
 
     }
 
-    likesElement.textContent =
-        newLikes.toLocaleString() + " likes";
+    // ---------- UNLIKE ----------
+
+    else {
+
+        const { error } =
+            await supabaseClient
+                .from("post_likes")
+                .delete()
+                .eq("post_id", postId)
+                .eq("user_id", "guest");
+
+        if (error) {
+
+            console.error(
+                "Unlike error:",
+                error
+            );
+
+            alert(
+                "UNLIKE ERROR: " +
+                error.message
+            );
+
+            return;
+        }
+
+        // Decrease post like count
+        const currentLikes =
+            parseInt(
+                likesElement.textContent.replace(/\D/g, "")
+            ) || 0;
+
+        const newLikes =
+            Math.max(0, currentLikes - 1);
+
+        await supabaseClient
+            .from("posts")
+            .update({
+                likes: newLikes
+            })
+            .eq("id", postId);
+
+        button.classList.remove("liked");
+        button.textContent = "♡";
+
+        likesElement.textContent =
+            newLikes.toLocaleString() +
+            " likes";
+    }
 
 });
 
