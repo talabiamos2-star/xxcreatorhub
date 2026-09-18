@@ -473,10 +473,7 @@ document.addEventListener("click", (event) => {
         "&text=" +
         encodeURIComponent(caption);
 
-    window.open(
-        telegramShareUrl,
-        "_blank"
-    );
+    window.location.href = telegramShareUrl;
 
 });
 
