@@ -873,8 +873,109 @@ async function loadRandomHomeCreator() {
     }
 }
 
+async function loadSharedHomePost() {
 
-loadRandomHomeCreator();
+    const startParam =
+        window.Telegram?.WebApp?.initDataUnsafe?.start_param;
+
+    if (!startParam || !startParam.startsWith("post_")) {
+        loadRandomHomeCreator();
+        return;
+    }
+
+    const postId =
+        startParam.replace("post_", "");
+
+    const { data: post, error } =
+        await supabaseClient
+            .from("posts")
+            .select(`
+                id,
+                creator_id,
+                image_url,
+                creators (
+                    id,
+                    name,
+                    username,
+                    verified
+                )
+            `)
+            .eq("id", postId)
+            .single();
+
+    if (error || !post) {
+        console.error(
+            "Shared post loading error:",
+            error
+        );
+
+        loadRandomHomeCreator();
+        return;
+    }
+
+    const creator =
+        post.creators || {};
+
+    const creatorCard =
+        document.querySelector(".creator-card");
+
+    if (!creatorCard) return;
+
+    const imagePlaceholder =
+        creatorCard.querySelector(".image-placeholder");
+
+    const creatorName =
+        creatorCard.querySelector(".creator-info h2");
+
+    const creatorUsername =
+        creatorCard.querySelector(".creator-info p");
+
+    const verified =
+        creatorCard.querySelector(".verified");
+
+    const exclusiveButton =
+        creatorCard.querySelector(".watch-button");
+
+    if (imagePlaceholder) {
+
+        imagePlaceholder.innerHTML = "";
+
+        const img =
+            document.createElement("img");
+
+        img.src = post.image_url;
+
+        img.alt =
+            creator.name || "Creator";
+
+        imagePlaceholder.appendChild(img);
+    }
+
+    if (creatorName) {
+        creatorName.textContent =
+            creator.name || "Creator";
+    }
+
+    if (creatorUsername) {
+        creatorUsername.textContent =
+            creator.username || "";
+    }
+
+    if (verified) {
+        verified.style.display =
+            creator.verified
+                ? "block"
+                : "none";
+    }
+
+    if (exclusiveButton) {
+        exclusiveButton.dataset.exclusiveUrl =
+            `exclusive.html?creator=${post.creator_id}`;
+    }
+}
+
+loadSharedHomePost();
+
 
 // ---------- HOME DISCOVER PREVIEW ----------
 
