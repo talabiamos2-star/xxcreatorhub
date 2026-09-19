@@ -452,7 +452,134 @@ if (searchModal) {
 }
 
 return;
+// ---------- SEARCH MODAL CONTROLS ----------
 
+const searchModal =
+    document.getElementById("search-modal");
+
+const closeSearchModal =
+    document.getElementById("close-search-modal");
+
+const searchSubmit =
+    document.getElementById("creator-search-submit");
+
+const searchInput =
+    document.getElementById("creator-search-input");
+
+
+if (closeSearchModal) {
+
+    closeSearchModal.addEventListener(
+        "click",
+        () => {
+
+            searchModal.classList.remove("open");
+
+            document.body.style.overflow = "";
+
+        }
+    );
+
+}
+
+
+if (searchSubmit) {
+
+    searchSubmit.addEventListener(
+        "click",
+        async () => {
+
+            const term =
+                searchInput.value.trim();
+
+            if (!term) return;
+
+            const { data, error } =
+                await supabaseClient
+                    .from("creators")
+                    .select(`
+                        id,
+                        name,
+                        username,
+                        photo_url,
+                        bio,
+                        verified
+                    `)
+                    .or(
+                        `name.ilike.%${term}%,username.ilike.%${term}%`
+                    );
+
+            if (error) {
+
+                console.error(
+                    "Creator search error:",
+                    error
+                );
+
+                alert(
+                    "Search failed. Please try again."
+                );
+
+                return;
+            }
+
+            if (!data || data.length === 0) {
+
+                alert(
+                    "No creator found for: " + term
+                );
+
+                return;
+            }
+
+            searchModal.classList.remove("open");
+
+            document.body.style.overflow = "";
+
+            const creator =
+                data[0];
+
+            showPage("creator-profile");
+
+            loadCreatorPosts(
+                creator.id
+            );
+
+            const nameElement =
+                document.getElementById(
+                    "creator-profile-name"
+                );
+
+            const usernameElement =
+                document.getElementById(
+                    "creator-profile-username"
+                );
+
+            const bioElement =
+                document.getElementById(
+                    "creator-profile-bio"
+                );
+
+            if (nameElement) {
+                nameElement.textContent =
+                    creator.name || "Creator";
+            }
+
+            if (usernameElement) {
+                usernameElement.textContent =
+                    creator.username || "";
+            }
+
+            if (bioElement) {
+                bioElement.textContent =
+                    creator.bio ||
+                    "No bio available.";
+            }
+
+        }
+    );
+
+        }
         const { data, error } =
             await supabaseClient
                 .from("creators")
