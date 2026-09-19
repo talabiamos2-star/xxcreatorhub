@@ -7,6 +7,15 @@ const supabaseClient = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
+
+function getCurrentUserId() {
+    const telegramUserId =
+        window.Telegram?.WebApp?.initDataUnsafe?.user?.id;
+
+    return telegramUserId
+        ? String(telegramUserId)
+        : "guest";
+}
 // ---------- VISIT TRACKING ----------
 
 async function recordVisit(pageName) {
