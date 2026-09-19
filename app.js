@@ -427,6 +427,7 @@ if (currentExclusiveUrl) {
 
 }
 
+
 // ---------- SEARCH BUTTON ----------
 
 const searchButton =
@@ -434,24 +435,35 @@ const searchButton =
 
 if (searchButton) {
 
-    searchButton.addEventListener("click", async () => {
+    searchButton.addEventListener("click", () => {
 
         const searchModal =
-    document.getElementById("search-modal");
+            document.getElementById("search-modal");
 
-if (searchModal) {
-    searchModal.classList.add("open");
+        if (searchModal) {
 
-    const input =
-        document.getElementById("creator-search-input");
+            searchModal.classList.add("open");
 
-    if (input) {
-        input.value = "";
-        setTimeout(() => input.focus(), 100);
-    }
+            const input =
+                document.getElementById(
+                    "creator-search-input"
+                );
+
+            if (input) {
+                input.value = "";
+
+                setTimeout(
+                    () => input.focus(),
+                    100
+                );
+            }
+        }
+
+    });
+
 }
 
-return;
+
 // ---------- SEARCH MODAL CONTROLS ----------
 
 const searchModal =
@@ -474,8 +486,6 @@ if (closeSearchModal) {
         () => {
 
             searchModal.classList.remove("open");
-
-            document.body.style.overflow = "";
 
         }
     );
@@ -534,8 +544,6 @@ if (searchSubmit) {
 
             searchModal.classList.remove("open");
 
-            document.body.style.overflow = "";
-
             const creator =
                 data[0];
 
@@ -580,12 +588,6 @@ if (searchSubmit) {
     );
 
         }
-        
-
-    });
-
-    }
-
 
 // ---------- SHARE BUTTONS ----------
 
