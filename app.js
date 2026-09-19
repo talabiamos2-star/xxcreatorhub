@@ -1904,3 +1904,4 @@ document
         showPage("discover");
 
     });
+loadProfileStats();
