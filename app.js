@@ -580,74 +580,7 @@ if (searchSubmit) {
     );
 
         }
-        const { data, error } =
-            await supabaseClient
-                .from("creators")
-                .select(`
-                    id,
-                    name,
-                    username,
-                    photo_url,
-                    bio,
-                    verified
-                `)
-                .or(
-                    `name.ilike.%${term}%,username.ilike.%${term}%`
-                );
-
-        if (error) {
-
-            console.error(
-                "Creator search error:",
-                error
-            );
-
-            alert(
-                "Search failed. Please try again."
-            );
-
-            return;
-        }
-
-        if (!data || data.length === 0) {
-
-            alert(
-                "No creator found for: " +
-                term
-            );
-
-            return;
-        }
-
-        if (data.length === 1) {
-
-            showPage("creator-profile");
-
-            loadCreatorPosts(
-                data[0].id
-            );
-
-            document.getElementById(
-                "creator-profile-name"
-            ).textContent =
-                data[0].name || "Creator";
-
-            document.getElementById(
-                "creator-profile-username"
-            ).textContent =
-                data[0].username || "";
-
-            return;
-        }
-
-        alert(
-            data.map(
-                creator =>
-                    creator.name +
-                    " " +
-                    (creator.username || "")
-            ).join("\n")
-        );
+        
 
     });
 
