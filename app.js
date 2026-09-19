@@ -119,7 +119,7 @@ document.addEventListener("click", async (event) => {
                 .from("post_likes")
                 .insert({
                     post_id: postId,
-                    user_id: "guest"
+                    user_id: getCurrentUserId()
                 });
 
         if (error) {
