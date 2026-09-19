@@ -180,7 +180,7 @@ document.addEventListener("click", async (event) => {
                 .from("post_likes")
                 .delete()
                 .eq("post_id", postId)
-                .eq("user_id", "guest");
+                .eq("user_id", getCurrentUserId());
 
         if (error) {
 
