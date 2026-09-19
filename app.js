@@ -12,6 +12,8 @@ function getCurrentUserId() {
     const telegramUserId =
         window.Telegram?.WebApp?.initDataUnsafe?.user?.id;
 
+    alert("Telegram ID: " + (telegramUserId || "NOT FOUND"));
+
     return telegramUserId
         ? String(telegramUserId)
         : "guest";
