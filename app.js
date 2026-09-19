@@ -1581,7 +1581,7 @@ async function loadProfileStats() {
     const { count, error } = await supabaseClient
         .from("post_likes")
         .select("*", { count: "exact", head: true })
-        .eq("user_id", "guest");
+        .eq("user_id", getCurrentUserId());
 
     if (error) {
         console.error("Profile liked count error:", error);
