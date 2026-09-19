@@ -1565,6 +1565,27 @@ async function loadSavedPosts() {
 
         }).join("");
 }
+// ---------- PROFILE STATS ----------
+
+async function loadProfileStats() {
+
+    const { count, error } = await supabaseClient
+        .from("post_likes")
+        .select("*", { count: "exact", head: true })
+        .eq("user_id", "guest");
+
+    if (error) {
+        console.error("Profile liked count error:", error);
+        return;
+    }
+
+    const likedCount =
+        document.getElementById("profile-liked-count");
+
+    if (likedCount) {
+        likedCount.textContent = count || 0;
+    }
+}
 
 // Load posts when the app starts
 document.addEventListener("DOMContentLoaded", loadPosts);
