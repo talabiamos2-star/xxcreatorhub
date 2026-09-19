@@ -282,7 +282,7 @@ document.addEventListener("click", async (event) => {
             .from("saved_posts")
             .delete()
             .eq("post_id", postId)
-            .eq("user_id", "guest");
+            .eq("user_id", getCurrentUserId());
 
         if (error) {
 
