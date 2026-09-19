@@ -463,9 +463,7 @@ document.addEventListener("click", (event) => {
         "Check out this creator post!";
 
     const shareUrl =
-    window.location.origin +
-    window.location.pathname +
-    "?post=" +
+    "https://t.me/XXCreatorhub_bot?startapp=post_" +
     post.dataset.postId;
     const telegramShareUrl =
         "https://t.me/share/url?url=" +
