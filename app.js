@@ -258,7 +258,7 @@ document.addEventListener("click", async (event) => {
             .from("saved_posts")
             .insert({
                 post_id: postId,
-                user_id: "guest"
+                user_id: getCurrentUserId()
             });
 
         if (error) {
