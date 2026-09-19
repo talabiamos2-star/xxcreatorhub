@@ -436,15 +436,22 @@ if (searchButton) {
 
     searchButton.addEventListener("click", async () => {
 
-        const searchTerm =
-            prompt("Search for a creator:");
+        const searchModal =
+    document.getElementById("search-modal");
 
-        if (!searchTerm) return;
+if (searchModal) {
+    searchModal.classList.add("open");
 
-        const term =
-            searchTerm.trim();
+    const input =
+        document.getElementById("creator-search-input");
 
-        if (!term) return;
+    if (input) {
+        input.value = "";
+        setTimeout(() => input.focus(), 100);
+    }
+}
+
+return;
 
         const { data, error } =
             await supabaseClient
