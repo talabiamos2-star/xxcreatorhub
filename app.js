@@ -1427,7 +1427,7 @@ async function loadSavedPosts() {
         await supabaseClient
             .from("saved_posts")
             .select("post_id")
-            .eq("user_id", "guest");
+            .eq("user_id", getCurrentUserId());
 
     if (error) {
 
