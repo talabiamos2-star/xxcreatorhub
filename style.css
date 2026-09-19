@@ -1512,3 +1512,117 @@ button {
     font-size: 11px;
     margin-top: 3px;
 }
+/* ===============================
+   CREATOR SEARCH MODAL
+================================ */
+
+.search-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 99998;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(8px);
+}
+
+.search-modal.open {
+    display: flex;
+}
+
+.search-modal-box {
+    width: 100%;
+    max-width: 390px;
+    position: relative;
+    padding: 28px 22px 22px;
+    border: 1px solid #292936;
+    border-radius: 24px;
+    background: #121218;
+    box-shadow: 0 20px 60px rgba(0,0,0,.55);
+    text-align: center;
+}
+
+.search-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: #1c1c25;
+    color: #999;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.search-modal-icon {
+    width: 54px;
+    height: 54px;
+    margin: 4px auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    background: linear-gradient(
+        135deg,
+        #ff4fa3,
+        #8f4cff
+    );
+    font-size: 25px;
+}
+
+.search-modal-box h2 {
+    margin: 0;
+    color: #fff;
+    font-size: 21px;
+}
+
+.search-modal-box p {
+    margin: 7px 0 20px;
+    color: #888;
+    font-size: 13px;
+}
+
+.creator-search-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 14px;
+    height: 50px;
+    border: 1px solid #292936;
+    border-radius: 15px;
+    background: #0b0b10;
+}
+
+.creator-search-input-wrap span {
+    font-size: 17px;
+}
+
+.creator-search-input-wrap input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #fff;
+    font-size: 15px;
+}
+
+.creator-search-input-wrap input::placeholder {
+    color: #666;
+}
+
+.creator-search-submit {
+    width: 100%;
+    margin-top: 14px;
+    padding: 13px;
+    border: none;
+    border-radius: 14px;
+    background: #ff4fa3;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
