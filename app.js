@@ -1614,6 +1614,22 @@ const savedCounter =
 if (savedCounter) {
     savedCounter.textContent = savedCount || 0;
 }
+    const { count: unlockedCount, error: unlockedError } =
+    await supabaseClient
+        .from("unlock_events")
+        .select("*", { count: "exact", head: true })
+        .eq("user_id", getCurrentUserId());
+
+if (unlockedError) {
+    console.error("Profile unlocked count error:", unlockedError);
+}
+
+const unlockedCounter =
+    document.getElementById("profile-unlocked-count");
+
+if (unlockedCounter) {
+    unlockedCounter.textContent = unlockedCount || 0;
+    }
 }
 
 // Load posts when the app starts
