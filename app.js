@@ -18,6 +18,12 @@ function getCurrentUserId() {
         ? String(telegramUserId)
         : "guest";
 }
+function getTelegramLanguage() {
+    return (
+        window.Telegram?.WebApp?.initDataUnsafe?.user?.language_code ||
+        "en"
+    );
+}
 // ---------- VISIT TRACKING ----------
 
 async function recordVisit(pageName) {
