@@ -1596,6 +1596,22 @@ async function loadProfileStats() {
     if (likedCount) {
         likedCount.textContent = count || 0;
     }
+    const { count: savedCount, error: savedError } =
+    await supabaseClient
+        .from("saved_posts")
+        .select("*", { count: "exact", head: true })
+        .eq("user_id", getCurrentUserId());
+
+if (savedError) {
+    console.error("Profile saved count error:", savedError);
+}
+
+const savedCounter =
+    document.getElementById("profile-saved-count");
+
+if (savedCounter) {
+    savedCounter.textContent = savedCount || 0;
+}
 }
 
 // Load posts when the app starts
