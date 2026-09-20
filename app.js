@@ -1235,7 +1235,7 @@ async function loadPosts(isRefresh = false) {
     await supabaseClient
         .from("saved_posts")
         .select("post_id")
-        .eq("user_id", "guest");
+        .eq("user_id", getCurrentUserId());
     const { data: likedPosts, error: likedPostsError } =
     await supabaseClient
         .from("post_likes")
