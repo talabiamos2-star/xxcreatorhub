@@ -398,7 +398,9 @@ if (unlockButton) {
 // Record successful unlock
 const { error: unlockError } = await supabaseClient
     .from("unlock_events")
-    .insert({});
+    .insert({
+    user_id: getCurrentUserId()
+});
 
 if (unlockError) {
     console.error("Unlock tracking error:", unlockError);
