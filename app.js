@@ -1332,7 +1332,7 @@ console.log("Saved post IDs:", savedPostIds);
         postsContainer.innerHTML = `
             <div class="empty-page">
                 <div class="empty-icon">✨</div>
-                <h2>No posts yet</h2>
+                <h2>${t.noPosts}</h2>
                 <p>New creator posts will appear here.</p>
             </div>
         `;
