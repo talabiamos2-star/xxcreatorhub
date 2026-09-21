@@ -1338,7 +1338,7 @@ console.log("Saved post IDs:", savedPostIds);
             <div class="empty-page">
                 <div class="empty-icon">✨</div>
                 <h2>${t.noPosts}</h2>
-                <p>New creator posts will appear here.</p>
+                <p>${t.newPosts}</p>
             </div>
         `;
 
