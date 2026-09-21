@@ -40,8 +40,9 @@ newPosts: "New creator posts will appear here."
     newPosts: "Las nuevas publicaciones de creadores aparecerán aquí."
 },
     de: {
-        noPosts: "Noch keine Beiträge"
-    },
+    noPosts: "Noch keine Beiträge",
+    newPosts: "Neue Beiträge von Creators werden hier angezeigt."
+},
     ru: {
         noPosts: "Пока нет публикаций"
     }
