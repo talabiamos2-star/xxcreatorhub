@@ -42,13 +42,15 @@ const translations = {
     newPosts: "Las nuevas publicaciones de creadores aparecerán aquí.",
     noSavedPosts: "No hay publicaciones guardadas"
 },
-    de: {
+   de: {
     noPosts: "Noch keine Beiträge",
-    newPosts: "Neue Beiträge von Creators werden hier angezeigt."
+    newPosts: "Neue Beiträge von Creators werden hier angezeigt.",
+    noSavedPosts: "Keine gespeicherten Beiträge"
 },
     ru: {
     noPosts: "Пока нет публикаций",
-    newPosts: "Здесь появятся новые публикации авторов."
+    newPosts: "Здесь появятся новые публикации авторов.",
+    noSavedPosts: "Нет сохранённых публикаций"
 },
 };
 
