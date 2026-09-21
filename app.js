@@ -28,7 +28,8 @@ function getTelegramLanguage() {
 const telegramLanguage = getTelegramLanguage();
 const translations = {
     en: {
-        noPosts: "No posts yet"
+        noPosts: "No posts yet",
+newPosts: "New creator posts will appear here."
     },
     fr: {
         noPosts: "Aucune publication pour le moment"
