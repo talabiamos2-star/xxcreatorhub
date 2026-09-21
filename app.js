@@ -39,7 +39,8 @@ const translations = {
 },
     es: {
     noPosts: "Aún no hay publicaciones",
-    newPosts: "Las nuevas publicaciones de creadores aparecerán aquí."
+    newPosts: "Las nuevas publicaciones de creadores aparecerán aquí.",
+    noSavedPosts: "No hay publicaciones guardadas"
 },
     de: {
     noPosts: "Noch keine Beiträge",
