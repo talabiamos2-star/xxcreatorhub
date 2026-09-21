@@ -44,8 +44,9 @@ newPosts: "New creator posts will appear here."
     newPosts: "Neue Beiträge von Creators werden hier angezeigt."
 },
     ru: {
-        noPosts: "Пока нет публикаций"
-    }
+    noPosts: "Пока нет публикаций",
+    newPosts: "Здесь появятся новые публикации авторов."
+},
 };
 
 const t =
