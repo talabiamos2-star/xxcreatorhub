@@ -32,8 +32,9 @@ const translations = {
 newPosts: "New creator posts will appear here."
     },
     fr: {
-        noPosts: "Aucune publication pour le moment"
-    },
+    noPosts: "Aucune publication pour le moment",
+    newPosts: "Les nouvelles publications des créateurs apparaîtront ici."
+        }
     es: {
         noPosts: "Aún no hay publicaciones"
     },
