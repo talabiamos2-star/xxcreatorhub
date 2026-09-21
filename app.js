@@ -26,6 +26,27 @@ function getTelegramLanguage() {
 }
 
 const telegramLanguage = getTelegramLanguage();
+const translations = {
+    en: {
+        noPosts: "No posts yet"
+    },
+    fr: {
+        noPosts: "Aucune publication pour le moment"
+    },
+    es: {
+        noPosts: "Aún no hay publicaciones"
+    },
+    de: {
+        noPosts: "Noch keine Beiträge"
+    },
+    ru: {
+        noPosts: "Пока нет публикаций"
+    }
+};
+
+const t =
+    translations[telegramLanguage] ||
+    translations.en;
 // ---------- VISIT TRACKING ----------
 
 async function recordVisit(pageName) {
