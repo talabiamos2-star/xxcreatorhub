@@ -1861,7 +1861,7 @@ async function loadCreatorPosts(creatorId) {
         container.innerHTML = `
             <div class="empty-page">
                 <div class="empty-icon">✨</div>
-                <h2>No posts yet</h2>
+                <h2>${t.noPosts}</h2>
                 <p>This creator hasn't posted anything yet.</p>
             </div>
         `;
