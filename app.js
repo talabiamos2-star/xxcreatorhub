@@ -26,7 +26,6 @@ function getTelegramLanguage() {
 }
 
 const telegramLanguage = getTelegramLanguage();
-alert("Telegram language: " + telegramLanguage);
 // ---------- VISIT TRACKING ----------
 
 async function recordVisit(pageName) {
