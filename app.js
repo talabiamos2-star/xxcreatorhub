@@ -1211,8 +1211,7 @@ async function loadHomeDiscoverPreview() {
     }
 
     if (!data || data.length === 0) {
-        container.innerHTML =
-            "<p>No posts yet.</p>";
+        container.innerHTML = `<p>${t.noPosts}</p>`;
         return;
     }
 
