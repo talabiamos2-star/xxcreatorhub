@@ -36,8 +36,9 @@ newPosts: "New creator posts will appear here."
     newPosts: "Les nouvelles publications des créateurs apparaîtront ici."
         }
     es: {
-        noPosts: "Aún no hay publicaciones"
-    },
+    noPosts: "Aún no hay publicaciones",
+    newPosts: "Las nuevas publicaciones de creadores aparecerán aquí."
+},
     de: {
         noPosts: "Noch keine Beiträge"
     },
