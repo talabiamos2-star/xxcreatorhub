@@ -19,12 +19,13 @@ function getCurrentUserId() {
         : "guest";
 }
 function getTelegramLanguage() {
-    const telegramLanguage = getTelegramLanguage();
     return (
         window.Telegram?.WebApp?.initDataUnsafe?.user?.language_code ||
         "en"
     );
 }
+
+const telegramLanguage = getTelegramLanguage();
 // ---------- VISIT TRACKING ----------
 
 async function recordVisit(pageName) {
