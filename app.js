@@ -36,7 +36,8 @@ en: {
     fr: {
     noPosts: "Aucune publication pour le moment",
     newPosts: "Les nouvelles publications des créateurs apparaîtront ici.",
-    noSavedPosts: "Aucune publication enregistrée"
+    noSavedPosts: "Aucune publication enregistrée",
+    savedPosts: "Les publications que vous enregistrez apparaîtront ici."
 },
     es: {
     noPosts: "Aún no hay publicaciones",
