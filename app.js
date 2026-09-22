@@ -43,16 +43,19 @@ en: {
     noPosts: "Aún no hay publicaciones",
     newPosts: "Las nuevas publicaciones de creadores aparecerán aquí.",
     noSavedPosts: "No hay publicaciones guardadas"
+    savedPosts: "Las publicaciones que guardes aparecerán aquí."
 },
    de: {
     noPosts: "Noch keine Beiträge",
     newPosts: "Neue Beiträge von Creators werden hier angezeigt.",
     noSavedPosts: "Keine gespeicherten Beiträge"
+    savedPosts: "Beiträge, die du speicherst, werden hier angezeigt."
 },
     ru: {
     noPosts: "Пока нет публикаций",
     newPosts: "Здесь появятся новые публикации авторов.",
     noSavedPosts: "Нет сохранённых публикаций"
+    savedPosts: "Здесь появятся публикации, которые вы сохраните."
 },
 };
 
