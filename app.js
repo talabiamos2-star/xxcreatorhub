@@ -38,7 +38,8 @@ en: {
     newPosts: "Les nouvelles publications des créateurs apparaîtront ici.",
     noSavedPosts: "Aucune publication enregistrée",
     savedPosts: "Les publications que vous enregistrez apparaîtront ici."
-        es: {
+},
+    es: {
     noPosts: "Aún no hay publicaciones",
     newPosts: "Las nuevas publicaciones de creadores aparecerán aquí.",
     noSavedPosts: "No hay publicaciones guardadas",
