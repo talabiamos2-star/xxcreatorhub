@@ -52,8 +52,8 @@ de: {
     noPosts: "Noch keine Beiträge",
     newPosts: "Neue Beiträge von Creators werden hier angezeigt.",
     noSavedPosts: "Keine gespeicherten Beiträge",
-    savedPosts: "Beiträge, die du speicherst, werden hier angezeigt."
-    sendComment: "Kommentar senden"
+    savedPosts: "Beiträge, die du speicherst, werden hier angezeigt.",
+sendComment: "Kommentar senden"
 },
 ru: {
     noPosts: "Пока нет публикаций",
