@@ -403,9 +403,94 @@ ru: {
     noPosts: "Пока нет публикаций",
     newPosts: "Здесь появятся новые публикации авторов.",
     noSavedPosts: "Нет сохранённых публикаций",
-    savedPosts: "Здесь появятся публикации, которые вы сохраните.",
-sendComment: "Отправить комментарий",
-writeComment: "Написать комментарий..."
+    savedPosts: "Сохранённые вами публикации появятся здесь.",
+
+    sendComment: "Отправить комментарий",
+    writeComment: "Напишите комментарий...",
+
+    // Comments
+    loadingComments: "Загрузка комментариев...",
+    unableToLoadComments: "Не удалось загрузить комментарии.",
+    noCommentsYet: "Пока нет комментариев.",
+    beFirstToComment: "Будьте первым, кто оставит комментарий!",
+    unableToPostComment: "Не удалось опубликовать комментарий: ",
+
+    // Search
+    findCreator: "Найти автора",
+    searchByCreator: "Поиск по имени или имени пользователя автора",
+    searchCreators: "Поиск авторов...",
+    search: "Поиск",
+    searchFailed: "Не удалось выполнить поиск. Попробуйте ещё раз.",
+    noCreatorFound: "Автор не найден по запросу: ",
+
+    // Creator
+    creator: "Автор",
+    creatorBio: "Биография автора",
+    verified: "Подтверждено",
+    noBioAvailable: "Биография недоступна.",
+
+    // Navigation
+    home: "Главная",
+    discover: "Обзор",
+    saved: "Сохранённое",
+    profile: "Профиль",
+
+    // Profile
+    yourProfile: "Ваш профиль",
+    welcomeCreatorHub: "Добро пожаловать в XX CreatorHub",
+    liked: "Понравившееся",
+    unlocked: "Разблокировано",
+    posts: "Публикации",
+    likes: "Отметки «Нравится»",
+
+    // Creator posts
+    loadingPosts: "Загрузка публикаций...",
+    pleaseWait: "Пожалуйста, подождите.",
+    unableToLoadPosts: "Не удалось загрузить публикации",
+    pleaseTryAgainLater: "Пожалуйста, попробуйте позже.",
+
+    // Post actions
+    like: "Нравится",
+    comments: "Комментарии",
+    share: "Поделиться",
+    save: "Сохранить",
+    likesCount: "отметок «Нравится»",
+
+    // Exclusive content
+    exclusiveContent: "Эксклюзивный контент",
+    watchSponsoredToUnlock: "Посмотрите короткое рекламное видео, чтобы разблокировать этот контент.",
+    continue: "Продолжить",
+    closeWindowAnytime: "Вы можете закрыть это окно в любое время.",
+    seeExclusiveContent: "Смотреть эксклюзивный контент",
+    noExclusiveContent: "Ссылка на эксклюзивный контент не найдена.",
+    adCouldNotLoad: "Не удалось загрузить рекламу. Попробуйте ещё раз.",
+
+    // Save errors
+    postIdNotFound: "ID публикации не найден",
+    unableToSavePost: "Не удалось сохранить публикацию: ",
+    unableToUnsavePost: "Не удалось удалить публикацию из сохранённых: ",
+
+    // Other
+    user: "Пользователь",
+    creatorPhoto: "ФОТО АВТОРА",
+    creatorPost: "Публикация автора",
+    savedPost: "Сохранённая публикация",
+    checkOutCreatorPost: "Посмотрите эту публикацию автора!",
+    preparingContent: "Подготовка вашего контента...",
+    pleaseWaitMoment: "Пожалуйста, подождите немного",
+    loadingCreators: "Загрузка авторов...",
+    loadingLatestPosts: "Пожалуйста, подождите, пока мы загрузим последние публикации.",
+    discoverMoreCreators: "Открыть больше авторов",
+    seeAll: "Посмотреть всё",
+    featured: "РЕКОМЕНДУЕМОЕ",
+    explore: "ОБЗОР",
+    views: "Просмотры",
+    rating: "Рейтинг",
+    exclusiveContentAvailable: "Доступен эксклюзивный контент",
+    watchShortAd: "Посмотрите короткую рекламу, чтобы разблокировать",
+    forYou: "Для вас",
+    trending: "В тренде",
+    new: "Новое"
 },
 };
 
