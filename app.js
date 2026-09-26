@@ -31,8 +31,8 @@ en: {
     noPosts: "No posts yet",
     newPosts: "New creator posts will appear here.",
     noSavedPosts: "No saved posts",
-    savedPosts: "Posts you save will appear here."
-    sendComment: "Send comment"
+    savedPosts: "Posts you save will appear here.",
+sendComment: "Send comment"
 },
     fr: {
     noPosts: "Aucune publication pour le moment",
