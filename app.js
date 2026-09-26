@@ -32,7 +32,7 @@ en: {
     newPosts: "New creator posts will appear here.",
     noSavedPosts: "No saved posts",
     savedPosts: "Posts you save will appear here.",
-sendComment: "Send comment"
+sendComment: "Send comment",
 writeComment: "Write a comment..."
 },
     fr: {
@@ -40,7 +40,7 @@ writeComment: "Write a comment..."
     newPosts: "Les nouvelles publications des créateurs apparaîtront ici.",
     noSavedPosts: "Aucune publication enregistrée",
     savedPosts: "Les publications que vous enregistrez apparaîtront ici.",
-sendComment: "Envoyer un commentaire"
+sendComment: "Envoyer un commentaire",
 writeComment: "Écrire un commentaire..."
 },
     es: {
@@ -48,7 +48,7 @@ writeComment: "Écrire un commentaire..."
     newPosts: "Las nuevas publicaciones de creadores aparecerán aquí.",
     noSavedPosts: "No hay publicaciones guardadas",
     savedPosts: "Las publicaciones que guardes aparecerán aquí.",
-sendComment: "Enviar comentario"
+sendComment: "Enviar comentario",
 writeComment: "Escribe un comentario..."
     },
 de: {
@@ -56,7 +56,7 @@ de: {
     newPosts: "Neue Beiträge von Creators werden hier angezeigt.",
     noSavedPosts: "Keine gespeicherten Beiträge",
     savedPosts: "Beiträge, die du speicherst, werden hier angezeigt.",
-sendComment: "Kommentar senden"
+sendComment: "Kommentar senden",
 writeComment: "Kommentar schreiben..."
 },
 ru: {
@@ -64,7 +64,7 @@ ru: {
     newPosts: "Здесь появятся новые публикации авторов.",
     noSavedPosts: "Нет сохранённых публикаций",
     savedPosts: "Здесь появятся публикации, которые вы сохраните.",
-sendComment: "Отправить комментарий"
+sendComment: "Отправить комментарий",
 writeComment: "Написать комментарий..."
 },
 };
