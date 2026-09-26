@@ -38,8 +38,8 @@ sendComment: "Send comment"
     noPosts: "Aucune publication pour le moment",
     newPosts: "Les nouvelles publications des créateurs apparaîtront ici.",
     noSavedPosts: "Aucune publication enregistrée",
-    savedPosts: "Les publications que vous enregistrez apparaîtront ici."
-        sendComment: "Envoyer un commentaire"
+    savedPosts: "Les publications que vous enregistrez apparaîtront ici.",
+sendComment: "Envoyer un commentaire"
 },
     es: {
     noPosts: "Aún no hay publicaciones",
