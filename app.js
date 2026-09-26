@@ -32,30 +32,35 @@ en: {
     newPosts: "New creator posts will appear here.",
     noSavedPosts: "No saved posts",
     savedPosts: "Posts you save will appear here."
+    sendComment: "Send comment"
 },
     fr: {
     noPosts: "Aucune publication pour le moment",
     newPosts: "Les nouvelles publications des créateurs apparaîtront ici.",
     noSavedPosts: "Aucune publication enregistrée",
     savedPosts: "Les publications que vous enregistrez apparaîtront ici."
+        sendComment: "Envoyer un commentaire"
 },
     es: {
     noPosts: "Aún no hay publicaciones",
     newPosts: "Las nuevas publicaciones de creadores aparecerán aquí.",
     noSavedPosts: "No hay publicaciones guardadas",
     savedPosts: "Las publicaciones que guardes aparecerán aquí."
+        sendComment: "Enviar comentario"
 },
 de: {
     noPosts: "Noch keine Beiträge",
     newPosts: "Neue Beiträge von Creators werden hier angezeigt.",
     noSavedPosts: "Keine gespeicherten Beiträge",
     savedPosts: "Beiträge, die du speicherst, werden hier angezeigt."
+    sendComment: "Kommentar senden"
 },
 ru: {
     noPosts: "Пока нет публикаций",
     newPosts: "Здесь появятся новые публикации авторов.",
     noSavedPosts: "Нет сохранённых публикаций",
     savedPosts: "Здесь появятся публикации, которые вы сохраните."
+    sendComment: "Отправить комментарий"
 },
 };
 
