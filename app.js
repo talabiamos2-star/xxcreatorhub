@@ -122,11 +122,96 @@ en: {
 },
     fr: {
     noPosts: "Aucune publication pour le moment",
-    newPosts: "Les nouvelles publications des créateurs apparaîtront ici.",
+    newPosts: "De nouvelles publications des créateurs apparaîtront ici.",
     noSavedPosts: "Aucune publication enregistrée",
     savedPosts: "Les publications que vous enregistrez apparaîtront ici.",
-sendComment: "Envoyer un commentaire",
-writeComment: "Écrire un commentaire..."
+
+    sendComment: "Envoyer un commentaire",
+    writeComment: "Écrire un commentaire...",
+
+    // Comments
+    loadingComments: "Chargement des commentaires...",
+    unableToLoadComments: "Impossible de charger les commentaires.",
+    noCommentsYet: "Aucun commentaire pour le moment.",
+    beFirstToComment: "Soyez le premier à commenter !",
+    unableToPostComment: "Impossible de publier le commentaire : ",
+
+    // Search
+    findCreator: "Trouver un créateur",
+    searchByCreator: "Rechercher par nom ou nom d'utilisateur du créateur",
+    searchCreators: "Rechercher des créateurs...",
+    search: "Rechercher",
+    searchFailed: "La recherche a échoué. Veuillez réessayer.",
+    noCreatorFound: "Aucun créateur trouvé pour : ",
+
+    // Creator
+    creator: "Créateur",
+    creatorBio: "Biographie du créateur",
+    verified: "Vérifié",
+    noBioAvailable: "Aucune biographie disponible.",
+
+    // Navigation
+    home: "Accueil",
+    discover: "Découvrir",
+    saved: "Enregistré",
+    profile: "Profil",
+
+    // Profile
+    yourProfile: "Votre profil",
+    welcomeCreatorHub: "Bienvenue sur XX CreatorHub",
+    liked: "Aimés",
+    unlocked: "Déverrouillés",
+    posts: "Publications",
+    likes: "J'aime",
+
+    // Creator posts
+    loadingPosts: "Chargement des publications...",
+    pleaseWait: "Veuillez patienter.",
+    unableToLoadPosts: "Impossible de charger les publications",
+    pleaseTryAgainLater: "Veuillez réessayer plus tard.",
+
+    // Post actions
+    like: "J'aime",
+    comments: "Commentaires",
+    share: "Partager",
+    save: "Enregistrer",
+    likesCount: "j'aime",
+
+    // Exclusive content
+    exclusiveContent: "Contenu exclusif",
+    watchSponsoredToUnlock: "Regardez une courte vidéo sponsorisée pour débloquer ce contenu.",
+    continue: "Continuer",
+    closeWindowAnytime: "Vous pouvez fermer cette fenêtre à tout moment.",
+    seeExclusiveContent: "Voir le contenu exclusif",
+    noExclusiveContent: "Aucun lien vers le contenu exclusif trouvé.",
+    adCouldNotLoad: "La publicité n'a pas pu être chargée. Veuillez réessayer.",
+
+    // Save errors
+    postIdNotFound: "ID de publication introuvable",
+    unableToSavePost: "Impossible d'enregistrer la publication : ",
+    unableToUnsavePost: "Impossible de retirer la publication des enregistrements : ",
+
+    // Other
+    user: "Utilisateur",
+    creatorPhoto: "PHOTO DU CRÉATEUR",
+    creatorPost: "Publication du créateur",
+    savedPost: "Publication enregistrée",
+    checkOutCreatorPost: "Découvrez cette publication du créateur !",
+    preparingContent: "Préparation de votre contenu...",
+    pleaseWaitMoment: "Veuillez patienter un instant",
+    loadingCreators: "Chargement des créateurs...",
+    loadingLatestPosts: "Veuillez patienter pendant le chargement des dernières publications.",
+    discoverMoreCreators: "Découvrir plus de créateurs",
+    seeAll: "Voir tout",
+    featured: "À LA UNE",
+    explore: "EXPLORER",
+    views: "Vues",
+    rating: "Note",
+    exclusiveContentAvailable: "Contenu exclusif disponible",
+    watchShortAd: "Regardez une courte publicité pour débloquer",
+    forYou: "Pour vous",
+    trending: "Tendances",
+    new: "Nouveau"
 },
     es: {
     noPosts: "Aún no hay publicaciones",
