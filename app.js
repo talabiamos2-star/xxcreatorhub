@@ -45,8 +45,8 @@ sendComment: "Envoyer un commentaire"
     noPosts: "Aún no hay publicaciones",
     newPosts: "Las nuevas publicaciones de creadores aparecerán aquí.",
     noSavedPosts: "No hay publicaciones guardadas",
-    savedPosts: "Las publicaciones que guardes aparecerán aquí."
-        sendComment: "Enviar comentario"
+    savedPosts: "Las publicaciones que guardes aparecerán aquí.",
+sendComment: "Enviar comentario"
 },
 de: {
     noPosts: "Noch keine Beiträge",
