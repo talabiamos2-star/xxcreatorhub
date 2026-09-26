@@ -32,8 +32,93 @@ en: {
     newPosts: "New creator posts will appear here.",
     noSavedPosts: "No saved posts",
     savedPosts: "Posts you save will appear here.",
-sendComment: "Send comment",
-writeComment: "Write a comment..."
+
+    sendComment: "Send comment",
+    writeComment: "Write a comment...",
+
+    // Comments
+    loadingComments: "Loading comments...",
+    unableToLoadComments: "Unable to load comments.",
+    noCommentsYet: "No comments yet.",
+    beFirstToComment: "Be the first to comment!",
+    unableToPostComment: "Unable to post comment: ",
+
+    // Search
+    findCreator: "Find a creator",
+    searchByCreator: "Search by creator name or username",
+    searchCreators: "Search creators...",
+    search: "Search",
+    searchFailed: "Search failed. Please try again.",
+    noCreatorFound: "No creator found for: ",
+
+    // Creator
+    creator: "Creator",
+    creatorBio: "Creator bio",
+    verified: "Verified",
+    noBioAvailable: "No bio available.",
+
+    // Navigation
+    home: "Home",
+    discover: "Discover",
+    saved: "Saved",
+    profile: "Profile",
+
+    // Profile
+    yourProfile: "Your Profile",
+    welcomeCreatorHub: "Welcome to XX CreatorHub",
+    liked: "Liked",
+    unlocked: "Unlocked",
+    posts: "Posts",
+    likes: "Likes",
+
+    // Creator posts
+    loadingPosts: "Loading posts...",
+    pleaseWait: "Please wait.",
+    unableToLoadPosts: "Unable to load posts",
+    pleaseTryAgainLater: "Please try again later.",
+
+    // Post actions
+    like: "Like",
+    comments: "Comments",
+    share: "Share",
+    save: "Save",
+    likesCount: "likes",
+
+    // Exclusive content
+    exclusiveContent: "Exclusive Content",
+    watchSponsoredToUnlock: "Watch a short sponsored video to unlock this content.",
+    continue: "Continue",
+    closeWindowAnytime: "You can close this window at any time.",
+    seeExclusiveContent: "See Exclusive Content",
+    noExclusiveContent: "No exclusive content link found.",
+    adCouldNotLoad: "The ad could not be loaded. Please try again.",
+
+    // Save errors
+    postIdNotFound: "Post ID not found",
+    unableToSavePost: "Unable to save post: ",
+    unableToUnsavePost: "Unable to unsave post: ",
+
+    // Other
+    user: "User",
+    creatorPhoto: "CREATOR PHOTO",
+    creatorPost: "Creator post",
+    savedPost: "Saved post",
+    checkOutCreatorPost: "Check out this creator post!",
+    preparingContent: "Preparing your content...",
+    pleaseWaitMoment: "Please wait a moment",
+    loadingCreators: "Loading creators...",
+    loadingLatestPosts: "Please wait while we load the latest posts.",
+    discoverMoreCreators: "Discover more creators",
+    seeAll: "See all",
+    featured: "FEATURED",
+    explore: "EXPLORE",
+    views: "Views",
+    rating: "Rating",
+    exclusiveContentAvailable: "Exclusive content available",
+    watchShortAd: "Watch a short ad to unlock",
+    forYou: "For You",
+    trending: "Trending",
+    new: "New"
 },
     fr: {
     noPosts: "Aucune publication pour le moment",
