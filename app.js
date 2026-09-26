@@ -306,13 +306,98 @@ en: {
     trending: "Tendencias",
     new: "Nuevo"
 },
-de: {
+    de: {
     noPosts: "Noch keine Beiträge",
     newPosts: "Neue Beiträge von Creators werden hier angezeigt.",
     noSavedPosts: "Keine gespeicherten Beiträge",
     savedPosts: "Beiträge, die du speicherst, werden hier angezeigt.",
-sendComment: "Kommentar senden",
-writeComment: "Kommentar schreiben..."
+
+    sendComment: "Kommentar senden",
+    writeComment: "Kommentar schreiben...",
+
+    // Comments
+    loadingComments: "Kommentare werden geladen...",
+    unableToLoadComments: "Kommentare konnten nicht geladen werden.",
+    noCommentsYet: "Noch keine Kommentare.",
+    beFirstToComment: "Sei der Erste, der kommentiert!",
+    unableToPostComment: "Kommentar konnte nicht veröffentlicht werden: ",
+
+    // Search
+    findCreator: "Creator finden",
+    searchByCreator: "Nach Name oder Benutzername des Creators suchen",
+    searchCreators: "Creator suchen...",
+    search: "Suchen",
+    searchFailed: "Suche fehlgeschlagen. Bitte versuche es erneut.",
+    noCreatorFound: "Kein Creator gefunden für: ",
+
+    // Creator
+    creator: "Creator",
+    creatorBio: "Bio des Creators",
+    verified: "Verifiziert",
+    noBioAvailable: "Keine Bio verfügbar.",
+
+    // Navigation
+    home: "Startseite",
+    discover: "Entdecken",
+    saved: "Gespeichert",
+    profile: "Profil",
+
+    // Profile
+    yourProfile: "Dein Profil",
+    welcomeCreatorHub: "Willkommen bei XX CreatorHub",
+    liked: "Gefällt mir",
+    unlocked: "Freigeschaltet",
+    posts: "Beiträge",
+    likes: "Likes",
+
+    // Creator posts
+    loadingPosts: "Beiträge werden geladen...",
+    pleaseWait: "Bitte warten.",
+    unableToLoadPosts: "Beiträge konnten nicht geladen werden",
+    pleaseTryAgainLater: "Bitte versuche es später erneut.",
+
+    // Post actions
+    like: "Gefällt mir",
+    comments: "Kommentare",
+    share: "Teilen",
+    save: "Speichern",
+    likesCount: "Likes",
+
+    // Exclusive content
+    exclusiveContent: "Exklusive Inhalte",
+    watchSponsoredToUnlock: "Sieh dir ein kurzes gesponsertes Video an, um diesen Inhalt freizuschalten.",
+    continue: "Weiter",
+    closeWindowAnytime: "Du kannst dieses Fenster jederzeit schließen.",
+    seeExclusiveContent: "Exklusive Inhalte ansehen",
+    noExclusiveContent: "Kein Link zu exklusiven Inhalten gefunden.",
+    adCouldNotLoad: "Die Werbung konnte nicht geladen werden. Bitte versuche es erneut.",
+
+    // Save errors
+    postIdNotFound: "Beitrags-ID nicht gefunden",
+    unableToSavePost: "Beitrag konnte nicht gespeichert werden: ",
+    unableToUnsavePost: "Beitrag konnte nicht aus den gespeicherten Beiträgen entfernt werden: ",
+
+    // Other
+    user: "Benutzer",
+    creatorPhoto: "CREATOR-FOTO",
+    creatorPost: "Beitrag des Creators",
+    savedPost: "Gespeicherter Beitrag",
+    checkOutCreatorPost: "Schau dir diesen Beitrag des Creators an!",
+    preparingContent: "Deine Inhalte werden vorbereitet...",
+    pleaseWaitMoment: "Bitte einen Moment warten",
+    loadingCreators: "Creator werden geladen...",
+    loadingLatestPosts: "Bitte warte, während die neuesten Beiträge geladen werden.",
+    discoverMoreCreators: "Weitere Creator entdecken",
+    seeAll: "Alle ansehen",
+    featured: "EMPFOHLEN",
+    explore: "ENTDECKEN",
+    views: "Aufrufe",
+    rating: "Bewertung",
+    exclusiveContentAvailable: "Exklusive Inhalte verfügbar",
+    watchShortAd: "Kurze Werbung ansehen, um freizuschalten",
+    forYou: "Für dich",
+    trending: "Im Trend",
+    new: "Neu"
 },
 ru: {
     noPosts: "Пока нет публикаций",
