@@ -1062,7 +1062,7 @@ if (searchSubmit) {
 
             if (nameElement) {
                 nameElement.textContent =
-                    creator.name || "Creator";
+                    creator.name || t.creator;
             }
 
             if (usernameElement) {
