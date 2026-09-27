@@ -1793,7 +1793,7 @@ console.log("Saved post IDs:", savedPostIds);
 
         const creator = post.creators || {};
 
-        const name = creator.name || "Creator";
+        const name = creator.name || t.creator;
         const username = creator.username || "";
         const photo = creator.photo_url || "";
         const likes = Number(post.likes || 0).toLocaleString();
