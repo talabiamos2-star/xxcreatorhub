@@ -18,8 +18,8 @@
 <body>
 <div id="exclusive-loading" class="exclusive-loading">
     <div class="loading-spinner"></div>
-    <h2>Preparing your content...</h2>
-    <p>Please wait a moment</p>
+    <h2 data-i18n="preparingContent">Preparing your content...</h2>
+    <p data-i18n="pleaseWaitMoment">Please wait a moment</p>
 </div>
 <div class="app">
 
@@ -48,7 +48,7 @@
         <button
             class="profile-button"
             data-page="profile"
-            aria-label="Profile"
+            aria-label="Profile" data-i18n-aria="profile"
         >
             U
         </button>
@@ -66,7 +66,7 @@
         <section class="hero">
 
             <div class="featured-label">
-                ✨ FEATURED
+                ✨ <span data-i18n="featured">FEATURED</span>
             </div>
 
             <h1>
@@ -88,13 +88,13 @@
             <div class="creator-image">
 
                 <div class="image-placeholder">
-                    CREATOR PHOTO
+                    <span data-i18n="creatorPhoto">CREATOR PHOTO</span>
                 </div>
 
                 <div class="image-overlay"></div>
 
                 <div class="verified">
-                    ✓ Verified
+                    ✓ <span data-i18n="verified">Verified</span>
                 </div>
 
                 <div class="creator-info">
@@ -118,17 +118,17 @@
 
                     <div>
                         <strong>12.8K</strong>
-                        <span>Views</span>
+                        <span data-i18n="views">Views</span>
                     </div>
 
                     <div>
                         <strong>4.9</strong>
-                        <span>Rating</span>
+                        <span data-i18n="rating">Rating</span>
                     </div>
 
                     <div>
                         <strong>28</strong>
-                        <span>Posts</span>
+                        <span data-i18n="posts">Posts</span>
                     </div>
 
                 </div>
@@ -138,7 +138,7 @@
 
 
                 <p class="unlock-text">
-                    🔒 Exclusive content available
+                    🔒 <span data-i18n="exclusiveContentAvailable">Exclusive content available</span>
                 </p>
 
 
@@ -147,12 +147,12 @@
     data-action="exclusive"
     data-exclusive-url="https://nudostar.com/"
 >
-    🔒 See Exclusive Content
+    🔒 <span data-i18n="seeExclusiveContent">See Exclusive Content</span>
                 </button>
 
 
                 <p class="reward-text">
-                    Watch a short ad to unlock
+                    <span data-i18n="watchShortAd">Watch a short ad to unlock</span>
                 </p>
 
             </div>
@@ -167,14 +167,14 @@
     <div class="section-title">
 
         <h2>
-            Discover
-        </h2>
+            <span data-i18n="discover">Discover</span>
+                    </h2>
 
         <button
             class="see-all"
             data-page="discover"
         >
-            See all
+            <span data-i18n="seeAll">See all</span>
         </button>
 
     </div>
@@ -189,7 +189,7 @@
         <div class="discover-more" data-page="discover">
 
             <span>
-                Discover more creators
+                <span data-i18n="discoverMoreCreators">Discover more creators</span>
             </span>
 
             <span class="discover-arrow">
@@ -211,11 +211,11 @@
     <div>
 
         <div class="featured-label">
-            EXPLORE
+            <span data-i18n="explore">EXPLORE</span>
         </div>
 
         <h1>
-            Discover
+            <span data-i18n="discover">Discover</span>
         </h1>
 
     </div>
@@ -233,6 +233,7 @@
         <button
             class="search-button"
             aria-label="Search"
+            data-i18n-aria="search"
         >
             🔍
         </button>
@@ -247,15 +248,15 @@
         <div class="feed-filters">
 
             <button class="filter active">
-                For You
+                <span data-i18n="forYou">For You</span>
             </button>
 
             <button class="filter">
-                Trending
+                <span data-i18n="trending">Trending</span>
             </button>
 
             <button class="filter">
-                New
+                <span data-i18n="new">New</span>
             </button>
 
         </div>
@@ -270,11 +271,11 @@
         </div>
 
         <h2>
-            Loading creators...
+            <span data-i18n="loadingCreators">Loading creators...</span>
         </h2>
 
         <p>
-            Please wait while we load the latest posts.
+            <span data-i18n="loadingLatestPosts">Please wait while we load the latest posts.</span>
         </p>
     </div>
 
@@ -337,8 +338,7 @@
         >
             ←
         </button>
-
-        <h1 data-i18n="creator">Creator</h1>
+                <h1 data-i18n="creator">Creator</h1>
 
         <div></div>
 
@@ -407,7 +407,7 @@
     <!-- CREATOR POSTS -->
 
     <div class="creator-posts-title">
-        <h2>Posts</h2>
+        <h2 data-i18n="posts">Posts</h2>
     </div>
 
     <div id="creator-posts-container">
@@ -506,8 +506,7 @@
             class="nav-button"
             data-page="saved"
         >
-
-            <span>
+                        <span>
                 ♡
             </span>
 
@@ -671,6 +670,4 @@ data-i18n-placeholder="writeComment"
 <!-- JAVASCRIPT -->
 <script src="app.js?v=3"></script>
 </body>
-    </html>
-
-                    
+            </html>
