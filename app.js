@@ -1093,7 +1093,7 @@ document.addEventListener("click", (event) => {
 
     const caption =
         post.querySelector(".caption")?.textContent.trim() ||
-        "Check out this creator post!";
+        t.checkOutCreatorPost;
 
     const shareUrl =
     "https://t.me/XXCreatorhub_bot?startapp=post_" +
