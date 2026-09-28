@@ -1720,237 +1720,108 @@ async function loadHomeDiscoverPreview() {
 loadHomeDiscoverPreview();
 // ===============================
 
-// ===============================
 // SUPABASE POSTS
 // ===============================
 
 async function loadPosts(isRefresh = false) {
-    const postsContainer = document.getElementById("posts-container");
+
+    const postsContainer =
+        document.getElementById("posts-container");
 
     if (!postsContainer) return;
+
     const { data: savedPosts, error: savedPostsError } =
-    await supabaseClient
-        .from("saved_posts")
-        .select("post_id")
-        .eq("user_id", getCurrentUserId());
-    const { data: likedPosts, error: likedPostsError } =
-    await supabaseClient
-        .from("post_likes")
-        .select("post_id")
-        .eq("user_id", getCurrentUserId());
-    const likedPostIds = new Set(
-    (likedPosts || []).map(
-        item => String(item.post_id)
-    )
-);
-
-if (savedPostsError) {
-    console.error("Saved posts error:", savedPostsError);
-   
-}
-
-const savedPostIds = new Set(
-    (savedPosts || []).map(item => String(item.post_id))
-);
-
-    
-    console.log("Saved posts:", savedPosts);
-console.log("Saved post IDs:", savedPostIds);
-    
-    const { data, error } = await supabaseClient
-        .from("posts")
-        .select(`
-            id,
-            created_at,
-            creator_id,
-            image_url,
-            caption,
-            likes,
-            exclusive_url,
-            creators (
-                id,
-                name,
-                username,
-                photo_url,
-                bio,
-                verified
-            )
-        `)
-        .order("created_at", { ascending: false });
-    if (isRefresh && data) {
-    data.sort(() => Math.random() - 0.5);
-            }
-    if (error) {
-        console.error("Supabase posts error:", error);
-
-        postsContainer.innerHTML = `
-            <div class="empty-page">
-                <div class="empty-icon">⚠️</div>
-                <h2>Unable to load posts</h2>
-                <p>Please try again later.</p>
-            </div>
-        `;
-
-        return;
-    }
-
-    if (!data || data.length === 0) {
-        postsContainer.innerHTML = `
-            <div class="empty-page">
-                <div class="empty-icon">✨</div>
-                <h2>${t.noPosts}</h2>
-                <p>${t.newPosts}</p>
-            </div>
-        `;
-
-        return;
-    }
-
-    postsContainer.innerHTML = data.map(post => {
-
-        const creator = post.creators || {};
-
-        const name = creator.name || t.creator;
-        const username = creator.username || "";
-        const photo = creator.photo_url || "";
-        const likes = Number(post.likes || 0).toLocaleString();
-        const caption = post.caption || "";
-        
-        return `
-            
-<article class="post" data-post-id="${post.id}">
-                <div class="post-header">
-
-                    <div
-    class="avatar creator-click"
-    data-creator-id="${creator.id}"
->
-    ${photo
-        ? `<img src="${photo}" alt="${name}">`
-        : name.charAt(0).toUpperCase()
-    }
-</div>
-
-                    <div
-    class="creator-details creator-click"
-    data-creator-id="${creator.id}"
->
-
-    <strong>
-        ${name}${creator.verified ? " ✓" : ""}
-    </strong>
-
-    <small>
-        ${username}
-    </small>
-
-</div>
-
-                    <button class="more-button">
-                        •••
-                    </button>
-
-                </div>
-
-                <div class="post-image">
-                    ${post.image_url
-                        ? `<img src="${post.image_url}" alt="${caption}">`
-                        : "CREATOR PHOTO"
-                    }
-                </div>
-
-                <div class="post-actions">
-
-                    <button
-    class="like-button ${likedPostIds.has(String(post.id)) ? "liked" : ""}"
-    aria-label="Like"
->
-    ${likedPostIds.has(String(post.id)) ? "♥" : "♡"}
-</button>
-                    <button class="comment-button" aria-label="Comments">
-    💬
-</button>
-
-                    <button class="share-button" aria-label="Share">
-                        ↗
-                    </button>
-
-                    <button
-    class="save-button ${savedPostIds.has(String(post.id)) ? "saved" : ""}"
-    aria-label="Save"
->
-    ${savedPostIds.has(String(post.id)) ? "★" : "♧"}
-</button>
-                </div>
-
-                <div class="post-content">
-
-                    <strong class="likes-count">
-                        ${likes} likes
-                    </strong>
-
-                    <p class="caption">
-                        ${caption}
-                    </p>
-
-                    <small class="post-time">
-                        ${new Date(post.created_at).toLocaleDateString()}
-                    </small>
-
-                    <button
-                        class="exclusive-button"
-                        data-action="exclusive"
-                        data-exclusive-url="exclusive.html?creator=${post.creator_id}"
-                    >
-                        🔒 See Exclusive Content
-                    </button>
-
-                </div>
-
-            </article>
-        `;
-    }).join("");
-}
-// ---------- LOAD SAVED POSTS ----------
-
-async function loadSavedPosts() {
-
-    const container =
-        document.getElementById("saved-posts-container");
-
-    if (!container) return;
-
-    const { data: savedPosts, error } =
         await supabaseClient
             .from("saved_posts")
             .select("post_id")
             .eq("user_id", getCurrentUserId());
 
+    const { data: likedPosts, error: likedPostsError } =
+        await supabaseClient
+            .from("post_likes")
+            .select("post_id")
+            .eq("user_id", getCurrentUserId());
+
+    const likedPostIds = new Set(
+        (likedPosts || []).map(
+            item => String(item.post_id)
+        )
+    );
+
+    if (savedPostsError) {
+        console.error(
+            "Saved posts error:",
+            savedPostsError
+        );
+    }
+
+    const savedPostIds = new Set(
+        (savedPosts || []).map(
+            item => String(item.post_id)
+        )
+    );
+
+    console.log(
+        "Saved posts:",
+        savedPosts
+    );
+
+    console.log(
+        "Saved post IDs:",
+        savedPostIds
+    );
+
+    const { data, error } =
+        await supabaseClient
+            .from("posts")
+            .select(`
+                id,
+                created_at,
+                creator_id,
+                image_url,
+                caption,
+                likes,
+                exclusive_url,
+                creators (
+                    id,
+                    name,
+                    username,
+                    photo_url,
+                    bio,
+                    verified
+                )
+            `)
+            .order(
+                "created_at",
+                { ascending: false }
+            );
+
+    if (isRefresh && data) {
+        data.sort(
+            () => Math.random() - 0.5
+        );
+    }
+
     if (error) {
 
         console.error(
-            "Saved posts loading error:",
+            "Supabase posts error:",
             error
         );
 
-        return;
-    }
-
-    if (!savedPosts || savedPosts.length === 0) {
-
-        container.innerHTML = `
+        postsContainer.innerHTML = `
             <div class="empty-page">
 
                 <div class="empty-icon">
-                    ♡
+                    ⚠️
                 </div>
 
                 <h2>
-                    No saved posts
+                    ${t.unableToLoadPosts}
                 </h2>
 
                 <p>
-                    Posts you save will appear here.
+                    ${t.pleaseTryAgainLater}
                 </p>
 
             </div>
@@ -1959,49 +1830,54 @@ async function loadSavedPosts() {
         return;
     }
 
-    const savedIds =
-        savedPosts.map(item => item.post_id);
+    if (!data || data.length === 0) {
 
-    const { data: posts, error: postsError } =
-        await supabaseClient
-            .from("posts")
-            .select(`
-                id,
-                created_at,
-                image_url,
-                caption,
-                likes,
-                creator_id,
-                creators (
-                    id,
-                    name,
-                    username,
-                    photo_url,
-                    verified
-                )
-            `)
-            .in("id", savedIds)
-            .order("created_at", {
-                ascending: false
-            });
+        postsContainer.innerHTML = `
+            <div class="empty-page">
 
-    if (postsError) {
+                <div class="empty-icon">
+                    ✨
+                </div>
 
-        console.error(
-            "Saved post details error:",
-            postsError
-        );
+                <h2>
+                    ${t.noPosts}
+                </h2>
+
+                <p>
+                    ${t.newPosts}
+                </p>
+
+            </div>
+        `;
 
         return;
     }
 
-    container.innerHTML =
-        posts.map(post => {
+    postsContainer.innerHTML =
+        data.map(post => {
 
             const creator =
                 post.creators || {};
 
+            const name =
+                creator.name || t.creator;
+
+            const username =
+                creator.username || "";
+
+            const photo =
+                creator.photo_url || "";
+
+            const likes =
+                Number(
+                    post.likes || 0
+                ).toLocaleString();
+
+            const caption =
+                post.caption || "";
+
             return `
+
                 <article
                     class="post"
                     data-post-id="${post.id}"
@@ -2009,70 +1885,161 @@ async function loadSavedPosts() {
 
                     <div class="post-header">
 
-                        <div class="avatar">
+                        <div
+                            class="avatar creator-click"
+                            data-creator-id="${creator.id}"
+                        >
                             ${
-                                creator.photo_url
+                                photo
                                     ? `<img
-                                        src="${creator.photo_url}"
-                                        alt="${creator.name || "Creator"}"
+                                        src="${photo}"
+                                        alt="${name}"
                                       >`
-                                    : (creator.name || "C")
+                                    : name
                                         .charAt(0)
                                         .toUpperCase()
                             }
                         </div>
 
-                        <div class="creator-details">
+
+                        <div
+                            class="creator-details creator-click"
+                            data-creator-id="${creator.id}"
+                        >
 
                             <strong>
-                                ${creator.name || "Creator"}
-                                ${creator.verified ? " ✓" : ""}
+                                ${name}${creator.verified ? " ✓" : ""}
                             </strong>
 
                             <small>
-                                ${creator.username || ""}
+                                ${username}
                             </small>
 
                         </div>
 
+
+                        <button class="more-button">
+                            •••
+                        </button>
+
                     </div>
+
 
                     <div class="post-image">
 
                         ${
                             post.image_url
+
                                 ? `<img
                                     src="${post.image_url}"
-                                    alt="${post.caption || "Saved post"}"
+                                    alt="${caption}"
                                   >`
-                                : "CREATOR PHOTO"
+
+                                : t.creatorPhoto
                         }
 
                     </div>
 
+
+                    <div class="post-actions">
+
+                        <button
+                            class="like-button ${
+                                likedPostIds.has(
+                                    String(post.id)
+                                )
+                                    ? "liked"
+                                    : ""
+                            }"
+                            aria-label="${t.like}"
+                        >
+                            ${
+                                likedPostIds.has(
+                                    String(post.id)
+                                )
+                                    ? "♥"
+                                    : "♡"
+                            }
+                        </button>
+
+
+                        <button
+                            class="comment-button"
+                            aria-label="${t.comments}"
+                        >
+                            💬
+                        </button>
+
+
+                        <button
+                            class="share-button"
+                            aria-label="${t.share}"
+                        >
+                            ↗
+                        </button>
+
+
+                        <button
+                            class="save-button ${
+                                savedPostIds.has(
+                                    String(post.id)
+                                )
+                                    ? "saved"
+                                    : ""
+                            }"
+                            aria-label="${t.save}"
+                        >
+                            ${
+                                savedPostIds.has(
+                                    String(post.id)
+                                )
+                                    ? "★"
+                                    : "♧"
+                            }
+                        </button>
+
+                    </div>
+
+
                     <div class="post-content">
 
                         <strong class="likes-count">
-                            ${Number(post.likes || 0).toLocaleString()} likes
+                            ${likes} ${t.likesCount}
                         </strong>
 
                         <p class="caption">
-                            ${post.caption || ""}
+                            ${caption}
                         </p>
 
                         <small class="post-time">
-                            ${new Date(
-                                post.created_at
-                            ).toLocaleDateString()}
+                            ${
+                                new Date(
+                                    post.created_at
+                                ).toLocaleDateString()
+                            }
                         </small>
+
+
+                        <button
+                            class="exclusive-button"
+                            data-action="exclusive"
+                            data-exclusive-url="exclusive.html?creator=${post.creator_id}"
+                        >
+                            🔒 ${t.seeExclusiveContent}
+                        </button>
 
                     </div>
 
                 </article>
+
             `;
 
         }).join("");
 }
+
+
+// ---------- LOAD SAVED POSTS ----------
+    
 // ---------- PROFILE STATS ----------
 
 async function loadProfileStats() {
