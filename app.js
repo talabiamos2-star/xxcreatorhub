@@ -909,9 +909,7 @@ if (currentExclusiveUrl) {
                 error
             );
 
-            alert(
-                "The ad could not be loaded. Please try again."
-            );
+            alert(t.adCouldNotLoad);
 
         }
 
