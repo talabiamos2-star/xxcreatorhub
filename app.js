@@ -2164,11 +2164,11 @@ document.addEventListener("click", async (event) => {
 
     if (!creator) return;
 
-    // Creator name
+        // Creator name
     document.getElementById(
         "creator-profile-name"
     ).textContent =
-        creator.name || "Creator";
+        creator.name || t.creator;
 
 
     // Username
@@ -2182,7 +2182,7 @@ document.addEventListener("click", async (event) => {
     document.getElementById(
         "creator-profile-bio"
     ).textContent =
-        creator.bio || "No bio available.";
+        creator.bio || t.noBioAvailable;
 
 
     // Verified
@@ -2215,19 +2215,18 @@ document.addEventListener("click", async (event) => {
         avatar.innerHTML = `
             <img
                 src="${creator.photo_url}"
-                alt="${creator.name || "Creator"}"
+                alt="${creator.name || t.creator}"
             >
         `;
 
     } else {
 
         avatar.textContent =
-            (creator.name || "C")
+            (creator.name || t.creator)
                 .charAt(0)
                 .toUpperCase();
 
-    }
-
+}
 });
 // ===============================
 // LOAD CREATOR POSTS
