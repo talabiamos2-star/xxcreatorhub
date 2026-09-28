@@ -2437,8 +2437,8 @@ async function loadCreatorPosts(creatorId) {
     container.innerHTML = `
         <div class="empty-page">
             <div class="empty-icon">✨</div>
-            <h2>Loading posts...</h2>
-            <p>Please wait.</p>
+            <h2>${t.loadingPosts}</h2>
+            <p>${t.pleaseWait}</p>
         </div>
     `;
 
@@ -2470,8 +2470,8 @@ async function loadCreatorPosts(creatorId) {
         container.innerHTML = `
             <div class="empty-page">
                 <div class="empty-icon">⚠️</div>
-                <h2>Unable to load posts</h2>
-                <p>Please try again later.</p>
+                <h2>${t.unableToLoadPosts}</h2>
+                <p>${t.pleaseTryAgainLater}</p>
             </div>
         `;
 
@@ -2485,7 +2485,7 @@ async function loadCreatorPosts(creatorId) {
             <div class="empty-page">
                 <div class="empty-icon">✨</div>
                 <h2>${t.noPosts}</h2>
-            <p>${t.newPosts}</p>  
+                <p>${t.newPosts}</p>
             </div>
         `;
 
@@ -2503,9 +2503,9 @@ async function loadCreatorPosts(creatorId) {
                     ${post.image_url
                         ? `<img
                             src="${post.image_url}"
-                            alt="${post.caption || "Creator post"}"
+                            alt="${post.caption || t.creatorPost}"
                         >`
-                        : "CREATOR PHOTO"
+                        : t.creatorPhoto
                     }
 
                 </div>
@@ -2515,28 +2515,28 @@ async function loadCreatorPosts(creatorId) {
 
                     <button
                         class="like-button"
-                        aria-label="Like"
+                        aria-label="${t.like}"
                     >
                         ♡
                     </button>
 
                     <button
                         class="comment-button"
-                        aria-label="Comments"
+                        aria-label="${t.comments}"
                     >
                         💬
                     </button>
 
                     <button
                         class="share-button"
-                        aria-label="Share"
+                        aria-label="${t.share}"
                     >
                         ↗
                     </button>
 
                     <button
                         class="save-button"
-                        aria-label="Save"
+                        aria-label="${t.save}"
                     >
                         ♧
                     </button>
@@ -2547,7 +2547,7 @@ async function loadCreatorPosts(creatorId) {
                 <div class="post-content">
 
                     <strong class="likes-count">
-                        ${Number(post.likes || 0).toLocaleString()} likes
+                        ${Number(post.likes || 0).toLocaleString()} ${t.likesCount}
                     </strong>
 
                     <p class="caption">
@@ -2598,6 +2598,7 @@ async function loadCreatorPosts(creatorId) {
     }
 
         }
+                    
 document
     .getElementById("back-to-discover")
     ?.addEventListener("click", () => {
