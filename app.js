@@ -647,8 +647,9 @@ document.addEventListener("click", async (event) => {
         button.textContent = "♥";
 
         likesElement.textContent =
-            newLikes.toLocaleString() +
-            " likes";
+    newLikes.toLocaleString() +
+    " " +
+    t.likesCount;
 
     }
 
@@ -698,8 +699,9 @@ document.addEventListener("click", async (event) => {
         button.textContent = "♡";
 
         likesElement.textContent =
-            newLikes.toLocaleString() +
-            " likes";
+    newLikes.toLocaleString() +
+    " " +
+    t.likesCount;
     }
 
 });
