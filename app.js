@@ -620,9 +620,9 @@ document.addEventListener("click", async (event) => {
             );
 
            alert(
-    "Unable to like post: " +
+    t.unableToLikePost +
     error.message
-); 
+);
 
             return;
         }
