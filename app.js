@@ -897,11 +897,10 @@ if (currentExclusiveUrl) {
 
     window.location.href = currentExclusiveUrl;
 
+
 } else {
-    alert("No exclusive content link found.");
-}
-
-
+    alert(t.noExclusiveContent);
+    }
         } catch (error) {
 
             console.error(
