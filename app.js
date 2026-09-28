@@ -723,7 +723,7 @@ document.addEventListener("click", async (event) => {
 
 
     if (!postId) {
-        alert("Post ID not found");
+        alert(t.postIdNotFound);
         return;
     }
 
