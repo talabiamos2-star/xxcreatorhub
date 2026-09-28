@@ -95,9 +95,9 @@ en: {
 
     // Save errors
     postIdNotFound: "Post ID not found",
-    unableToSavePost: "Unable to save post: ",
-    unableToUnsavePost: "Unable to unsave post: ",
-
+unableToLikePost: "Unable to like post: ",
+unableToSavePost: "Unable to save post: ",
+unableToUnsavePost: "Unable to unsave post: ",
     // Other
     user: "User",
     creatorPhoto: "CREATOR PHOTO",
