@@ -620,8 +620,7 @@ document.addEventListener("click", async (event) => {
             );
 
             alert(
-                "LIKE ERROR: " +
-                error.message
+                t.unableToPostComment + error.message
             );
 
             return;
