@@ -2039,7 +2039,202 @@ async function loadPosts(isRefresh = false) {
 
 
 // ---------- LOAD SAVED POSTS ----------
-    
+    async function loadSavedPosts() {
+
+    const container =
+        document.getElementById(
+            "saved-posts-container"
+        );
+
+    if (!container) return;
+
+    const { data: savedPosts, error } =
+        await supabaseClient
+            .from("saved_posts")
+            .select("post_id")
+            .eq(
+                "user_id",
+                getCurrentUserId()
+            );
+
+    if (error) {
+
+        console.error(
+            "Saved posts loading error:",
+            error
+        );
+
+        return;
+    }
+
+    if (
+        !savedPosts ||
+        savedPosts.length === 0
+    ) {
+
+        container.innerHTML = `
+            <div class="empty-page">
+
+                <div class="empty-icon">
+                    ♡
+                </div>
+
+                <h2>
+                    ${t.noSavedPosts}
+                </h2>
+
+                <p>
+                    ${t.savedPosts}
+                </p>
+
+            </div>
+        `;
+
+        return;
+    }
+
+    const savedIds =
+        savedPosts.map(
+            item => item.post_id
+        );
+
+    const {
+        data: posts,
+        error: postsError
+    } = await supabaseClient
+        .from("posts")
+        .select(`
+            id,
+            created_at,
+            image_url,
+            caption,
+            likes,
+            creator_id,
+            creators (
+                id,
+                name,
+                username,
+                photo_url,
+                verified
+            )
+        `)
+        .in("id", savedIds)
+        .order(
+            "created_at",
+            {
+                ascending: false
+            }
+        );
+
+    if (postsError) {
+
+        console.error(
+            "Saved post details error:",
+            postsError
+        );
+
+        return;
+    }
+
+    container.innerHTML =
+        posts.map(post => {
+
+            const creator =
+                post.creators || {};
+
+            return `
+                <article
+                    class="post"
+                    data-post-id="${post.id}"
+                >
+
+                    <div class="post-header">
+
+                        <div class="avatar">
+                            ${
+                                creator.photo_url
+
+                                    ? `<img
+                                        src="${creator.photo_url}"
+                                        alt="${creator.name || t.creator}"
+                                      >`
+
+                                    : (
+                                        creator.name ||
+                                        t.creator
+                                    )
+                                        .charAt(0)
+                                        .toUpperCase()
+                            }
+                        </div>
+
+
+                        <div class="creator-details">
+
+                            <strong>
+                                ${creator.name || t.creator}
+                                ${
+                                    creator.verified
+                                        ? " ✓"
+                                        : ""
+                                }
+                            </strong>
+
+                            <small>
+                                ${creator.username || ""}
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="post-image">
+
+                        ${
+                            post.image_url
+
+                                ? `<img
+                                    src="${post.image_url}"
+                                    alt="${post.caption || t.savedPost}"
+                                  >`
+
+                                : t.creatorPhoto
+                        }
+
+                    </div>
+
+
+                    <div class="post-content">
+
+                        <strong class="likes-count">
+                            ${
+                                Number(
+                                    post.likes || 0
+                                ).toLocaleString()
+                            }
+                            ${t.likesCount}
+                        </strong>
+
+                        <p class="caption">
+                            ${post.caption || ""}
+                        </p>
+
+                        <small class="post-time">
+                            ${
+                                new Date(
+                                    post.created_at
+                                ).toLocaleDateString()
+                            }
+                        </small>
+
+                    </div>
+
+                </article>
+            `;
+
+        }).join("");
+                                            }
 // ---------- PROFILE STATS ----------
 
 async function loadProfileStats() {
