@@ -1430,6 +1430,7 @@ if (window.Telegram &&
 // ---------- START ----------
 
 showPage("home");
+
 async function loadRandomHomeCreator() {
 
     const { data, error } = await supabaseClient
@@ -1488,14 +1489,14 @@ async function loadRandomHomeCreator() {
         img.src = post.image_url;
 
         img.alt =
-            creator.name || "Creator";
+            creator.name || t.creator;
 
         imagePlaceholder.appendChild(img);
     }
 
     if (creatorName) {
         creatorName.textContent =
-            creator.name || "Creator";
+            creator.name || t.creator;
     }
 
     if (creatorUsername) {
@@ -1515,12 +1516,14 @@ async function loadRandomHomeCreator() {
 }
 
 async function loadSharedHomePost() {
-console.log(
-    "START PARAM:",
-    window.Telegram?.WebApp?.initDataUnsafe?.start_param,
-    new URLSearchParams(window.location.search)
-        .get("tgWebAppStartParam")
-);
+
+    console.log(
+        "START PARAM:",
+        window.Telegram?.WebApp?.initDataUnsafe?.start_param,
+        new URLSearchParams(window.location.search)
+            .get("tgWebAppStartParam")
+    );
+
     const startParam =
         window.Telegram?.WebApp?.initDataUnsafe?.start_param;
 
@@ -1550,6 +1553,7 @@ console.log(
             .single();
 
     if (error || !post) {
+
         console.error(
             "Shared post loading error:",
             error
@@ -1592,14 +1596,14 @@ console.log(
         img.src = post.image_url;
 
         img.alt =
-            creator.name || "Creator";
+            creator.name || t.creator;
 
         imagePlaceholder.appendChild(img);
     }
 
     if (creatorName) {
         creatorName.textContent =
-            creator.name || "Creator";
+            creator.name || t.creator;
     }
 
     if (creatorUsername) {
@@ -1652,16 +1656,22 @@ async function loadHomeDiscoverPreview() {
         .limit(2);
 
     if (error) {
+
         console.error(
             "Home discover preview error:",
             error
         );
+
         container.innerHTML = "";
+
         return;
     }
 
     if (!data || data.length === 0) {
-        container.innerHTML = `<p>${t.noPosts}</p>`;
+
+        container.innerHTML =
+            `<p>${t.noPosts}</p>`;
+
         return;
     }
 
@@ -1672,26 +1682,26 @@ async function loadHomeDiscoverPreview() {
 
         return `
             <article
-    class="home-preview-post"
-    data-page="discover"
-    onclick="showPage('discover')"
->
+                class="home-preview-post"
+                data-page="discover"
+                onclick="showPage('discover')"
+            >
 
                 <div class="home-preview-image">
                     ${
                         post.image_url
                             ? `<img
                                 src="${post.image_url}"
-                                alt="${post.caption || "Creator post"}"
+                                alt="${post.caption || t.creatorPost}"
                               >`
-                            : "CREATOR PHOTO"
+                            : t.creatorPhoto
                     }
                 </div>
 
                 <div class="home-preview-info">
 
                     <strong>
-                        ${creator.name || "Creator"}
+                        ${creator.name || t.creator}
                     </strong>
 
                     <span>
@@ -1708,6 +1718,8 @@ async function loadHomeDiscoverPreview() {
 }
 
 loadHomeDiscoverPreview();
+// ===============================
+
 // ===============================
 // SUPABASE POSTS
 // ===============================
