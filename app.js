@@ -746,7 +746,7 @@ document.addEventListener("click", async (event) => {
 
             console.error("Save error:", error);
 
-            alert("Unable to save post: " + error.message);
+            alert(t.unableToSavePost + error.message);
 
             button.disabled = false;
             return;
