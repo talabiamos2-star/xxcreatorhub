@@ -769,8 +769,7 @@ document.addEventListener("click", async (event) => {
 
             console.error("Unsave error:", error);
 
-            alert("Unable to unsave post: " + error.message);
-
+            alert(t.unableToUnsavePost + error.message);
             button.disabled = false;
             return;
         }
