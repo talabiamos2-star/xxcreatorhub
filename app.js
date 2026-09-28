@@ -1163,7 +1163,7 @@ document.addEventListener("click", async (event) => {
 
     commentsList.innerHTML = `
         <p class="comments-empty">
-            Loading comments...
+            ${t.loadingComments}
         </p>
     `;
 
@@ -1198,7 +1198,7 @@ async function loadComments(postId) {
 
         commentsList.innerHTML = `
             <p class="comments-empty">
-                Unable to load comments.
+                ${t.unableToLoadComments}
             </p>
         `;
 
@@ -1210,8 +1210,8 @@ async function loadComments(postId) {
 
         commentsList.innerHTML = `
             <p class="comments-empty">
-                No comments yet.<br>
-                Be the first to comment!
+                ${t.noCommentsYet}<br>
+                ${t.beFirstToComment}
             </p>
         `;
 
@@ -1221,26 +1221,32 @@ async function loadComments(postId) {
 
     commentsList.innerHTML =
         data.map(comment => {
-const commentTime =
-    new Date(comment.created_at).toLocaleString();
 
-return `
-    <div class="comment-item">
-        <div class="comment-body">
-            <strong class="comment-username">
-                User
-            </strong>
+            const commentTime =
+                new Date(
+                    comment.created_at
+                ).toLocaleString();
 
-            <p>
-                ${escapeComment(comment.comment)}
-            </p>
+            return `
+                <div class="comment-item">
+                    <div class="comment-body">
 
-            <small class="comment-time">
-                ${commentTime}
-            </small>
-        </div>
-    </div>
-`;
+                        <strong class="comment-username">
+                            ${t.user}
+                        </strong>
+
+                        <p>
+                            ${escapeComment(comment.comment)}
+                        </p>
+
+                        <small class="comment-time">
+                            ${commentTime}
+                        </small>
+
+                    </div>
+                </div>
+            `;
+
         }).join("");
 
 
@@ -1294,7 +1300,7 @@ if (submitComment) {
                 );
 
                 alert(
-                    "Unable to post comment: " +
+                    t.unableToPostComment +
                     error.message
                 );
 
@@ -1365,7 +1371,7 @@ if (closeComments) {
         }
     );
 
-}
+    }
 
 
 // ---------- ESCAPE COMMENT HTML ----------
