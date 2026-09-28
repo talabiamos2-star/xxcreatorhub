@@ -918,8 +918,6 @@ if (currentExclusiveUrl) {
     });
 
 }
-
-
 // ---------- SEARCH BUTTON ----------
 
 const searchButton =
@@ -1019,7 +1017,7 @@ if (searchSubmit) {
                 );
 
                 alert(
-                    "Search failed. Please try again."
+                    t.searchFailed
                 );
 
                 return;
@@ -1028,7 +1026,7 @@ if (searchSubmit) {
             if (!data || data.length === 0) {
 
                 alert(
-                    "No creator found for: " + term
+                    t.noCreatorFound + term
                 );
 
                 return;
@@ -1073,13 +1071,14 @@ if (searchSubmit) {
             if (bioElement) {
                 bioElement.textContent =
                     creator.bio ||
-                    "No bio available.";
+                    t.noBioAvailable;
             }
 
         }
     );
 
         }
+
 
 // ---------- SHARE BUTTONS ----------
 
