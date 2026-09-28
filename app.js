@@ -672,9 +672,9 @@ document.addEventListener("click", async (event) => {
             );
 
             alert(
-                "UNLIKE ERROR: " +
-                error.message
-            );
+    "Unable to unlike post: " +
+    error.message
+);
 
             return;
         }
