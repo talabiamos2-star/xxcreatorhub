@@ -96,6 +96,7 @@ en: {
     // Save errors
     postIdNotFound: "Post ID not found",
 unableToLikePost: "Unable to like post: ",
+unableToUnlikePost: "Unable to unlike post: ",
 unableToSavePost: "Unable to save post: ",
 unableToUnsavePost: "Unable to unsave post: ",
     // Other
