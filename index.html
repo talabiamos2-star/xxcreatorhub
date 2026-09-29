@@ -16,11 +16,21 @@
 </head>
 
 <body>
+
 <div id="exclusive-loading" class="exclusive-loading">
+
     <div class="loading-spinner"></div>
-    <h2 data-i18n="preparingContent">Preparing your content...</h2>
-    <p data-i18n="pleaseWaitMoment">Please wait a moment</p>
+
+    <h2 data-i18n="preparingContent">
+        Preparing your content...
+    </h2>
+
+    <p data-i18n="pleaseWaitMoment">
+        Please wait a moment
+    </p>
+
 </div>
+
 <div class="app">
 
     <!-- ================= HEADER ================= -->
@@ -38,7 +48,7 @@
                     XX CreatorHub
                 </div>
 
-                <div class="brand-subtitle">
+                <div class="brand-subtitle" data-i18n="brandSubtitle">
                     Discover creators
                 </div>
             </div>
@@ -48,7 +58,8 @@
         <button
             class="profile-button"
             data-page="profile"
-            aria-label="Profile" data-i18n-aria="profile"
+            aria-label="Profile"
+            data-i18n-aria="profile"
         >
             U
         </button>
@@ -70,11 +81,11 @@
             </div>
 
             <h1>
-                Discover your<br>
-                next favorite creator.
+                <span data-i18n="heroDiscover">Discover your</span><br>
+                <span data-i18n="heroNextCreator">next favorite creator.</span>
             </h1>
 
-            <p>
+            <p data-i18n="heroDescription">
                 Explore creators, photos and exclusive content.
             </p>
 
@@ -138,21 +149,29 @@
 
 
                 <p class="unlock-text">
-                    🔒 <span data-i18n="exclusiveContentAvailable">Exclusive content available</span>
+                    🔒
+                    <span data-i18n="exclusiveContentAvailable">
+                        Exclusive content available
+                    </span>
                 </p>
 
 
                 <button
-    class="watch-button"
-    data-action="exclusive"
-    data-exclusive-url="https://nudostar.com/"
->
-    🔒 <span data-i18n="seeExclusiveContent">See Exclusive Content</span>
+                    class="watch-button"
+                    data-action="exclusive"
+                    data-exclusive-url="https://nudostar.com/"
+                >
+                    🔒
+                    <span data-i18n="seeExclusiveContent">
+                        See Exclusive Content
+                    </span>
                 </button>
 
 
                 <p class="reward-text">
-                    <span data-i18n="watchShortAd">Watch a short ad to unlock</span>
+                    <span data-i18n="watchShortAd">
+                        Watch a short ad to unlock
+                    </span>
                 </p>
 
             </div>
@@ -164,32 +183,48 @@
 
         <section class="discover-preview">
 
-    <div class="section-title">
+            <div class="section-title">
 
-        <h2>
-            <span data-i18n="discover">Discover</span>
-                    </h2>
+                <h2>
+                    <span data-i18n="discover">
+                        Discover
+                    </span>
+                </h2>
 
-        <button
-            class="see-all"
-            data-page="discover"
-        >
-            <span data-i18n="seeAll">See all</span>
-        </button>
+                <button
+                    class="see-all"
+                    data-page="discover"
+                >
+                    <span data-i18n="seeAll">
+                        See all
+                    </span>
+                </button>
 
-    </div>
+            </div>
 
-    <div id="home-discover-posts">
-        Loading...
-    </div>
+
+            <div id="home-discover-posts">
+
+                <span data-i18n="loading">
+                    Loading...
+                </span>
+
+            </div>
 
         </section>
+
+
         <!-- DISCOVER MORE -->
 
-        <div class="discover-more" data-page="discover">
+        <div
+            class="discover-more"
+            data-page="discover"
+        >
 
             <span>
-                <span data-i18n="discoverMoreCreators">Discover more creators</span>
+                <span data-i18n="discoverMoreCreators">
+                    Discover more creators
+                </span>
             </span>
 
             <span class="discover-arrow">
@@ -197,6 +232,7 @@
             </span>
 
         </div>
+
     </main>
 
 
@@ -206,211 +242,84 @@
         id="discover-page"
         class="page"
     >
-<div class="discover-header">
 
-    <div>
-
-        <div class="featured-label">
-            <span data-i18n="explore">EXPLORE</span>
-        </div>
-
-        <h1>
-            <span data-i18n="discover">Discover</span>
-        </h1>
-
-    </div>
-
-    <div class="discover-actions">
-
-        <button
-            class="refresh-button"
-            id="refresh-posts"
-            aria-label="Refresh posts"
-        >
-            ↻
-        </button>
-
-        <button
-            class="search-button"
-            aria-label="Search"
-            data-i18n-aria="search"
-        >
-            🔍
-        </button>
-
-    </div>
-
-</div>
-        
-
-        <!-- FILTERS -->
-
-        <div class="feed-filters">
-
-            <button class="filter active">
-                <span data-i18n="forYou">For You</span>
-            </button>
-
-            <button class="filter">
-                <span data-i18n="trending">Trending</span>
-            </button>
-
-            <button class="filter">
-                <span data-i18n="new">New</span>
-            </button>
-
-        </div>
-
-<!-- ================= SUPABASE POSTS ================= -->
-
-<div id="posts-container">
-
-    <div class="empty-page">
-        <div class="empty-icon">
-            ✨
-        </div>
-
-        <h2>
-            <span data-i18n="loadingCreators">Loading creators...</span>
-        </h2>
-
-        <p>
-            <span data-i18n="loadingLatestPosts">Please wait while we load the latest posts.</span>
-        </p>
-    </div>
-
-</div>
-                
-
-    </main>
-
-
-   <!-- ================= SAVED ================= -->
-
-<main
-    id="saved-page"
-    class="page"
->
-
-    <div class="discover-header">
-
-        <div>
-            <div class="featured-label">
-                YOUR SAVES
-            </div>
-
-            <h1 data-i18n="saved">Saved</h1>
-        </div>
-
-    </div>
-
-    <div id="saved-posts-container">
-
-        <div class="empty-page">
-
-            <div class="empty-icon">
-                ♡
-            </div>
-
-            <h2 data-i18n="noSavedPosts">No saved posts</h2>
-
-<p data-i18n="savedPosts">Posts you save will appear here.</p>
-        </div>
-
-    </div>
-
-    </main>
-
-
-<!-- ================= CREATOR PROFILE ================= -->
-
-<main
-    id="creator-profile-page"
-    class="page"
->
-
-    <div class="creator-profile-header">
-
-        <button
-            id="back-to-discover"
-            class="profile-back-button"
-            aria-label="Back"
-        >
-            ←
-        </button>
-                <h1 data-i18n="creator">Creator</h1>
-
-        <div></div>
-
-    </div>
-
-
-    <!-- CREATOR INFORMATION -->
-
-    <section class="creator-profile-card">
-
-        <div
-            id="creator-profile-avatar"
-            class="creator-profile-avatar"
-        >
-            C
-        </div>
-
-        <h2 id="creator-profile-name">
-            Creator
-        </h2>
-
-        <p id="creator-profile-username">
-            @creator
-        </p>
-
-        <div
-            id="creator-profile-verified"
-            class="creator-profile-verified"
-        >
-            ✓ <span data-i18n="verified">Verified</span>
-        </div>
-
-        <p
-            id="creator-profile-bio"
-            class="creator-profile-bio"
-        >
-            <span data-i18n="creatorBio">Creator bio</span>
-        </p>
-
-
-        <!-- CREATOR STATS -->
-
-        <div class="creator-profile-stats">
+        <div class="discover-header">
 
             <div>
-                <strong id="creator-post-count">
-                    0
-                </strong>
 
-                <span data-i18n="posts">Posts</span>
+                <div class="featured-label">
+                    <span data-i18n="explore">
+                        EXPLORE
+                    </span>
+                </div>
+
+                <h1>
+                    <span data-i18n="discover">
+                        Discover
+                    </span>
+                </h1>
+
             </div>
 
-            <div>
-                <strong id="creator-total-likes">
-                    0
-                </strong>
 
-                <span data-i18n="likes">Likes</span>
-            </div>
+        <div class="discover-actions">
+
+            <button
+                class="refresh-button"
+                id="refresh-posts"
+                aria-label="Refresh posts"
+                data-i18n-aria="refreshPosts"
+            >
+                ↻
+            </button>
+
+            <button
+                class="search-button"
+                aria-label="Search"
+                data-i18n-aria="search"
+            >
+                🔍
+            </button>
 
         </div>
 
-    </section>
-
-
-    <!-- CREATOR POSTS -->
-
-    <div class="creator-posts-title">
-        <h2 data-i18n="posts">Posts</h2>
     </div>
 
-    <div id="creator-posts-container">
+
+    <!-- FILTERS -->
+
+    <div class="feed-filters">
+
+        <button class="filter active">
+
+            <span data-i18n="forYou">
+                For You
+            </span>
+
+        </button>
+
+        <button class="filter">
+
+            <span data-i18n="trending">
+                Trending
+            </span>
+
+        </button>
+
+        <button class="filter">
+
+            <span data-i18n="new">
+                New
+            </span>
+
+        </button>
+
+    </div>
+
+
+    <!-- ================= SUPABASE POSTS ================= -->
+
+    <div id="posts-container">
 
         <div class="empty-page">
 
@@ -418,56 +327,285 @@
                 ✨
             </div>
 
-            <h2 data-i18n="loadingPosts">Loading posts...</h2>
+            <h2>
+                <span data-i18n="loadingCreators">
+                    Loading creators...
+                </span>
+            </h2>
 
-            <p data-i18n="pleaseWait">Please wait.</p>
-
-        </div>
-
-    </div>
-
-</main>
-
-
-<!-- ================= USER PROFILE ================= -->
-
-<main
-    id="profile-page"
-    class="page"
->
-
-    <div class="profile-card">
-
-        <div class="profile-avatar">
-            U
-        </div>
-
-        <h2 data-i18n="yourProfile">Your Profile</h2>
-
-        <p data-i18n="welcomeCreatorHub">Welcome to XX CreatorHub</p>
-
-        <div class="profile-stats">
-
-       <div>
-    <strong id="profile-liked-count">0</strong>
-   <span data-i18n="liked">Liked</span>
-       </div>
-
-            <div>
-                <strong id="profile-saved-count">0</strong>
-                <span data-i18n="saved">Saved</span>
-            </div>
-
-            <div>
-                <strong id="profile-unlocked-count">0</strong>
-                <span data-i18n="unlocked">Unlocked</span>
-            </div>
+            <p>
+                <span data-i18n="loadingLatestPosts">
+                    Please wait while we load the latest posts.
+                </span>
+            </p>
 
         </div>
 
     </div>
 
-</main>
+
+                            </main>
+                                <!-- ================= SAVED ================= -->
+
+    <main
+        id="saved-page"
+        class="page"
+    >
+
+        <div class="discover-header">
+
+            <div>
+
+                <div class="featured-label">
+                    <span data-i18n="yourSaves">
+                        YOUR SAVES
+                    </span>
+                </div>
+
+                <h1 data-i18n="saved">
+                    Saved
+                </h1>
+
+            </div>
+
+        </div>
+
+
+        <div id="saved-posts-container">
+
+            <div class="empty-page">
+
+                <div class="empty-icon">
+                    ♡
+                </div>
+
+                <h2 data-i18n="noSavedPosts">
+                    No saved posts
+                </h2>
+
+                <p data-i18n="savedPosts">
+                    Posts you save will appear here.
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= CREATOR PROFILE ================= -->
+
+    <main
+        id="creator-profile-page"
+        class="page"
+    >
+
+        <div class="creator-profile-header">
+
+            <button
+                id="back-to-discover"
+                class="profile-back-button"
+                aria-label="Back"
+                data-i18n-aria="back"
+            >
+                ←
+            </button>
+
+            <h1 data-i18n="creator">
+                Creator
+            </h1>
+
+            <div></div>
+
+        </div>
+
+
+        <!-- CREATOR INFORMATION -->
+
+        <section class="creator-profile-card">
+
+            <div
+                id="creator-profile-avatar"
+                class="creator-profile-avatar"
+            >
+                C
+            </div>
+
+
+            <h2
+                id="creator-profile-name"
+                data-i18n="creator"
+            >
+                Creator
+            </h2>
+
+
+            <p id="creator-profile-username">
+                @creator
+            </p>
+
+
+            <div
+                id="creator-profile-verified"
+                class="creator-profile-verified"
+            >
+                ✓
+
+                <span data-i18n="verified">
+                    Verified
+                </span>
+
+            </div>
+
+
+            <p
+                id="creator-profile-bio"
+                class="creator-profile-bio"
+            >
+                <span data-i18n="creatorBio">
+                    Creator bio
+                </span>
+            </p>
+
+
+            <!-- CREATOR STATS -->
+
+            <div class="creator-profile-stats">
+
+                <div>
+
+                    <strong id="creator-post-count">
+                        0
+                    </strong>
+
+                    <span data-i18n="posts">
+                        Posts
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <strong id="creator-total-likes">
+                        0
+                    </strong>
+
+                    <span data-i18n="likes">
+                        Likes
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CREATOR POSTS -->
+
+        <div class="creator-posts-title">
+
+            <h2 data-i18n="posts">
+                Posts
+            </h2>
+
+        </div>
+
+
+        <div id="creator-posts-container">
+
+            <div class="empty-page">
+
+                <div class="empty-icon">
+                    ✨
+                </div>
+
+                <h2 data-i18n="loadingPosts">
+                    Loading posts...
+                </h2>
+
+                <p data-i18n="pleaseWait">
+                    Please wait.
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= USER PROFILE ================= -->
+
+    <main
+        id="profile-page"
+        class="page"
+    >
+
+        <div class="profile-card">
+
+            <div class="profile-avatar">
+                U
+            </div>
+
+
+            <h2 data-i18n="yourProfile">
+                Your Profile
+            </h2>
+
+
+            <p data-i18n="welcomeCreatorHub">
+                Welcome to XX CreatorHub
+            </p>
+
+
+            <div class="profile-stats">
+
+                <div>
+
+                    <strong id="profile-liked-count">
+                        0
+                    </strong>
+
+                    <span data-i18n="liked">
+                        Liked
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <strong id="profile-saved-count">
+                        0
+                    </strong>
+
+                    <span data-i18n="saved">
+                        Saved
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <strong id="profile-unlocked-count">
+                        0
+                    </strong>
+
+                    <span data-i18n="unlocked">
+                        Unlocked
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
 
 
     <!-- ================= BOTTOM NAV ================= -->
@@ -483,7 +621,9 @@
                 ⌂
             </span>
 
-            <small data-i18n="home">Home</small>
+            <small data-i18n="home">
+                Home
+            </small>
 
         </button>
 
@@ -497,7 +637,9 @@
                 ⌕
             </span>
 
-            <small data-i18n="discover">Discover</small>
+            <small data-i18n="discover">
+                Discover
+            </small>
 
         </button>
 
@@ -506,11 +648,14 @@
             class="nav-button"
             data-page="saved"
         >
-                        <span>
+
+            <span>
                 ♡
             </span>
 
-            <small data-i18n="saved">Saved</small>
+            <small data-i18n="saved">
+                Saved
+            </small>
 
         </button>
 
@@ -524,13 +669,14 @@
                 ●
             </span>
 
-            <small data-i18n="profile">Profile</small>
+            <small data-i18n="profile">
+                Profile
+            </small>
+
         </button>
 
-    </nav>
-
-
-    <!-- ================= UNLOCK MODAL ================= -->
+        </nav>
+            <!-- ================= UNLOCK MODAL ================= -->
 
     <div
         id="unlock-modal"
@@ -542,132 +688,490 @@
             <button
                 class="close-modal"
                 id="close-modal"
+                aria-label="Close"
+                data-i18n-aria="close"
             >
                 ×
             </button>
+
 
             <div class="modal-icon">
                 🔒
             </div>
 
-            <h2 data-i18n="exclusiveContent">Exclusive Content</h2>
 
-            <p data-i18n="watchSponsoredToUnlock">Watch a short sponsored video to unlock this content.</p>
+            <h2 data-i18n="exclusiveContent">
+                Exclusive Content
+            </h2>
+
+
+            <p data-i18n="watchSponsoredToUnlock">
+                Watch a short sponsored video to unlock this content.
+            </p>
+
 
             <button
-    class="unlock-modal-button"
-    id="unlock-button"
-    data-i18n="continue"
->
-    Continue
+                class="unlock-modal-button"
+                id="unlock-button"
+                data-i18n="continue"
+            >
+                Continue
             </button>
 
-            <small data-i18n="closeWindowAnytime">You can close this window at any time.</small>
+
+            <small data-i18n="closeWindowAnytime">
+                You can close this window at any time.
+            </small>
+
         </div>
 
     </div>
+
+
     <!-- ================= SEARCH MODAL ================= -->
 
-<div
-    id="search-modal"
-    class="search-modal"
->
+    <div
+        id="search-modal"
+        class="search-modal"
+    >
 
-    <div class="search-modal-box">
+        <div class="search-modal-box">
 
-        <button
-            id="close-search-modal"
-            class="search-modal-close"
-        >
-            ×
-        </button>
-
-        <div class="search-modal-icon">
-            🔍
-        </div>
-
-        <h2 data-i18n="findCreator">Find a creator</h2>
-
-        <p data-i18n="searchByCreator">Search by creator name or username</p>
-
-        <div class="creator-search-input-wrap">
-
-            <span>🔍</span>
-
-            <input
-                id="creator-search-input"
-                type="text"
-                placeholder="Search creators..."
-data-i18n-placeholder="searchCreators"
+            <button
+                id="close-search-modal"
+                class="search-modal-close"
+                aria-label="Close"
+                data-i18n-aria="close"
             >
+                ×
+            </button>
+
+
+            <div class="search-modal-icon">
+                🔍
+            </div>
+
+
+            <h2 data-i18n="findCreator">
+                Find a creator
+            </h2>
+
+
+            <p data-i18n="searchByCreator">
+                Search by creator name or username
+            </p>
+
+
+            <div class="creator-search-input-wrap">
+
+                <span>
+                    🔍
+                </span>
+
+
+                <input
+                    id="creator-search-input"
+                    type="text"
+                    placeholder="Search creators..."
+                    data-i18n-placeholder="searchCreators"
+                >
+
+            </div>
+
+
+            <button
+                id="creator-search-submit"
+                class="creator-search-submit"
+                data-i18n="search"
+            >
+                Search
+            </button>
 
         </div>
 
-        <button
-    id="creator-search-submit"
-    class="creator-search-submit"
-    data-i18n="search"
->
-    Search
-        </button>
-
     </div>
 
-</div>
-<!-- ================= COMMENTS PANEL ================= -->
 
-<div id="comments-panel" class="comments-panel">
-
-    <div class="comments-header">
-
-        <h2 data-i18n="comments">Comments</h2>
-
-        <button
-            id="close-comments"
-            class="close-comments"
-            aria-label="Close comments"
-        >
-            ×
-        </button>
-
-    </div>
+    <!-- ================= COMMENTS PANEL ================= -->
 
     <div
-        id="comments-list"
-        class="comments-list"
+        id="comments-panel"
+        class="comments-panel"
     >
-        <p class="comments-empty" data-i18n="loadingComments">Loading comments...</p>
-    </div>
 
-    <div class="comments-input-area">
+        <div class="comments-header">
 
-        <input
-            type="text"
-            id="comment-input"
-            placeholder="Write a comment..."
-data-i18n-placeholder="writeComment"
+            <h2 data-i18n="comments">
+                Comments
+            </h2>
+
+
+            <button
+                id="close-comments"
+                class="close-comments"
+                aria-label="Close comments"
+                data-i18n-aria="closeComments"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            id="comments-list"
+            class="comments-list"
         >
 
-        <button
-    id="submit-comment"
-    data-i18n-aria="sendComment"
-    aria-label="Send comment"
->
-    ➤
-        </button>
+            <p
+                class="comments-empty"
+                data-i18n="loadingComments"
+            >
+                Loading comments...
+            </p>
+
+        </div>
+
+
+        <div class="comments-input-area">
+
+            <input
+                type="text"
+                id="comment-input"
+                placeholder="Write a comment..."
+                data-i18n-placeholder="writeComment"
+            >
+
+
+            <button
+                id="submit-comment"
+                data-i18n-aria="sendComment"
+                aria-label="Send comment"
+            >
+                ➤
+            </button>
+
+        </div>
 
     </div>
+    <!-- SUPABASE -->
 
-        
-
-</div>
-<!-- SUPABASE -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+
 <!-- ADSGRAM -->
+
 <script src="https://sad.adsgram.ai/js/sad.min.js"></script>
+
+
+<!-- TELEGRAM -->
+
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+
 <!-- JAVASCRIPT -->
+
 <script src="app.js?v=3"></script>
+
+
+<!-- STATIC UI TRANSLATIONS -->
+
+<script>
+
+(function () {
+
+    const htmlTranslations = {
+
+        en: {
+
+            brandSubtitle:
+                "Discover creators",
+
+            heroDiscover:
+                "Discover your",
+
+            heroNextCreator:
+                "next favorite creator.",
+
+            heroDescription:
+                "Explore creators, photos and exclusive content.",
+
+            loading:
+                "Loading...",
+
+            refreshPosts:
+                "Refresh posts",
+
+            yourSaves:
+                "YOUR SAVES",
+
+            back:
+                "Back",
+
+            close:
+                "Close",
+
+            closeComments:
+                "Close comments"
+
+        },
+
+
+        fr: {
+
+            brandSubtitle:
+                "Découvrez des créateurs",
+
+            heroDiscover:
+                "Découvrez votre",
+
+            heroNextCreator:
+                "prochain créateur préféré.",
+
+            heroDescription:
+                "Découvrez des créateurs, des photos et du contenu exclusif.",
+
+            loading:
+                "Chargement...",
+
+            refreshPosts:
+                "Actualiser les publications",
+
+            yourSaves:
+                "VOS ENREGISTREMENTS",
+
+            back:
+                "Retour",
+
+            close:
+                "Fermer",
+
+            closeComments:
+                "Fermer les commentaires"
+
+        },
+
+
+        es: {
+
+            brandSubtitle:
+                "Descubre creadores",
+
+            heroDiscover:
+                "Descubre tu",
+
+            heroNextCreator:
+                "próximo creador favorito.",
+
+            heroDescription:
+                "Explora creadores, fotos y contenido exclusivo.",
+
+            loading:
+                "Cargando...",
+
+            refreshPosts:
+                "Actualizar publicaciones",
+
+            yourSaves:
+                "TUS GUARDADOS",
+
+            back:
+                "Atrás",
+
+            close:
+                "Cerrar",
+
+            closeComments:
+                "Cerrar los comentarios"
+
+        },
+
+
+        de: {
+
+            brandSubtitle:
+                "Entdecke Creator",
+
+            heroDiscover:
+                "Entdecke deinen",
+
+            heroNextCreator:
+                "nächsten Lieblings-Creator.",
+
+            heroDescription:
+                "Entdecke Creator, Fotos und exklusive Inhalte.",
+
+            loading:
+                "Wird geladen...",
+
+            refreshPosts:
+                "Beiträge aktualisieren",
+
+            yourSaves:
+                "DEINE SPEICHERUNGEN",
+
+            back:
+                "Zurück",
+
+            close:
+                "Schließen",
+
+            closeComments:
+                "Kommentare schließen"
+
+        },
+
+
+        ru: {
+
+            brandSubtitle:
+                "Откройте авторов",
+
+            heroDiscover:
+                "Откройте своего",
+
+            heroNextCreator:
+                "следующего любимого автора.",
+
+            heroDescription:
+                "Открывайте авторов, фотографии и эксклюзивный контент.",
+
+            loading:
+                "Загрузка...",
+
+            refreshPosts:
+                "Обновить публикации",
+
+            yourSaves:
+                "СОХРАНЁННОЕ",
+
+            back:
+                "Назад",
+
+            close:
+                "Закрыть",
+
+            closeComments:
+                "Закрыть комментарии"
+
+        }
+
+    };
+
+
+    const language =
+        window.Telegram?.WebApp?.initDataUnsafe?.user?.language_code ||
+        "en";
+
+
+    const languageCode =
+        language
+            .split("-")[0]
+            .toLowerCase();
+
+
+    const appTranslations =
+        typeof translations !== "undefined"
+            ? (
+                translations[languageCode] ||
+                translations.en
+            )
+            : {};
+
+
+    const staticTranslations =
+        htmlTranslations[languageCode] ||
+        htmlTranslations.en;
+
+
+    function translate(key) {
+
+        return (
+            staticTranslations[key] ??
+            appTranslations[key]
+        );
+
+    }
+
+
+    document.documentElement.lang =
+        languageCode;
+
+
+    document
+        .querySelectorAll("[data-i18n]")
+        .forEach((element) => {
+
+            const key =
+                element.getAttribute("data-i18n");
+
+            const value =
+                translate(key);
+
+
+            if (value !== undefined) {
+
+                element.textContent =
+                    value;
+
+            }
+
+        });
+
+
+    document
+        .querySelectorAll("[data-i18n-placeholder]")
+        .forEach((element) => {
+
+            const key =
+                element.getAttribute(
+                    "data-i18n-placeholder"
+                );
+
+            const value =
+                translate(key);
+
+
+            if (value !== undefined) {
+
+                element.setAttribute(
+                    "placeholder",
+                    value
+                );
+
+            }
+
+        });
+
+
+    document
+        .querySelectorAll("[data-i18n-aria]")
+        .forEach((element) => {
+
+            const key =
+                element.getAttribute(
+                    "data-i18n-aria"
+                );
+
+            const value =
+                translate(key);
+
+
+            if (value !== undefined) {
+
+                element.setAttribute(
+                    "aria-label",
+                    value
+                );
+
+            }
+
+        });
+
+})();
+
+</script>
+
 </body>
-            </html>
+
+                </html>
