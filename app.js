@@ -680,7 +680,7 @@ document.addEventListener("click", async (event) => {
             );
 
             alert(
-    "Unable to unlike post: " +
+    t.unableToUnlikePost +
     error.message
 );
 
