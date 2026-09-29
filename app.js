@@ -189,8 +189,10 @@ unableToUnsavePost: "Unable to unsave post: ",
 
     // Save errors
     postIdNotFound: "ID de publication introuvable",
-    unableToSavePost: "Impossible d'enregistrer la publication : ",
-    unableToUnsavePost: "Impossible de retirer la publication des enregistrements : ",
+unableToLikePost: "Impossible d'aimer la publication : ",
+unableToUnlikePost: "Impossible de ne plus aimer la publication : ",
+unableToSavePost: "Impossible d'enregistrer la publication : ",
+unableToUnsavePost: "Impossible de retirer la publication des enregistrements : ",
 
     // Other
     user: "Utilisateur",
