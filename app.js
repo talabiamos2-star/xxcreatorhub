@@ -474,9 +474,10 @@ ru: {
 
     // Save errors
     postIdNotFound: "ID публикации не найден",
-    unableToSavePost: "Не удалось сохранить публикацию: ",
-    unableToUnsavePost: "Не удалось удалить публикацию из сохранённых: ",
-
+unableToLikePost: "Не удалось поставить отметку «Нравится» публикации: ",
+unableToUnlikePost: "Не удалось убрать отметку «Нравится» с публикации: ",
+unableToSavePost: "Не удалось сохранить публикацию: ",
+unableToUnsavePost: "Не удалось удалить публикацию из сохранённых: ",
     // Other
     user: "Пользователь",
     creatorPhoto: "ФОТО АВТОРА",
