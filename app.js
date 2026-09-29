@@ -284,8 +284,10 @@ unableToUnsavePost: "Impossible de retirer la publication des enregistrements : 
 
     // Save errors
     postIdNotFound: "No se encontró el ID de la publicación",
-    unableToSavePost: "No se pudo guardar la publicación: ",
-    unableToUnsavePost: "No se pudo quitar la publicación de guardados: ",
+unableToLikePost: "No se pudo indicar que te gusta la publicación: ",
+unableToUnlikePost: "No se pudo quitar el Me gusta de la publicación: ",
+unableToSavePost: "No se pudo guardar la publicación: ",
+unableToUnsavePost: "No se pudo quitar la publicación de guardados: ",
 
     // Other
     user: "Usuario",
