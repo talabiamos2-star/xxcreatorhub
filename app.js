@@ -378,9 +378,11 @@ unableToUnsavePost: "No se pudo quitar la publicación de guardados: ",
     adCouldNotLoad: "Die Werbung konnte nicht geladen werden. Bitte versuche es erneut.",
 
     // Save errors
-    postIdNotFound: "Beitrags-ID nicht gefunden",
-    unableToSavePost: "Beitrag konnte nicht gespeichert werden: ",
-    unableToUnsavePost: "Beitrag konnte nicht aus den gespeicherten Beiträgen entfernt werden: ",
+  postIdNotFound: "Beitrags-ID nicht gefunden",
+unableToLikePost: "Beitrag konnte nicht mit „Gefällt mir“ markiert werden: ",
+unableToUnlikePost: "„Gefällt mir“ konnte für den Beitrag nicht entfernt werden: ",
+unableToSavePost: "Beitrag konnte nicht gespeichert werden: ",
+unableToUnsavePost: "Beitrag konnte nicht aus den gespeicherten Beiträgen entfernt werden: ",
 
     // Other
     user: "Benutzer",
