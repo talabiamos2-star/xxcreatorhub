@@ -2502,8 +2502,7 @@ async function loadCreatorPosts(creatorId) {
     container.innerHTML = data.map(post => {
 
         return `
-            <article class="post">
-
+    <article class="post" data-post-id="${post.id}">
                 <div class="post-image">
 
                     ${post.image_url
