@@ -2432,13 +2432,13 @@ document.addEventListener("click", async (event) => {
 // ===============================
 // LOAD CREATOR POSTS
 // ===============================
-
 async function loadCreatorPosts(creatorId) {
 
     const container =
         document.getElementById("creator-posts-container");
 
     if (!container) return;
+
 
     container.innerHTML = `
         <div class="empty-page">
@@ -2449,6 +2449,7 @@ async function loadCreatorPosts(creatorId) {
     `;
 
 
+    // Load the creator's posts
     const { data, error } =
         await supabaseClient
             .from("posts")
@@ -2499,10 +2500,66 @@ async function loadCreatorPosts(creatorId) {
     }
 
 
+    // Load current user's liked and saved posts
+    const { data: savedPosts, error: savedPostsError } =
+        await supabaseClient
+            .from("saved_posts")
+            .select("post_id")
+            .eq("user_id", getCurrentUserId());
+
+
+    const { data: likedPosts, error: likedPostsError } =
+        await supabaseClient
+            .from("post_likes")
+            .select("post_id")
+            .eq("user_id", getCurrentUserId());
+
+
+    if (savedPostsError) {
+        console.error(
+            "Creator profile saved posts error:",
+            savedPostsError
+        );
+    }
+
+
+    if (likedPostsError) {
+        console.error(
+            "Creator profile liked posts error:",
+            likedPostsError
+        );
+    }
+
+
+    const savedPostIds = new Set(
+        (savedPosts || []).map(
+            item => String(item.post_id)
+        )
+    );
+
+
+    const likedPostIds = new Set(
+        (likedPosts || []).map(
+            item => String(item.post_id)
+        )
+    );
+
+
     container.innerHTML = data.map(post => {
 
+        const isLiked =
+            likedPostIds.has(String(post.id));
+
+        const isSaved =
+            savedPostIds.has(String(post.id));
+
+
         return `
-    <article class="post" data-post-id="${post.id}">
+            <article
+                class="post"
+                data-post-id="${post.id}"
+            >
+
                 <div class="post-image">
 
                     ${post.image_url
@@ -2519,11 +2576,12 @@ async function loadCreatorPosts(creatorId) {
                 <div class="post-actions">
 
                     <button
-                        class="like-button"
+                        class="like-button ${isLiked ? "liked" : ""}"
                         aria-label="${t.like}"
                     >
-                        ♡
+                        ${isLiked ? "♥" : "♡"}
                     </button>
+
 
                     <button
                         class="comment-button"
@@ -2532,6 +2590,7 @@ async function loadCreatorPosts(creatorId) {
                         💬
                     </button>
 
+
                     <button
                         class="share-button"
                         aria-label="${t.share}"
@@ -2539,11 +2598,12 @@ async function loadCreatorPosts(creatorId) {
                         ↗
                     </button>
 
+
                     <button
-                        class="save-button"
+                        class="save-button ${isSaved ? "saved" : ""}"
                         aria-label="${t.save}"
                     >
-                        ♧
+                        ${isSaved ? "★" : "♧"}
                     </button>
 
                 </div>
@@ -2555,9 +2615,11 @@ async function loadCreatorPosts(creatorId) {
                         ${Number(post.likes || 0).toLocaleString()} ${t.likesCount}
                     </strong>
 
+
                     <p class="caption">
                         ${post.caption || ""}
                     </p>
+
 
                     <small class="post-time">
                         ${new Date(
@@ -2592,6 +2654,7 @@ async function loadCreatorPosts(creatorId) {
             0
         );
 
+
     const likesElement =
         document.getElementById(
             "creator-total-likes"
@@ -2603,6 +2666,7 @@ async function loadCreatorPosts(creatorId) {
     }
 
         }
+
                     
 document
     .getElementById("back-to-discover")
