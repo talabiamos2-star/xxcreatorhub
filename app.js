@@ -1729,7 +1729,10 @@ loadHomeDiscoverPreview();
 // SUPABASE POSTS
 // ===============================
 
-async function loadPosts(isRefresh = false) {
+async function loadPosts(
+    isRefresh = false,
+    filterType = "forYou"
+) {
 
     const postsContainer =
         document.getElementById("posts-container");
@@ -1767,18 +1770,9 @@ async function loadPosts(isRefresh = false) {
         )
     );
 
-    console.log(
-        "Saved posts:",
-        savedPosts
-    );
 
-    console.log(
-        "Saved post IDs:",
-        savedPostIds
-    );
-
-    const { data, error } =
-        await supabaseClient
+    let query =
+        supabaseClient
             .from("posts")
             .select(`
                 id,
@@ -1796,17 +1790,36 @@ async function loadPosts(isRefresh = false) {
                     bio,
                     verified
                 )
-            `)
-            .order(
-                "created_at",
-                { ascending: false }
-            );
+            `);
 
-    if (isRefresh && data) {
+
+    if (filterType === "trending") {
+
+        query = query.order(
+            "likes",
+            { ascending: false }
+        );
+
+    } else {
+
+        query = query.order(
+            "created_at",
+            { ascending: false }
+        );
+
+    }
+
+
+    const { data, error } = await query;
+
+
+    if (isRefresh && data && filterType === "forYou") {
+
         data.sort(
             () => Math.random() - 0.5
         );
-    }
+
+                    }
 
     if (error) {
 
