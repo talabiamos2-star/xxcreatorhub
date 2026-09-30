@@ -795,15 +795,29 @@ document.addEventListener("click", async (event) => {
 const filters =
     document.querySelectorAll(".filter");
 
-filters.forEach((filter) => {
+const filterTypes = [
+    "forYou",
+    "trending",
+    "new"
+];
 
-    filter.addEventListener("click", () => {
+filters.forEach((filter, index) => {
+
+    filter.addEventListener("click", async () => {
 
         filters.forEach((item) => {
             item.classList.remove("active");
         });
 
         filter.classList.add("active");
+
+        const filterType =
+            filterTypes[index] || "forYou";
+
+        await loadPosts(
+            false,
+            filterType
+        );
 
     });
 
