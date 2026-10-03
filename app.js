@@ -12,11 +12,25 @@ function getCurrentUserId() {
     const telegramUserId =
         window.Telegram?.WebApp?.initDataUnsafe?.user?.id;
 
- 
+    if (telegramUserId) {
+        return String(telegramUserId);
+    }
 
-    return telegramUserId
-        ? String(telegramUserId)
-        : "guest";
+    let guestId =
+        localStorage.getItem("xxcreatorhub_guest_id");
+
+    if (!guestId) {
+        guestId =
+            "guest_" +
+            crypto.randomUUID();
+
+        localStorage.setItem(
+            "xxcreatorhub_guest_id",
+            guestId
+        );
+    }
+
+    return guestId;
 }
 function getTelegramLanguage() {
     return (
