@@ -1749,7 +1749,7 @@ async function loadHomeDiscoverPreview() {
                     </strong>
 
                     <span>
-                        ${creator.username || ""}
+                        ${escapeHtml(creator.username || "")}
                     </span>
 
                 </div>
