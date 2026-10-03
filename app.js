@@ -1736,7 +1736,7 @@ async function loadHomeDiscoverPreview() {
                         post.image_url
                             ? `<img
                                 src="${post.image_url}"
-                                alt="${post.caption || t.creatorPost}"
+                                alt="${escapeHtml(post.caption || t.creatorPost)}"
                               >`
                             : t.creatorPhoto
                     }
