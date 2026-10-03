@@ -2238,7 +2238,7 @@ async function loadPosts(
                             </strong>
 
                             <small>
-                                ${creator.username || ""}
+                                ${escapeHtml(creator.username || "")}
                             </small>
 
                         </div>
