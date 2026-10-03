@@ -2213,7 +2213,7 @@ async function loadPosts(
 
                                     ? `<img
                                         src="${creator.photo_url}"
-                                        alt="${creator.name || t.creator}"
+                                        alt="${escapeHtml(creator.name || t.creator)}"
                                       >`
 
                                     : (
