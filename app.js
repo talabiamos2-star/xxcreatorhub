@@ -2229,7 +2229,7 @@ async function loadPosts(
                         <div class="creator-details">
 
                             <strong>
-                                ${creator.name || t.creator}
+                                ${escapeHtml(creator.name || t.creator)}
                                 ${
                                     creator.verified
                                         ? " ✓"
