@@ -1989,7 +1989,7 @@ async function loadPosts(
 
                                 ? `<img
                                     src="${post.image_url}"
-                                    alt="${caption}"
+                                    alt="${escapeHtml(caption)}"
                                   >`
 
                                 : t.creatorPhoto
