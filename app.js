@@ -32,6 +32,14 @@ function getCurrentUserId() {
 
     return guestId;
 }
+function escapeHtml(value) {
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
 function getTelegramLanguage() {
     return (
         window.Telegram?.WebApp?.initDataUnsafe?.user?.language_code ||
