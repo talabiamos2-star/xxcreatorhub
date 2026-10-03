@@ -40,6 +40,35 @@ function escapeHtml(value) {
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
 }
+function escapeHtml(value) {
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+function safeImageUrl(value) {
+    try {
+        const url = new URL(
+            String(value || ""),
+            window.location.origin
+        );
+
+        if (
+            url.protocol === "https:" ||
+            url.protocol === "http:"
+        ) {
+            return url.href;
+        }
+
+    } catch (error) {
+        return "";
+    }
+
+    return "";
+}
 function getTelegramLanguage() {
     return (
         window.Telegram?.WebApp?.initDataUnsafe?.user?.language_code ||
