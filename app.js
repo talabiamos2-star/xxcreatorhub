@@ -1545,7 +1545,9 @@ async function loadSharedHomePost() {
     );
 
     const startParam =
-        window.Telegram?.WebApp?.initDataUnsafe?.start_param;
+    window.Telegram?.WebApp?.initDataUnsafe?.start_param ||
+    new URLSearchParams(window.location.search)
+        .get("tgWebAppStartParam");
 
     if (!startParam || !startParam.startsWith("post_")) {
         loadRandomHomeCreator();
