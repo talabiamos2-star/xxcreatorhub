@@ -2274,7 +2274,7 @@ async function loadPosts(
                         </strong>
 
                         <p class="caption">
-                            ${post.caption || ""}
+                            ${escapeHtml(post.caption || "")}
                         </p>
 
                         <small class="post-time">
