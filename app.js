@@ -2253,7 +2253,7 @@ async function loadPosts(
 
                                 ? `<img
                                     src="${post.image_url}"
-                                    alt="${post.caption || t.savedPost}"
+                                    alt="${escapeHtml(post.caption || t.savedPost)}"
                                   >`
 
                                 : t.creatorPhoto
