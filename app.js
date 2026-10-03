@@ -2241,7 +2241,7 @@ async function loadPosts(
                                 creator.photo_url
 
                                     ? `<img
-                                        src="${creator.photo_url}"
+                                        src="${safeImageUrl(creator.photo_url)}"
                                         alt="${escapeHtml(creator.name || t.creator)}"
                                       >`
 
