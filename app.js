@@ -2183,6 +2183,28 @@ async function loadPosts(
         savedPosts.map(
             item => item.post_id
         );
+        const { data: likedPosts, error: likedPostsError } =
+    await supabaseClient
+        .from("post_likes")
+        .select("post_id")
+        .eq(
+            "user_id",
+            getCurrentUserId()
+        )
+        .in("post_id", savedIds);
+
+if (likedPostsError) {
+    console.error(
+        "Saved post likes loading error:",
+        likedPostsError
+    );
+}
+
+const likedPostIds = new Set(
+    (likedPosts || []).map(
+        item => String(item.post_id)
+    )
+);
 
     const {
         data: posts,
