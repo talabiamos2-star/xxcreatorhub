@@ -1664,7 +1664,7 @@ async function loadSharedHomePost() {
         const img =
             document.createElement("img");
 
-        img.src = post.image_url;
+        img.src = safeImageUrl(post.image_url);
 
         img.alt =
             creator.name || t.creator;
