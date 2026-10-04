@@ -2665,7 +2665,7 @@ async function loadCreatorPosts(creatorId) {
                     ${post.image_url
                         ? `<img
                             src="${safeImageUrl(post.image_url)}"
-                            alt="${post.caption || t.creatorPost}"
+                            alt="${escapeHtml(post.caption || t.creatorPost)}"
                         >`
                         : t.creatorPhoto
                     }
