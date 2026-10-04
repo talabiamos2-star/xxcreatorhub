@@ -2717,8 +2717,8 @@ async function loadCreatorPosts(creatorId) {
 
 
                     <p class="caption">
-                        ${post.caption || ""}
-                    </p>
+    ${escapeHtml(post.caption || "")}
+</p>
 
 
                     <small class="post-time">
