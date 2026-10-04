@@ -835,6 +835,11 @@ document.addEventListener("click", async (event) => {
 
         button.classList.remove("saved");
         button.textContent = "♧";
+        if (
+    document.getElementById("saved-posts-container")?.contains(post)
+) {
+    post.remove();
+        }
     }
 
     button.disabled = false;
