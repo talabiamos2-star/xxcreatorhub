@@ -1481,7 +1481,7 @@ if (window.Telegram &&
     try {
 
         const AdController = window.Adsgram.init({
-            blockId: "45602"
+            blockId: "int-52050"
         });
 
         await AdController.show();
