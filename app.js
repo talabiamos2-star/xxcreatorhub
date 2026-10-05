@@ -941,7 +941,7 @@ if (unlockButton) {
 
             const AdController =
                 window.Adsgram.init({
-                    blockId: "45602"
+                    blockId: "52051"
                 });
 
             await AdController.show();
