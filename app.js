@@ -1977,7 +1977,7 @@ async function loadPosts(
                                 photo
                                     ? `<img
                                         src="${safeImageUrl(photo)}"
-                                        alt="${name}"
+                                        alt="${escapeHtml(name)}"
                                       >`
                                     : name
                                         .charAt(0)
