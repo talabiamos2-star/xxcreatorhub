@@ -1992,7 +1992,7 @@ async function loadPosts(
                         >
 
                             <strong>
-                                ${name}${creator.verified ? " ✓" : ""}
+                               ${escapeHtml(name)}${creator.verified ? " ✓" : ""} 
                             </strong>
 
                             <small>
