@@ -1976,7 +1976,7 @@ async function loadPosts(
                             ${
                                 photo
                                     ? `<img
-                                        src="${photo}"
+                                        src="${safeImageUrl(photo)}"
                                         alt="${name}"
                                       >`
                                     : name
