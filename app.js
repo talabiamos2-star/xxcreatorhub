@@ -1996,7 +1996,7 @@ async function loadPosts(
                             </strong>
 
                             <small>
-                                ${username}
+                                ${escapeHtml(username)}
                             </small>
 
                         </div>
