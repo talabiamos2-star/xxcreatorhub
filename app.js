@@ -941,7 +941,7 @@ if (unlockButton) {
 
             const AdController =
                 window.Adsgram.init({
-                    blockId: "52172"
+                    blockId: "52350"
                 });
 
             await AdController.show();
@@ -1481,7 +1481,7 @@ if (window.Telegram &&
     try {
 
         const AdController = window.Adsgram.init({
-            blockId: "int-52171"
+            blockId: "int-52349"
         });
 
         await AdController.show();
